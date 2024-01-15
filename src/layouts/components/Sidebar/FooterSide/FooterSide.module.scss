@@ -1,0 +1,26 @@
+.footer-page {
+    padding-top: 16px;
+    margin: 0 8px 60px;
+    border-top: 1px solid #1618231f;
+}
+
+.details-page + .details-page{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 8px;
+}
+
+.details-page {
+
+    span {
+        margin: 5px 6px 0 0;
+        font-weight: 600;
+        font-size: 1.2rem;
+        color: #16182380;
+        cursor: pointer;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}

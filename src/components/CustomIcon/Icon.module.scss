@@ -1,0 +1,9 @@
+.wrapper-icon {
+    display: flex;
+    align-items: center;
+
+    &.check {
+        display: inline-flex;
+        margin-left: 8px;
+    }
+}

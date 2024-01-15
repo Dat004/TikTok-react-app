@@ -1,0 +1,365 @@
+@keyframes zoom-in {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 100000;
+}
+
+.form-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+.form {
+    position: relative;
+    max-height: 693px;
+    height: 80%;
+    width: 483px;
+    padding: 0;
+    // padding: 48px 0 0;
+    background-color: #fff;
+    animation: zoom-in 0.15s linear;
+}
+
+.tab-control {
+    position: absolute;
+    top: 17px;
+    right: 17px;
+    width: 40.8px;
+    height: 40.8px;
+    border-radius: 50%;
+    background-color: rgba(22, 24, 35, 0.03);
+    color: #161823;
+
+    .close-btn {
+        color: #161823;
+    }
+}
+
+// FORM _ LOGOUT
+
+.form-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+.form-logout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 400px;
+    height: 194px;
+    padding: 32px;
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+.logout-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.title-logout {
+    max-width: 100%;
+    padding: 0 32px;
+    font-family: var(--font);
+    font-weight: 700;
+    font-size: 2.4rem;
+    line-height: 3rem;
+    color: #161823;
+    text-align: center;
+}
+
+.btn-primary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 336px;
+    margin-top: 16px;
+    gap: 10px;
+}
+
+.btn-form-logout {
+    flex: 1;
+    font-weight: 600;
+    font-size: 1.6rem;
+    min-width: 108px;
+    min-height: 28px;
+    border-color: #1618231f;
+    color: #161823;
+
+    &:hover {
+        border-color: #d0d1d3;
+        background-color: #f8f8f8;
+    }
+}
+
+.logout-btn {
+    border-color: #fe2c55;
+    color: #fe2c55;
+
+    &:hover {
+        border-color: currentColor;
+    }
+}
+
+// FORM UPDATE
+
+.modal-update {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 100vw;
+    padding: 32px 16px;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    max-width: calc(100vw - 32px);
+    width: 700px;
+    height: 700px;
+    padding: 0;
+}
+
+.header-update {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 24px 12px;
+    border-bottom: 1px solid #16182333;
+}
+
+.header-title {
+    font-weight: 600;
+    font-size: 2.4rem;
+    color: #161823;
+}
+
+.modal-content {
+    flex: 1;
+    padding: 8px 24px 0;
+}
+
+.items-container {
+    display: flex;
+    align-items: flex-start;
+    padding: 16px 0;
+}
+
+.items-container + .items-container {
+    border-top: 0.5px solid #1618231f;
+}
+
+.items-title {
+    min-width: 120px;
+    margin-right: 20px;
+    
+    h4 {
+        font-weight: 600;
+        font-size: 1.6rem;
+        color: #161823;
+    }
+}
+
+.update-content {
+    display: flex;
+    flex-direction: column;
+
+    input, .textarea {
+        outline: none;
+        border: none;
+        height: 38px;
+        width: 365px;
+        padding: 7px 12px;
+        border-radius: 4px;
+        font-size: 1.6rem;
+        background-color: #1618230f;
+        color: #161823;
+        caret-color: #fe2c55;
+    }
+
+    .textarea {
+        height: 100px;
+        resize: none;
+    }
+}
+
+.link-prfile, .des-policy, .des-maximum {
+    line-height: 1.8rem;
+    font-size: 1.2rem;
+    max-width: 460px;
+    width: 360px;
+    color: #161823bf;
+}
+
+.link-prfile {
+    margin-top: 16px;
+}
+
+.des-policy {
+    margin-top: 8px;
+}
+
+.des-maximum {
+    margin-top: 4px;
+}
+
+.footer-update {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 86px;
+    padding: 0 24px;
+    border-top: 1px solid #16182333;
+    gap: 16px;
+}
+
+.btn-form-update {
+    align-items: center;
+    height: 36px;
+    min-width: 96px;
+    color: #161823;
+    border-color: #1618231f;
+    font-weight: 600;
+    font-size: 1.4rem;
+}
+
+.btn-form-save {
+    background-color: #fe2c55;
+    color: #fff;
+}
+
+
+// FORM DELETE
+
+@keyframes show {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    } 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.section-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 100vw;
+    padding: 32px 16px;
+    animation: show 300ms cubic-bezier(0.65, 0, 0.29, 0.99) 0s forwards;
+}
+
+.modal-form {
+    padding: 0;
+    background-color: #fff;
+}
+
+.title {
+    font-family: var(--font);
+    text-align: center;
+    width: 332px;
+    padding: 36px 32px;
+    font-weight: 700;
+    font-size: 2.4rem;
+    line-height: 3rem;
+    color: #161823;
+}
+
+.container-btn {
+    display: flex;
+    flex-direction: column;
+}
+
+.btn-form-delete {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    width: 100%;
+    border-radius: 0;
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 4.8rem;
+    color: #161823bf;
+
+    &.btn-form-delete {
+        border-top: 1px solid #1618231f;
+    }
+}
+
+
+// DISCARD FORM
+
+.discard-form {
+    width: 400px;
+    height: 252px;
+    animation: show 300ms cubic-bezier(0.65, 0, 0.29, 0.99) 0s forwards;
+}
+
+.discard-title {
+    width: 100%;
+    margin-top: 24px;
+    padding: 0;
+    line-height: 1.5;
+}
+
+.des-form {
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 1.5;
+    color: #161823bf;
+    text-align: center;
+}
+
+.modal-btn {
+    display: flex;
+    flex-direction: column;
+    margin: 24px 48px 36px;
+    gap: 12px;
+}
+
+.btn-form-discard {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    border-radius: 2px;
+
+    &.btn-cancel {
+        background: #fff;
+        border-color: #1618231f;
+        color: #161823;
+
+        &:hover {
+            background: #f5f5f5;
+            border-color: #16182333;
+        }
+    }
+}

@@ -1,0 +1,29 @@
+.container-actions {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+.actions-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: transparent;
+    cursor: pointer;
+
+    span {
+        font-weight: 700;
+        font-size: 1.2rem;
+    }
+}
+
+.icon-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    margin: 8px 0 6px;
+    border-radius: 60%;
+    background-color: rgba(22, 24, 35, 0.06);
+}

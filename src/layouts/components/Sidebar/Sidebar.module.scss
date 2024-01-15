@@ -1,0 +1,43 @@
+.wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 320px;
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+.sidebar-nav {
+    padding: 20px 0 26px 8px;
+    overflow-y: auto;
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.scrollbar-control {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 6px;
+    background-color: rgba(22, 24, 35, 0.06);
+    border-radius: 4px;
+    transform: translate(0, 100%);
+}
+
+// transform: `translateY(${positionScrollBar}%)`
+
+.sidebar-nav::-webkit-scrollbar {
+    border-radius: 0;
+    width: 0;
+}
+// .wrapper::-webkit-scrollbar-thumb {
+//     border-radius: 4px;
+//     background-color: rgba(22, 24, 35, 0.06);
+// }
+// .wrapper::-webkit-scrollbar-track {
+//     border-radius: 0;
+//     background-color: rgba(0, 0, 0, 0);
+// }

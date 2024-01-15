@@ -1,0 +1,156 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin-left: 80px;
+    padding: 32px 24px 36px;
+}
+
+.header-profile {
+    display: flex;
+    flex-direction: column;
+    max-width: 624px;
+    min-height: 140px;
+    margin-bottom: 20px;
+}
+
+.info-user {
+    display: flex;
+}
+
+.avatar-profile {
+    max-width: 116px;
+    width: 116px;
+    height: 116px;
+    margin-right: 20px;
+    border-radius: 50%;
+    overflow: hidden;
+
+    img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+}
+
+.infor {
+    flex: 1;
+}
+
+.nickname {
+    font-family: var(--font);
+    font-weight: 700;
+    font-size: 3.2rem;
+    line-height: 4rem;
+}
+
+.username {
+    min-height: 30px;
+    font-weight: 600;
+    font-size: 1.8rem;
+    line-height: 3rem;
+}
+
+.btn-update {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 36px;
+    margin-top: 10px;
+    font-weight: 600;
+    font-size: 1.6rem;
+    border-color: #1618231f;
+    color: #161823;
+}
+
+.btn-follow {
+    min-width: 208px;
+    font-weight: 600;
+    font-size: 1.8rem;
+    background-color: #fe2c55;
+    color: #fff;
+
+    &:hover {
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06)), rgb(254, 44, 85);
+    }
+}
+
+.container-btn {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.btn-message {
+    min-width: 164px;
+    margin-top: 0;
+    margin-right: 8px;
+    font-weight: 600;
+    font-size: 1.8rem;
+    border-color: #fe2c55;
+    background-color: #fff;
+    color: #fe2c55;
+}
+
+.btn-unfollow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-color: #1618231f;
+    color: #161823;
+}
+
+.update-icon {
+    margin-right: 6px;
+}
+
+.count-info {
+    display: flex;
+    gap: 20px;
+}
+
+.count-title {
+    margin-top: 22px;
+    font-weight: 700;
+    font-size: 1.8rem;
+    color: #161823;
+    line-height: 2.4rem;
+
+    .title {
+        font-size: 1.6rem;
+        font-weight: 400;
+        margin-left: 6px;
+        color: #161823bf;
+    }
+}
+
+.user-bio {
+    margin-top: 10px;
+    font-weight: 400;
+    font-size: 1.6rem;
+    color: #161823;
+    line-height: 2.1rem;
+}
+
+.link-title {
+    display: flex;
+    flex-direction: column;
+    height: 22px;
+    margin-top: 6px;
+}
+
+.link-text {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+    font-size: 1.6rem;
+    color: #fe2c55;
+
+    &:hover span {
+        text-decoration: underline;
+    }
+}

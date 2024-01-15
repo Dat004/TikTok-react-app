@@ -1,0 +1,162 @@
+.wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.feed-tab {
+    position: relative;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #efefef;
+}
+
+.feed-tab,
+.tab-content {
+    display: flex;
+}
+
+.tab-content {
+    align-items: center;
+    height: 44px;
+    cursor: pointer;
+}
+
+.content-tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 0 32px;
+}
+
+.feed-title {
+    font-weight: 600;
+    font-size: 1.8rem;
+    color: #161823;
+}
+
+.lock-icon {
+    margin-right: 6px;
+}
+
+.line-break {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    height: 2px;
+    background-color: #161823;
+    transition: all 0.15s linear;
+}
+
+.container {
+    flex: 1;
+}
+
+.container-layout-public {
+    display: flex;
+    margin: 0 -8px;
+    flex-wrap: wrap;
+    gap: 24px 0;
+}
+
+.section {
+    max-width: 16.66667%;
+    width: 16.66667%;
+    padding: 0 8px;
+}
+
+.main-content {
+    cursor: pointer;
+}
+
+.card-video {
+    position: relative;
+    display: flex;   
+    height: 100%;
+    padding-top: 132.653%;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.card-footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    height: 100px;
+    width: 100%;
+    padding: 67px 13px 17px;
+    background: linear-gradient(rgba(22, 24, 35, 0) 2.92%, rgba(22, 24, 35, 0.5) 98.99%);
+}
+
+.view-video {
+    font-weight: 600;
+    font-size: 1.6rem;
+    color: #fff;
+    margin-left: 4px;
+}
+
+.video-items {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.description-video {
+    max-width: 100%;
+    height: 26px;
+}
+
+.description {
+    line-height: 3.4rem;
+    font-weight: 400;
+    font-size: 1.6rem;
+    color: #161823;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.wrapper-videos {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-layout-private {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.icon-big {
+    opacity: .34;
+}
+
+.title {
+    margin-top: 18px;
+    font-family: var(--font);
+    font-weight: 700;
+    font-size: 2.4rem;
+    line-height: 3rem;
+    color: #161823;
+}
+
+.description {
+    margin-top: 8px;
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 2.1rem;
+    color: #161823BF;
+}
+

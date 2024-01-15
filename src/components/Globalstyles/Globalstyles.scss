@@ -1,0 +1,140 @@
+@import 'normalize.css';
+
+@keyframes spinner {
+    from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+:root {
+    --primary: #fe2c55;
+    --font-primary: 'TikTokFont', sans-serif;
+    --font: 'TikTokDisplayFont', sans-serif;
+    --white: #fff;
+    --black: #000;
+    --text-color: #333;
+    --default-layout-header-height: 60px;
+    --default-layout-width: 1150px;
+    --default-layout-space-left: 16px;
+    --default-layout-space-right: 24px;
+    --animation-loading: spinner 0.75s linear infinite;
+}
+
+// THUMB BAR
+/* width */
+html *::-webkit-scrollbar {
+    border-radius: 0;
+    width: 8px;
+}
+html *::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(22, 24, 35, 0.06);
+}
+html *::-webkit-scrollbar-track {
+    border-radius: 0;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+@font-face {
+    font-family: TikTokFont;
+    src: url('/assets/fonts/TikTokFont-Regular.woff2');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: TikTokFont;
+    src: url('/assets/fonts/TikTokFont-Semibold.woff2');
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: TikTokFont;
+    src: url('/assets/fonts/TikTokFont-Bold.woff2');
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: TikTokDisplayFont;
+    src: url('/assets/fonts/TikTokDisplayFont-Bold.woff2');
+    font-weight: 700;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-primary);
+    user-select: none;
+}
+
+body {
+    text-rendering: optimizeSpeed;
+    line-height: 1.5;
+    font-size: 1.6rem;
+    scrollbar-gutter: stable;
+    overscroll-behavior: contain;
+    overflow-y: overlay;
+}
+
+button,
+input,
+[tabindex] {
+    border: none;
+    outline: none;
+}
+
+button:disabled {
+    border: none;
+    color: rgba(22, 24, 35, 0.34);
+    background-color: rgba(22, 24, 35, 0.06);
+    pointer-events: none;
+}
+
+a {
+    color: var(--black);
+    text-decoration: none;
+}
+
+input::-ms-reveal,
+input::-ms-clear {
+    display: none;
+}
+
+// TIPPY ELEMENT
+
+.tippy-box {
+    background-color: rgba(84, 84, 84, 0.92);
+    border-radius: 8px;
+
+    .tippy-content {
+        align-items: center;
+        font-size: 1.6rem;
+        font-weight: 600;
+        line-height: 2.2rem;
+        color: rgb(255, 255, 255);
+        padding: 7.5px;
+    }
+}
+
+.tippy-box[data-placement^='bottom'] > .tippy-arrow {
+    border-width: 0 7px 7px;
+    border-bottom-color: rgba(84, 84, 84, 0.92);
+    margin: 0 -1px;
+    transform-origin: 50% 7px;
+    top: -7px;
+}
+
+.tippy-box[data-placement^='top'] > .tippy-arrow {
+    border-width: 7px 7px 0;
+    border-top-color: rgba(84, 84, 84, 0.92);
+    margin: 0 -1px;
+    transform-origin: 50% 7px;
+    bottom: -7px;
+}

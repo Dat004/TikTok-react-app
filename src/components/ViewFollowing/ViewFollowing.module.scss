@@ -1,0 +1,111 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+}
+
+.div-container {
+    display: flex;
+    align-items: center;
+    width: 736px;
+    padding-top: 20px;
+    flex-wrap: wrap;
+}
+
+.section-items {
+    width: 226px;
+    height: 302px;
+    margin: 0 16px 16px 0;
+}
+
+.container-info {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.preview-videos {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.preview-info {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 200px;
+    padding: 30px 12px 20px;
+    background: linear-gradient(rgba(22, 24, 35, 0) 2.92%, rgba(22, 24, 35, 0.5) 98.99%);
+}
+
+.avatar-container {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    margin-bottom: 14px;
+    overflow: hidden;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.username {
+    text-align: center;
+    width: 100%;
+    font-weight: 700;
+    font-size: 1.8rem;
+    line-height: 2.4rem;
+    color: #fff;
+}
+
+.nickname {
+    display: flex;
+    align-items: center;
+    max-width: 100%;
+    line-height: 1.8rem;
+    gap: 4px;
+
+    span {
+        max-width: 160px;
+        font-weight: 600;
+        font-size: 1.4rem;
+        color: #fff;
+    }
+}
+
+.div-btn {
+    display: flex;
+    align-items: center;
+    min-width: 164px;
+    max-height: 36px;
+    margin-top: 8px;
+    font-weight: 600;
+    font-size: 1.8rem;
+    line-height: 2.2rem;
+
+    &:active {
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.12)), rgb(254, 44, 85);
+    }
+}

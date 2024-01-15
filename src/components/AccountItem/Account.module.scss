@@ -1,0 +1,40 @@
+.account-item {
+    display: flex;
+    align-items: center;
+    line-height: 1.9rem;
+    padding: 8px 16px;
+    cursor: pointer;
+    &:hover {
+        background-color: rgba(22, 24, 35, 0.04);;
+    }
+
+    .avatar-user {
+        width: 40px;
+        height: 40px;
+        margin-right: 12px;
+        overflow: hidden;
+    }
+
+    .avatar {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+    .info {
+        .check {
+            margin-left: 8px;
+        }
+        .name {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #161823;
+        }
+        .username {
+            font-weight: 400;
+            font-size: 1.4rem;
+            color: #16182380;
+            text-transform: uppercase;
+        }
+    }
+}

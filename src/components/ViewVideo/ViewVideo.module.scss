@@ -1,0 +1,118 @@
+.wrapper {
+    // margin-left: 30px;
+    max-width: 692px;
+    margin: 0 auto;
+}
+
+.video-items {
+    display: flex;
+    align-items: flex-start;
+    min-width: 100%;
+    padding: 20px 0;
+}
+
+.video-items + .video-items {
+    border-top: 1px solid rgba(22, 24, 35, 0.2);
+}
+
+.avatar {
+    width: 56px;
+    height: 56px;
+    overflow: hidden;
+}
+
+.avatar-user {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.container {
+    flex: 1;
+    margin-left: 12px;
+}
+
+.header-video {
+    display: flex;
+}
+
+.infor {
+    flex: 1;
+    margin-right: 15px;
+}
+
+.name, .content, .music {
+    display: flex;
+}
+
+.name {
+    align-items: baseline;
+}
+
+.nickname {
+    margin-right: 5px;
+    font-size: 1.8rem;
+    color: #161823;
+}
+
+.username {
+    font-size: 1.4rem;
+    color: #161823;
+}
+
+.text-content {
+    font-size: 1.6rem;
+    color: #161823;
+}
+
+.tags {
+    span {
+        font-weight: 600;   
+        color: #2b5db9;
+        cursor: pointer;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+.btn-follow {
+    display: flex;
+    align-items: center;
+    min-width: 96px;
+    height: 36px;
+    font-weight: 600;
+    border-radius: 2px;
+
+    &:hover {
+        background-color: #fe2c5514;
+    }
+}
+
+.btn-unfollow {
+    color: #161823;
+    border-color: #1618231f;
+}
+
+.music {
+    margin: 2px 0 12px 0;
+}
+
+.name-music {
+    font-size: 1.4rem;
+    color: #161823;
+    cursor: pointer;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.main-video {
+    position: relative;
+    display: flex;
+    gap: 20px;
+    height: auto;
+}

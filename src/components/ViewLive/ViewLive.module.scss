@@ -1,0 +1,44 @@
+.wrapper {
+    height: 100%;
+    margin-left: 80px;
+    padding: 24px;
+}
+
+.container {
+    position: relative;
+    max-height: 800px;
+    height: 100%;
+    border-radius: 8px;
+    background-color: rgb(241, 241, 241);
+}
+
+.count-view {
+    position: absolute;
+    top: 25px;
+    right: 40px;
+}
+
+.info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 24px;
+}
+
+.title {
+    display: inline-block;
+    padding: 0 4px;
+    font-weight: 700;
+    font-size: 1.6rem;
+    border-radius: 4px;
+    background-color: #2a2d3f33;
+    color: #fff;
+}
+
+.count-view, .username, .description {
+    // display: inline-block;
+}
+
+.username {
+    margin: 10px 0;
+}
