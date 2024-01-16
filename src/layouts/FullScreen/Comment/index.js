@@ -27,6 +27,7 @@ import config from '../../../services';
 import Button from '../../../components/Button';
 import Image from '../../../components/Image';
 import ListComments from '../../../components/ListComments';
+import TextBox from '../../../components/TextBox';
 
 const cx = classNames.bind(styles);
 
@@ -135,40 +136,6 @@ function Comment({ urlPath, data, idVideo, statePosition, listVideoState }) {
         }
     };
 
-    const handlePostComment = () => {
-        if (!valueComments) {
-            return;
-        }
-
-        const fetchPostCommentApi = async () => {
-            const data = await config.postComments(idVideo, valueComments, tokenStr);
-
-            setValueComments('');
-
-            textareaRef.current.style.height = 'auto';
-            textareaRef.current.focus();
-
-            if (data.Error) {
-                setInfoNotify({
-                    content: 'You cannot post comment',
-                    delay: 1500,
-                    isNotify: true,
-                });
-            } else {
-                setInfoNotify({
-                    content: 'Your comment posted!',
-                    delay: 1500,
-                    isNotify: true,
-                });
-
-                setCommensCount((prev) => prev + 1);
-                fetchCommentsApi();
-            }
-        };
-
-        fetchPostCommentApi();
-    };
-
     const handleOpenFormDelete = (desVideo, idVideo) => {
         const currentLength = listVideos.length - 1;
 
@@ -208,18 +175,32 @@ function Comment({ urlPath, data, idVideo, statePosition, listVideoState }) {
         setOpenFormLogin(true);
     };
 
-    const handleChangeValue = (e) => {
-        if (e.target.value.startsWith(' ')) {
+    const handlePostComment = async () => {
+        if (!valueComments) {
             return;
+        };
+
+        const data = await config.postComments(idVideo, valueComments, tokenStr);
+
+        if (data.Error) {
+            setInfoNotify({
+                content: 'You cannot post comment',
+                delay: 1500,
+                isNotify: true,
+            });
+        } else {
+            setInfoNotify({
+                content: 'Your comment posted!',
+                delay: 1500,
+                isNotify: true,
+            });
+
+            setCommensCount((prev) => prev + 1);
+            fetchCommentsApi();
         }
 
-        textareaRef.current.style.height = 'auto';
-
-        const scrollHeight = textareaRef.current.scrollHeight;
-
-        textareaRef.current.style.height = scrollHeight + 2 + 'px';
-
-        setValueComments(e.target.value);
+        // prettierText();
+        setValueComments('');
     };
 
     const handleKeyDown = (e) => {
@@ -228,6 +209,14 @@ function Comment({ urlPath, data, idVideo, statePosition, listVideoState }) {
 
             handlePostComment();
         }
+    };
+
+    const handleChangeValue = (e) => {
+        if (e.target.value.startsWith(' ')) {
+            return;
+        };
+
+        setValueComments(e.target.value);
     };
 
     return (
@@ -387,25 +376,21 @@ function Comment({ urlPath, data, idVideo, statePosition, listVideoState }) {
             </aside>
             <footer className={cx('footer-comments')}>
                 <div className={cx('container-footer')}>
-                    <div className={cx('input-group')}>
-                        <textarea
-                            ref={textareaRef}
-                            onKeyDown={handleKeyDown}
-                            onChange={handleChangeValue}
-                            value={valueComments}
-                            rows="1"
-                            type="text"
-                            placeholder="Add comment..."
-                            spellCheck={false}
-                        />
-                    </div>
-                    <Button
+                    <TextBox
+                        ref={textareaRef}
+                        onChange={handleChangeValue}
+                        onClick={handlePostComment}
+                        onKeyDown={handleKeyDown}
+                        setTextValue={setValueComments}
+                        textValue={valueComments}
+                    />
+                    {/* <Button
                         onClick={!tokenStr && !userAuth ? handleOpenFormLogin : handlePostComment}
                         disabled={valueComments.length > 0 ? false : true}
                         className={cx('btn-comment')}
                     >
                         Post
-                    </Button>
+                    </Button> */}
                 </div>
             </footer>
         </div>

@@ -7,6 +7,7 @@ import { UserAuth } from '../Store';
 import { CloseTabs } from '../Control';
 import { Wrapper } from '../Popper';
 import Button from '../Button';
+import TextBox from '../TextBox';
 
 const cx = classNames.bind(styles);
 
@@ -60,13 +61,7 @@ function UpdateForm() {
 
     const handleUpdateUser = () => {
         const fetchApi = async () => {
-            const data = await config.update(
-                tokenStr,
-                valueFirstName,
-                valueLastName,
-                valueWebsite, 
-                valueBiO,
-            );
+            const data = await config.update(tokenStr, valueFirstName, valueLastName, valueWebsite, valueBiO);
 
             window.location.reload();
         };
@@ -116,15 +111,7 @@ function UpdateForm() {
                                             spellCheck
                                         />
                                     )}
-                                    {item.type === 'textarea' && (
-                                        <textarea
-                                            onChange={(e) => handleChangeValue(e, index)}
-                                            value={item.value}
-                                            className={cx('textarea')}
-                                            type="text"
-                                            placeholder="abc"
-                                        />
-                                    )}
+                                    {item.type === 'textarea' && <TextBox />}
                                     {item.textLink && <p className={cx('link-prfile')}>{item.textLink}</p>}
                                     {item.des && <p className={cx('des-policy')}>{item.des}</p>}
                                     {item.maximum && <p className={cx('des-maximum')}>{item.maximum}</p>}

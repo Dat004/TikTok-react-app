@@ -1,8 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Fragment } from 'react';
 
 import { publicRoutes } from './routes';
 import { DefaultLayout } from './layouts';
-import { Fragment } from 'react';
+import ActionsApp from './components/ActionsApp';
 
 function App() {
     return (
@@ -26,6 +27,7 @@ function App() {
                         );
                     })}
                 </Routes>
+                <ActionsApp />
             </div>
         </Router>
     );

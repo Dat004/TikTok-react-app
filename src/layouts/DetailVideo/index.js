@@ -11,6 +11,7 @@ import Image from '../../components/Image';
 import Button from '../../components/Button';
 import VideoPlayer from './VideoPlayer';
 import config from '../../services';
+import TextBox from '../../components/TextBox';
 
 const cx = classNames.bind(styles);
 
@@ -50,29 +51,22 @@ function DetailVideo({ data }) {
 
         setValueText('');
         setCommensCount((prev) => prev + 1);
-        textareaRef.current.focus();
     };
 
     const handleKeyDown = (e) => {
         if (e.keyCode === 13) {
             e.preventDefault();
+
             handlePostComment();
         }
     };
 
     const handleChangeValueText = (e) => {
-        e.target.style.height = 'auto';
-
-        const value = e.target.value;
-        const heightScroll = e.target.scrollHeight;
-
-        if (value.startsWith(' ')) {
+        if (e.target.value.startsWith(' ')) {
             return;
         }
 
-        e.target.style.height = heightScroll + 2 + 'px';
-
-        setValueText(value);
+        setValueText(e.target.value);
     };
 
     const handleOpenFormLogin = (e) => {
@@ -128,26 +122,16 @@ function DetailVideo({ data }) {
                                     <Image src={userAuth.avatar} />
                                 </div>
                             )}
-                            <form className={cx('post-form')}>
-                                <div className={cx('form-input')}>
-                                    <textarea
-                                        ref={textareaRef}
-                                        onKeyDown={handleKeyDown}
-                                        onChange={handleChangeValueText}
-                                        value={valueText}
-                                        placeholder="Add comments..."
-                                        rows="1"
-                                        spellCheck={false}
-                                    />
-                                </div>
-                                <Button
-                                    onClick={tokenStr && userAuth ? handlePostComment : handleOpenFormLogin}
-                                    className={cx('btn-post')}
-                                    disabled={valueText.length === 0 ? true : false}
-                                >
-                                    Post
-                                </Button>
-                            </form>
+                            <div className={cx('form-text')}>
+                                <TextBox
+                                    ref={textareaRef}
+                                    onClick={handlePostComment}
+                                    onChange={handleChangeValueText}
+                                    onKeyDown={handleKeyDown}
+                                    setTextValue={setValueText}
+                                    textValue={valueText}
+                                />
+                            </div>
                         </div>
                         <div className={cx('list-container')}>
                             {getDataComments.map((items, index) => (

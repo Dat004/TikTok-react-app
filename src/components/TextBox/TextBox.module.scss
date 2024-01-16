@@ -1,0 +1,141 @@
+.wrapper-form {
+    width: 100%;
+    height: 100%;
+}
+
+.form-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.form-group {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    background-color: rgba(22, 24, 35, 0.06);
+}
+
+.form-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    margin: 10px 8px 10px 0;
+}
+
+.current-length {
+    display: none;
+    margin-top: 10px;
+    font-family: "IBM Plex Sans", TikTokFont, Arial, Tahoma, PingFangSC, sans-serif;
+    font-size: 1.4rem;
+    line-height: 1.8rem;
+    color: #161823bf;
+}
+
+.text-form {
+    width: 100%;
+    height: 100%;
+    font-weight: 400;
+    font-size: 1.4rem;
+    color: #161823;
+    line-height: 1.8rem;
+    background: transparent;
+    border: none;
+    outline: none;
+    overflow: hidden;
+    resize: none;
+}
+
+.emoji-container {
+    position: relative;
+    margin: 3px;
+}
+
+.emoji-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 32px;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: transparent;
+
+    &.active {
+        background-color: rgba(0, 0, 0, 0.12);
+    }
+
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.12);
+    }
+}
+
+.group-emoji {
+    position: absolute;
+    top: -304px;
+    right: 0;
+    width: 368px;
+    height: 300px;
+    background: #fff;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 4px 16px 0px;
+    border-radius: 8px;
+    z-index: 2;
+}
+
+.list-emojies {
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    width: 100%;
+    height: 100%;
+}
+
+.list-emojies::-webkit-scrollbar {
+    width: 4px;
+    border-radius: 0;
+}
+
+.list-emojies::-webkit-scrollbar-thumb {
+    background: #e6d5d5;
+
+    &:hover {
+        background: #79797C;
+    }
+}
+
+.emoji-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    margin: 5px 6px;
+    font-size: 2.5rem;
+    background: #fff;
+    border-radius: 8px;
+    list-style: none;
+    cursor: pointer;
+
+    &:hover {
+        background-color: rgba(22, 24, 35, 0.06);
+    }
+}
+
+.btn-post {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex: 0 0 48px;
+    width: 48px;
+    margin-right: 4px;
+
+    &:disabled {
+        background: transparent;
+    }
+}
