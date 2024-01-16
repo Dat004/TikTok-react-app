@@ -5,18 +5,22 @@ import styles from './ViewVideo.module.scss';
 import { UserAuth, UserVideo } from '../Store';
 import config from '../../services';
 import VideoItems from './VideoItems';
-import ActionsApp from '../ActionsApp';
 
 const cx = classNames.bind(styles);
 
 function ViewVideo({ type }) {
     const [categories, setCategories] = useState(type);
+    const [listVideoUser, setListVideoUser] = useState([]);
 
     const { listVideoHome, setListVideoHome, setListVideos } = UserVideo();
     const { tokenStr } = UserAuth();
 
     useEffect(() => {
-        setListVideoHome([]);
+        setListVideoUser(listVideoHome);
+    }, [listVideoHome]);
+    
+    useEffect(() => {
+        setListVideoUser([]);
 
         if (type === 'following') {
             const fetchApi = async () => {
@@ -39,16 +43,15 @@ function ViewVideo({ type }) {
         }
     }, [categories]);
 
-    if (listVideoHome.length === 0) {
+    if (listVideoUser.length === 0) {
         return;
     }
 
     return (
         <div className={cx('wrapper')}>
             <div className={cx('video-wrapper')}>
-                <VideoItems data={listVideoHome} />
+                <VideoItems data={listVideoUser} />
             </div>
-            <ActionsApp />
         </div>
     );
 }

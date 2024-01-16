@@ -20,6 +20,7 @@ import Button from '../Button';
 import config from '../../services';
 import Image from '../Image';
 import LoadingElement from '../LoadingElement';
+import TextBox from '../TextBox';
 
 const cx = classNames.bind(styles);
 
@@ -41,13 +42,6 @@ function ListComments({ data, className, index, creator, setGetDataComments, set
     //     setLikeComments(data?.is_liked);
     //     setLikeCounts(data?.likes_count);
     // }, [data]);
-
-    useEffect(() => {
-        if (textareaRef.current) {
-            const textLength = textareaRef.current.value.length;
-            textareaRef.current.setSelectionRange(textLength, textLength);
-        }
-    }, [isEditText]);
 
     useEffect(() => {
         setIsLoading(true);
@@ -99,31 +93,37 @@ function ListComments({ data, className, index, creator, setGetDataComments, set
         setOpenFormDelete(true);
     };
 
-    const handleSubmitUpdateComment = async (idComment) => {
+    const handleSubmitUpdateComment = () => {
+        const idComment = data?.id;
+
         if (!textValues || textValues === valueComments) {
             return;
         }
 
-        const data = await config.updateComments(textValues, idComment, tokenStr);
+        const fetchUpdate = async () => {
+            const data = await config.updateComments(textValues, idComment, tokenStr);
 
-        if (data.Error) {
-            setInfoNotify({
-                content: 'Unable to update comments. Try again later!',
-                delay: 1500,
-                isNotify: true,
-            });
-            setIsEditText(false);
-        } else {
-            setInfoNotify({
-                content: 'Update comments successfully',
-                delay: 1500,
-                isNotify: true,
-            });
-            setIsEditText(false);
-            setTextValues(data.data.comment);
-            setValueComments(data.data.comment);
-            setTimeUpdateComment(data.data?.updated_at.split(' ')[0]);
-        }
+            if (data.Error) {
+                setInfoNotify({
+                    content: 'Unable to update comments. Try again later!',
+                    delay: 1500,
+                    isNotify: true,
+                });
+                setIsEditText(false);
+            } else {
+                setInfoNotify({
+                    content: 'Update comments successfully',
+                    delay: 1500,
+                    isNotify: true,
+                });
+                setIsEditText(false);
+                setTextValues(data.data.comment);
+                setValueComments(data.data.comment);
+                setTimeUpdateComment(data.data?.updated_at.split(' ')[0]);
+            }
+        };
+
+        fetchUpdate();
     };
 
     const handleEditComment = (contentComment) => {
@@ -131,7 +131,7 @@ function ListComments({ data, className, index, creator, setGetDataComments, set
         setIsEditText(true);
     };
 
-    const handleCancleEditComment = (e, idComment) => {
+    const handleCancleEditComment = (e) => {
         if (e.keyCode === 27) {
             e.preventDefault();
 
@@ -139,7 +139,7 @@ function ListComments({ data, className, index, creator, setGetDataComments, set
         } else if (e.keyCode === 13) {
             e.preventDefault();
 
-            handleSubmitUpdateComment(idComment);
+            handleSubmitUpdateComment();
         }
     };
 
@@ -148,13 +148,7 @@ function ListComments({ data, className, index, creator, setGetDataComments, set
             return;
         }
 
-        textareaRef.current.style.height = 'auto';
-
-        const scrollHeight = textareaRef.current.scrollHeight;
-
         setTextValues(e.target.value);
-
-        textareaRef.current.style.height = scrollHeight + 2 + 'px';
     };
 
     return (
@@ -196,25 +190,14 @@ function ListComments({ data, className, index, creator, setGetDataComments, set
                                 </div>
                             ) : (
                                 <div className={cx('text-form')}>
-                                    <textarea
+                                    <TextBox
                                         ref={textareaRef}
+                                        onClick={handleSubmitUpdateComment}
                                         onChange={handleChangeValues}
-                                        onKeyDown={(e) => handleCancleEditComment(e, data?.id)}
-                                        className={cx('text-area')}
-                                        value={textValues}
-                                        spellCheck={false}
-                                        autoFocus
-                                        rows="1"
-                                    ></textarea>
-                                    <Button
-                                        onClick={() => handleSubmitUpdateComment(data?.id)}
-                                        disabled={
-                                            textValues.length === 0 || textValues === valueComments ? true : false
-                                        }
-                                        className={cx('btn-send')}
-                                    >
-                                        <SendIcon />
-                                    </Button>
+                                        onKeyDown={handleCancleEditComment}
+                                        setTextValue={setTextValues}
+                                        textValue={textValues}
+                                    />
                                     <label className={cx('cancle-edit')} aria-label="Nhấn Esc để huỷ">
                                         Nhấn Esc để <span onClick={() => setIsEditText(false)}>huỷ</span>
                                     </label>

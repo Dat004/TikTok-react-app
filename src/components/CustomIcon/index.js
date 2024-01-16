@@ -1200,16 +1200,16 @@ export const EditIcon = ({ width = '2.4rem', height = '2.4rem', className }) => 
     </svg>
 );
 
-export const SendIcon = ({ width = '2.4rem', height = '2.4rem', className }) => (
-    <svg className={className} xmlns="http://www.w3.org/2000/svg" width={width} height={height} viewBox="0 0 24 24">
-        <path
-            fill="#2e69f5"
-            fillRule="evenodd"
-            d="M3.291 3.309a.75.75 0 0 0-.976.996l3.093 6.945H13a.75.75 0 0 1 0 1.5H5.408l-3.093 6.945a.75.75 0 0 0 .976.996l19-8a.75.75 0 0 0 0-1.382z"
-            clipRule="evenodd"
-        />
-    </svg>
-);
+// export const SendIcon = ({ width = '2.4rem', height = '2.4rem', className }) => (
+//     <svg className={className} xmlns="http://www.w3.org/2000/svg" width={width} height={height} viewBox="0 0 24 24">
+//         <path
+//             fill="#2e69f5"
+//             fillRule="evenodd"
+//             d="M3.291 3.309a.75.75 0 0 0-.976.996l3.093 6.945H13a.75.75 0 0 1 0 1.5H5.408l-3.093 6.945a.75.75 0 0 0 .976.996l19-8a.75.75 0 0 0 0-1.382z"
+//             clipRule="evenodd"
+//         />
+//     </svg>
+// );
 
 export const PersonLargeIcon = ({ width = '9rem', height = '9rem', className }) => (
     <svg
@@ -1228,5 +1228,91 @@ export const PersonLargeIcon = ({ width = '9rem', height = '9rem', className }) 
             d="M16.6276 20.2241C16.6276 30.8074 25.2394 39.4192 35.8227 39.4192C46.4059 39.4192 55.0178 30.8074 55.0178 20.2241C55.0178 9.64086 46.4059 1.02899 35.8227 1.02899C25.2394 1.02899 16.6276 9.64086 16.6276 20.2241ZM19.7405 20.2244C19.7405 11.3583 26.9568 4.14202 35.8229 4.14202C44.689 4.14202 51.9053 11.3583 51.9053 20.2244C51.9053 29.0905 44.689 36.3068 35.8229 36.3068C26.9568 36.3068 19.7405 29.0905 19.7405 20.2244Z"
         ></path>
         <path d="M6.69813 70.9717C6.56844 70.9717 6.43874 70.9562 6.30904 70.9199C5.47898 70.7072 4.97576 69.8563 5.19365 69.0263C8.79922 55.045 21.3954 45.2762 35.8228 45.2762C50.2503 45.2762 62.8465 55.0398 66.4572 69.0211C66.6699 69.8512 66.1719 70.702 65.3366 70.9147C64.5014 71.1326 63.6558 70.6293 63.4379 69.7941C60.1851 57.1876 48.8288 48.3837 35.8176 48.3837C22.8117 48.3837 11.4554 57.1876 8.19743 69.7941C8.02104 70.5048 7.39331 70.9717 6.69813 70.9717Z"></path>
+    </svg>
+);
+
+export const EmojiIcon = ({ width = '2.2rem', height = '2.2rem', className }) => (
+    <svg
+        className={className}
+        width={width}
+        height={height}
+        data-e2e=""
+        viewBox="0 0 48 48"
+        fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg"
+    >
+        <path
+            fillRule="evenodd"
+            clipRule="evenodd"
+            d="M24 6C14.0589 6 6 14.0589 6 24C6 33.9411 14.0589 42 24 42C33.9411 42 42 33.9411 42 24C42 14.0589 33.9411 6 24 6ZM2 24C2 11.8497 11.8497 2 24 2C36.1503 2 46 11.8497 46 24C46 36.1503 36.1503 46 24 46C11.8497 46 2 36.1503 2 24Z"
+        ></path>
+        <path
+            fillRule="evenodd"
+            clipRule="evenodd"
+            d="M17 23C18.6569 23 20 21.2091 20 19C20 16.7909 18.6569 15 17 15C15.3431 15 14 16.7909 14 19C14 21.2091 15.3431 23 17 23Z"
+        ></path>
+        <path
+            fillRule="evenodd"
+            clipRule="evenodd"
+            d="M31 23C32.6569 23 34 21.2091 34 19C34 16.7909 32.6569 15 31 15C29.3431 15 28 16.7909 28 19C28 21.2091 29.3431 23 31 23Z"
+        ></path>
+        <path
+            fillRule="evenodd"
+            clipRule="evenodd"
+            d="M16 28.3431C16 31.4673 19.5817 36 24 36C28.4183 36 32 31.4673 32 28.3431C32 25.219 16 25.219 16 28.3431Z"
+        ></path>
+    </svg>
+);
+
+export const DownloadIcon = ({ width = '1.6rem', height = '1.6rem', className }) => (
+    <svg
+        className={className}
+        width={width}
+        height={height}
+        viewBox="0 0 48 48"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="currentColor"
+    >
+        <path d="M21.9 7.38v19.86l-6.73-6.73a.87.87 0 0 0-1.24 0l-1.73 1.73a.88.88 0 0 0 0 1.24l11.18 11.18c.34.35.9.35 1.24 0L35.8 23.48a.88.88 0 0 0 0-1.24l-1.73-1.73a.87.87 0 0 0-1.24 0l-6.73 6.73V7.38c0-.49-.4-.88-.87-.88h-2.45c-.49 0-.88.4-.88.88ZM10.88 37.13c-.49 0-.88.39-.88.87v2.63c0 .48.4.87.88.87h26.24c.49 0 .88-.4.88-.87V38c0-.48-.4-.87-.87-.87H10.86Z"></path>
+    </svg>
+);
+
+export const SendIcon = ({ width = '1.6rem', height = '1.6rem', className }) => (
+    <svg
+        className={className}
+        width={width}
+        height={height}
+        fill="currentColor"
+        viewBox="0 0 48 48"
+        xmlns="http://www.w3.org/2000/svg"
+    >
+        <path d="M2.18 7.17A2 2 0 0 1 4 6h40a2 2 0 0 1 1.74 3l-20 35a2 2 0 0 1-3.65-.4L16.22 25 2.49 9.32a2 2 0 0 1-.31-2.15Zm18.2 17.72 4.15 13.15L40.55 10H8.41l9.98 11.41 11.71-7.2a1 1 0 0 1 1.38.32l1.04 1.7a1 1 0 0 1-.32 1.38L20.38 24.9Z"></path>
+    </svg>
+);
+
+export const LinkSmallIcon = ({ width = '1.6rem', height = '1.6rem', className }) => (
+    <svg
+        className={className}
+        width={width}
+        height={height}
+        fill="currentColor"
+        viewBox="0 0 48 48"
+        xmlns="http://www.w3.org/2000/svg"
+    >
+        <path d="M10.21 19.4a1 1 0 0 1 1.42 0l2.33 2.34a1 1 0 0 1 0 1.41l-3.89 3.9a7.7 7.7 0 1 0 10.89 10.88l3.89-3.89a1 1 0 0 1 1.41 0l2.34 2.33a1 1 0 0 1 0 1.42l-3.9 3.89A13 13 0 0 1 6.33 23.29l3.9-3.89ZM34.04 24.85a1 1 0 0 0 0 1.41l2.34 2.34a1 1 0 0 0 1.4 0l3.9-3.9A13 13 0 1 0 23.29 6.33l-3.89 3.9a1 1 0 0 0 0 1.4l2.34 2.34a1 1 0 0 0 1.41 0l3.9-3.89a7.7 7.7 0 1 1 10.88 10.89l-3.89 3.89Z"></path>
+        <path d="M15.76 28.49a1 1 0 0 0 0 1.41l2.34 2.34a1 1 0 0 0 1.41 0L32.24 19.5a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.4 0L15.75 28.5Z"></path>
+    </svg>
+);
+
+export const DeltailICon = ({ width = '1.6rem', height = '1.6rem', className }) => (
+    <svg
+        className={className}
+        width={width}
+        height={height}
+        fill="currentColor"
+        viewBox="0 0 48 48"
+        xmlns="http://www.w3.org/2000/svg"
+    >
+        <path d="M24 6a18 18 0 1 0 0 36 18 18 0 0 0 0-36ZM2 24a22 22 0 1 1 44 0 22 22 0 0 1-44 0Zm25-8a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm-4 6a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V23a1 1 0 0 0-1-1h-2Z"></path>
     </svg>
 );
