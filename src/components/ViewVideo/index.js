@@ -10,19 +10,20 @@ import ActionsApp from '../ActionsApp';
 const cx = classNames.bind(styles);
 
 function ViewVideo({ type }) {
-    const [listVideo, setListVideo] = useState([]);
     const [categories, setCategories] = useState(type);
 
-    const { setListVideos } = UserVideo();
-    const { tokenStr, userAuth } = UserAuth();
+    const { listVideoHome, setListVideoHome, setListVideos } = UserVideo();
+    const { tokenStr } = UserAuth();
 
     useEffect(() => {
+        setListVideoHome([]);
+
         if (type === 'following') {
             const fetchApi = async () => {
                 const data = await config.videos(categories, 1, tokenStr ?? '');
 
-                setListVideo(data);
                 setListVideos(data);
+                setListVideoHome(data);
             };
 
             fetchApi();
@@ -30,22 +31,22 @@ function ViewVideo({ type }) {
             const fetchApi = async () => {
                 const data = await config.videos(categories, 1, tokenStr ?? '');
 
-                setListVideo(data);
                 setListVideos(data);
+                setListVideoHome(data);
             };
 
             fetchApi();
         }
     }, [categories]);
 
-    if (listVideo.length === 0) {
+    if (listVideoHome.length === 0) {
         return;
     }
 
     return (
         <div className={cx('wrapper')}>
             <div className={cx('video-wrapper')}>
-                <VideoItems data={listVideo} />
+                <VideoItems data={listVideoHome} />
             </div>
             <ActionsApp />
         </div>

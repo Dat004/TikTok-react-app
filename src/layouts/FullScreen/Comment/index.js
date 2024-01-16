@@ -72,7 +72,7 @@ function Comment({ urlPath, data, idVideo, statePosition, listVideoState }) {
     const [positionVideo, setPositionVideo] = statePosition;
 
     const { tokenStr, userAuth, setOpenFormLogin, setOpenFullVideo, setOpenFormDelete, setDataForm } = UserAuth();
-    const { likeVideo, setLikeVideo, likesCount, setLikesCount, setProfileUser } = UserVideo();
+    const { likeVideo, setLikeVideo, likesCount, setLikesCount, setListVideoHome, setProfileUser } = UserVideo();
     const { setInfoNotify } = UserNotify();
 
     useEffect(() => {
@@ -185,7 +185,10 @@ function Comment({ urlPath, data, idVideo, statePosition, listVideoState }) {
                 //     });
                 //     setOpenFormDelete(false);
                 // } else {
+
+                // Test delete video not use api
                 setListVideos((prev) => [...prev.filter((i) => i.id !== idVideo)]);
+                setListVideoHome((prev) => [...prev.filter((i) => i.id !== idVideo)]);
                 setInfoNotify({
                     content: 'Deleted your video!',
                     delay: 1500,

@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { useHref, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import styles from './ViewProfile.module.scss';
 
@@ -8,7 +8,6 @@ import HeaderProfile from './HeaderProfile';
 import Items from './Items';
 import { UserAuth, UserVideo } from '../Store';
 import ActionsApp from '../ActionsApp';
-import Button from '../Button';
 
 const cx = classNames.bind(styles);
 
@@ -28,10 +27,6 @@ function ViewProfile() {
 
         fetchApi();
     }, [nickname]);
-
-    const handleClick = () => {
-        setProfileUser((prev) => [...prev.videos.filter((i) => i.id !== 520)]);
-    };
 
     if (Object.keys(profileUser).length === 0) {
         return;

@@ -8,6 +8,7 @@ export function UserVideo() {
 
 export function VideoProvider({ children }) {
     const [listVideos, setListVideos] = useState([]);
+    const [listVideoHome, setListVideoHome] = useState([]);
     const [profileUser, setProfileUser] = useState({});
     const [positionVideo, setPositionVideo] = useState(null);
     const [idVideo, setIdVideo] = useState();
@@ -16,10 +17,12 @@ export function VideoProvider({ children }) {
     const [likeVideo, setLikeVideo] = useState(false);
     const [likesCount, setLikesCount] = useState(false);
     const [followUser, setFollowUser] = useState(false);
-    
+
     const value = {
         listVideos,
         setListVideos,
+        listVideoHome,
+        setListVideoHome,
         positionVideo,
         setPositionVideo,
         idVideo,
