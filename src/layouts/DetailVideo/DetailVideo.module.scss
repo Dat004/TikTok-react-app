@@ -237,7 +237,7 @@
 }
 
 .user-avatar {
-    min-width: 48px;
+    flex: 0 0 48px;
     width: 48px;
     height: 48px;
     margin-right: 12px;
@@ -305,6 +305,7 @@
 }
 
 .avatar-user {
+    flex: 0 0 48px;
     width: 48px;
     height: 48px;
     margin-right: 12px;
@@ -316,51 +317,13 @@
     }
 }
 
-.post-form {
-    display: flex;
-    align-items: center;
-    width: 100%;
+.form-text {
     flex: 1;
-    padding-bottom: 24px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 
-.form-input {
-    display: flex;
-    align-items: center;
-    flex: 1;
-    flex-wrap: wrap;
-    
-    textarea {
-        width: 100%;
-        height: 100%;
-        padding: 11px 8px;
-        font-size: 1.6rem;
-        line-height: 2.4rem;
-        color: #161823;
-        background-color: #1618230f;
-        border-radius: 8px;
-        border: 1px solid transparent;
-        outline: none;
-        overflow: hidden;
-        resize: none;
-    }
-
-    .form-edit-textarea {
-        max-width: 100%;
-        width: 100%;
-        padding: 11px 8px;
-        min-height: 48px;
-        font-size: 1.6rem;
-        line-height: 2.4rem;
-        color: #161823;
-        background-color: #1618230f;
-        border-radius: 8px;
-        border: 1px solid transparent;
-        outline: none;
-        white-space: wrap;
-        overflow: hidden;
-    }
+.form-container {
+    // width: 100%;
+    min-height: 100%;
 }
 
 .btn-post {
