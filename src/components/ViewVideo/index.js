@@ -5,7 +5,6 @@ import styles from './ViewVideo.module.scss';
 import { UserAuth, UserVideo } from '../Store';
 import config from '../../services';
 import VideoItems from './VideoItems';
-import ActionsApp from '../ActionsApp';
 
 const cx = classNames.bind(styles);
 
@@ -53,7 +52,6 @@ function ViewVideo({ type }) {
             <div className={cx('video-wrapper')}>
                 <VideoItems data={listVideoUser} />
             </div>
-            <ActionsApp />
         </div>
     );
 }
