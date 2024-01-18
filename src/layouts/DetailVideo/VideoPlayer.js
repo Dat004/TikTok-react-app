@@ -9,6 +9,7 @@ import { LoopIcon } from '../../components/CustomIcon';
 import { Wrapper } from '../../components/Popper';
 import Button from '../../components/Button';
 import Image from '../../components/Image';
+import ContextMenu from '../../components/ContextMenu';
 
 const cx = classNames.bind(styles);
 
@@ -36,6 +37,13 @@ const DATA_SPEED_VIDEO = [
 ];
 
 function VideoPlayer({ data }) {
+    const videoPlayer = useRef();
+
+    const [position, setPosition] = useState({
+        x: 0,
+        y: 0,
+    });
+
     const MIN_VALUE = 0;
     const MAX_VALUE = data?.meta?.playtime_seconds;
     const STEP = 0.00001;
@@ -44,6 +52,7 @@ function VideoPlayer({ data }) {
     const videoSpeedRef = useRef([]);
 
     const [isEnded, setIsEnded] = useState(false);
+    const [isContextMenu, setIsContextMenu] = useState(false);
     const [mutedVideo, setMutedVideo] = useState(true);
     const [isPlay, setIsPlay] = useState(false);
     const [targetSpeed, setTargetSpeed] = useState(1);
@@ -86,16 +95,6 @@ function VideoPlayer({ data }) {
         };
     }, []);
 
-    // useEffect(() => {
-    //     const handleLoadedContent = () => {
-    //         if (videoRef) {
-    //             console.log(videoRef);
-    //         }
-    //     };
-
-    //     window.addEventListener('load', handleLoadedContent);
-    // }, [videoRef]);
-
     useEffect(() => {
         const handleTimeUpdate = () => {
             if (videoRef.current) {
@@ -125,6 +124,22 @@ function VideoPlayer({ data }) {
                 : (item.style.background = 'rgb(27, 27, 27)');
         });
     }, []);
+
+    const handleOthers = () => {
+        if (isContextMenu) {
+            setIsContextMenu(false);
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener('click', handleOthers);
+        document.addEventListener('scroll', handleOthers);
+
+        return () => {
+            document.removeEventListener('click', handleOthers);
+            document.removeEventListener('scroll', handleOthers);
+        };
+    }, [isContextMenu]);
 
     const backgroundStyle = {
         backgroundImage: `url(${data.thumb_url})`,
@@ -186,9 +201,22 @@ function VideoPlayer({ data }) {
         }
     };
 
+    const handleContext = (e) => {
+        e.preventDefault();
+
+        setPosition({
+            x: e.nativeEvent.layerX,
+            y: e.nativeEvent.layerY,
+        });
+        setIsContextMenu(true);
+    };
+
     return (
-        <div className={cx('videoplayer-detail')}>
-            <div style={backgroundStyle} className={cx('background-videoplayer')}></div>
+        <div onContextMenu={handleContext} className={cx('videoplayer-detail')}>
+            {isContextMenu && <ContextMenu positionX={position.x} positionY={position.y} />}
+            <div className={cx('wrapper-background')}>
+                <div style={backgroundStyle} className={cx('background-videoplayer')}></div>
+            </div>
             {isEnded && (
                 <div className={cx('videoplayer-ended')}>
                     <Button onClick={handlePlayAgainVideo} className={cx('play-again')}>

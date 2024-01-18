@@ -175,11 +175,6 @@ function Comment({ urlPath, data, idVideo, statePosition, listVideoState }) {
         setOpenFormLogin(true);
     };
 
-    const prettierText = () => {
-        textareaRef.current.style.height = 'auto';
-        textareaRef.current.focus();
-    };
-
     const handlePostComment = async () => {
         if (!valueComments) {
             return;

@@ -7,7 +7,6 @@ import { UserAuth, UserVideo } from '../Store';
 import config from '../../services';
 import HeaderProfile from './HeaderProfile';
 import Items from './Items';
-import ActionsApp from '../ActionsApp';
 
 const cx = classNames.bind(styles);
 
@@ -45,7 +44,6 @@ function ViewProfile() {
         <div className={cx('wrapper')}>
             <HeaderProfile data={profileUser} />
             <Items data={profileUser} videos={videosProfile} />
-            <ActionsApp />
         </div>
     );
 }

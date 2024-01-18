@@ -1,0 +1,40 @@
+.wrapper-menu {
+    position: absolute;
+    z-index: 10;
+}
+
+.list-menu {
+    width: 181px;
+    border-radius: 8px;
+    background: rgba($color: #fff, $alpha: 0.95);
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 8px 32px;
+}
+
+.list-item {
+    display: flex;
+    justify-content: flex-start;
+    padding: 10px 12px;
+    gap: 12px;
+    list-style: none;
+    cursor: pointer;
+
+    &:hover {
+        background: rgba(22, 24, 35, 0.03);
+    }
+}
+
+.list-item:first-child {
+    border-radius: 8px 8px 0 0;
+}
+
+.list-item:last-child {
+    border-radius: 0 0 8px 8px;
+}
+
+.title-menu {
+    font-family: "IBM Plex Sans", TikTokFont, Arial, Tahoma, PingFangSC, sans-serif;
+    font-weight: 600;
+    font-size: 1.4rem;
+    line-height: 1.7rem;
+    color: #161823;
+}

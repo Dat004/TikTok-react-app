@@ -235,6 +235,8 @@ const TextBox = forwardRef(
             setTextValue = () => {},
             textValue = '',
             isBreakLine = false,
+            width,
+            height,
         },
         ref,
     ) => {
@@ -242,7 +244,7 @@ const TextBox = forwardRef(
         const [isActiveTab, setIsActiveTab] = useState(false);
 
         useEffect(() => {
-            if (ref.current) {
+            if (ref) {
                 const textLength = ref.current.value.length;
                 ref.current.setSelectionRange(textLength, textLength);
             }
@@ -278,7 +280,9 @@ const TextBox = forwardRef(
         };
 
         return (
-            <div className={cx('wrapper-form')}>
+            <div className={cx('wrapper-form', {
+                [className]: true,
+            })}>
                 <form onSubmit={handleSubmit} className={cx('form-container')}>
                     <div className={cx('form-group')}>
                         <div className={cx('form-text')}>
