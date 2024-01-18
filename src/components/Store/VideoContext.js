@@ -7,13 +7,14 @@ export function UserVideo() {
 }
 
 export function VideoProvider({ children }) {
+    const [idVideo, setIdVideo] = useState();
     const [listVideos, setListVideos] = useState([]);
     const [listVideoHome, setListVideoHome] = useState([]);
     const [profileUser, setProfileUser] = useState({});
     const [positionVideo, setPositionVideo] = useState(null);
-    const [idVideo, setIdVideo] = useState();
-    const [mutedVideo, setMutedVideo] = useState(true);
     const [valueVolume, setValueVolume] = useState(0);
+    const [mutedVideo, setMutedVideo] = useState(true);
+    // const [isDetailMode, setIsDetailMode] = useState(false);
     const [likeVideo, setLikeVideo] = useState(false);
     const [likesCount, setLikesCount] = useState(false);
     const [followUser, setFollowUser] = useState(false);
@@ -29,6 +30,8 @@ export function VideoProvider({ children }) {
         setIdVideo,
         mutedVideo,
         setMutedVideo,
+        // isDetailMode,
+        // setIsDetailMode,
         valueVolume,
         setValueVolume,
         likeVideo,

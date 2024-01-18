@@ -1,8 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import styles from './ContextMenu.module.scss';
 
-import { DeltailICon, DownloadIcon, LinkSmallIcon, SendIcon } from '../CustomIcon';
-import { UserNotify } from '../Store';
+import { DeltailICon, DownloadIcon, LinkSmallIcon, PictureInPictureIcon, SendIcon } from '../CustomIcon';
+import { UserAuth, UserNotify, UserVideo } from '../Store';
 import { useEffect, useState } from 'react';
 
 const cx = classNames.bind(styles);
@@ -39,12 +40,14 @@ const cx = classNames.bind(styles);
 //     },
 // ];
 
-function ContextMenu({ positionX, positionY }) {
+function ContextMenu({ idVideo, positionX, positionY, fileName, mimeType }) {
+    const navigate = useNavigate();
+
     const { setInfoNotify } = UserNotify();
 
     const handleCopyLink = async () => {
         try {
-            await navigator.clipboard.writeText(window.location.href);
+            await navigator.clipboard.writeText(window.location.href + 'video' + '/' + idVideo);
 
             setInfoNotify({
                 content: 'Copied text!',
@@ -60,16 +63,22 @@ function ContextMenu({ positionX, positionY }) {
         }
     };
 
+    const handleDownload = () => {
+        setInfoNotify({
+            content: 'Feature temporarily unavailable.',
+            delay: 1500,
+            isNotify: true,
+        });
+    };
+
+    const handleSeeDetailVideo = () => {
+        navigate(`/video/${idVideo}`);
+    };
+
     return (
         <div style={{ top: positionY, left: positionX }} className={cx('wrapper-menu')}>
             <ul className={cx('list-menu')}>
-                {/* {DATA_MENU.map((items, index) => (
-                    <li onClick={items.isHandle ? items.onHandle : null} key={index} className={cx('list-item')}>
-                        {items.icon}
-                        <span className={cx('title-menu')}>{items.title}</span>
-                    </li>
-                ))} */}
-                <li onClick={null} className={cx('list-item')}>
+                <li onClick={handleDownload} className={cx('list-item')}>
                     <DownloadIcon />
                     <span className={cx('title-menu')}>Download video</span>
                 </li>
@@ -81,7 +90,9 @@ function ContextMenu({ positionX, positionY }) {
                     <LinkSmallIcon />
                     <span className={cx('title-menu')}>Copy link video</span>
                 </li>
-                <li onClick={null} className={cx('list-item')}>
+                <li onClick={handleSeeDetailVideo} className={cx('list-item')}>
+                    {/* {isDetail ? <PictureInPictureIcon /> : <DeltailICon />}
+                    <span className={cx('title-menu')}>{isDetail ? 'Picture-in-picture' : 'See detail video'}</span> */}
                     <DeltailICon />
                     <span className={cx('title-menu')}>See detail video</span>
                 </li>

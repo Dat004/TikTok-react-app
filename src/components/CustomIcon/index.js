@@ -1316,3 +1316,17 @@ export const DeltailICon = ({ width = '1.6rem', height = '1.6rem', className }) 
         <path d="M24 6a18 18 0 1 0 0 36 18 18 0 0 0 0-36ZM2 24a22 22 0 1 1 44 0 22 22 0 0 1-44 0Zm25-8a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm-4 6a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V23a1 1 0 0 0-1-1h-2Z"></path>
     </svg>
 );
+
+export const PictureInPictureIcon = ({ width = '1.6rem', height = '1.6rem', className }) => (
+    <svg
+        width={width}
+        height={height}
+        className={className}
+        viewBox="0 0 48 48"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="currentColor"
+    >
+        <path d="M36 6H12a1 1 0 0 0-1 1v32a1 1 0 0 0 1 1h7a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5h24a5 5 0 0 1 5 5v9a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V7a1 1 0 0 0-1-1Z"></path>
+        <path d="M24 26a5 5 0 0 1 5-5h10a5 5 0 0 1 5 5v15a5 5 0 0 1-5 5H29a5 5 0 0 1-5-5V26Zm5-1a1 1 0 0 0-1 1v15a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V26a1 1 0 0 0-1-1H29Z"></path>
+    </svg>
+);

@@ -37,8 +37,6 @@ const DATA_SPEED_VIDEO = [
 ];
 
 function VideoPlayer({ data }) {
-    const videoPlayer = useRef();
-
     const [position, setPosition] = useState({
         x: 0,
         y: 0,
@@ -69,17 +67,17 @@ function VideoPlayer({ data }) {
         const callBack = (entry) => {
             entry.forEach((entries) => {
                 if (entries.isIntersecting) {
-                    const promiseVideo = entries.target.play();
+                    // const promiseVideo = entries.target.play();
 
-                    if (promiseVideo !== undefined) {
-                        promiseVideo.then(() => {}).catch((error) => {});
-                    }
+                    // if (promiseVideo !== undefined) {
+                    //     promiseVideo.then(() => {}).catch((error) => {});
+                    // }
 
-                    setIsPlay(true);
+                    // setIsPlay(true);
                 } else {
-                    entries.target.pause();
+                    // entries.target.pause();
 
-                    setIsPlay(false);
+                    // setIsPlay(false);
                 }
             });
         };
@@ -178,12 +176,10 @@ function VideoPlayer({ data }) {
 
     const handleEndedVideo = () => {
         setIsPlay(false);
-        setIsEnded(true);
     };
 
     const handlePlayAgainVideo = () => {
         setIsPlay(true);
-        setIsEnded(false);
 
         videoRef.current.currentTime = MIN_VALUE;
         videoRef.current.play();
@@ -213,7 +209,14 @@ function VideoPlayer({ data }) {
 
     return (
         <div onContextMenu={handleContext} className={cx('videoplayer-detail')}>
-            {isContextMenu && <ContextMenu positionX={position.x} positionY={position.y} />}
+            {isContextMenu && (
+                <ContextMenu
+                    positionX={position.x}
+                    positionY={position.y}
+                    fileName={data?.file_url}
+                    mimeType={data?.meta?.mime_type}
+                />
+            )}
             <div className={cx('wrapper-background')}>
                 <div style={backgroundStyle} className={cx('background-videoplayer')}></div>
             </div>
@@ -272,7 +275,7 @@ function VideoPlayer({ data }) {
                         ref={videoRef}
                         className={cx('video')}
                         src={data?.file_url}
-                        onEnded={() => setIsPlay(false)}
+                        onEnded={handleEndedVideo}
                         preload="auto"
                         muted
                     />

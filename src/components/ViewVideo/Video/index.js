@@ -8,6 +8,7 @@ import { UserVideo } from '../../Store/VideoContext';
 import { UserAuth } from '../../Store';
 import { useVideoTime } from '../../../hooks';
 import Image from '../../Image';
+import ContextMenu from '../../ContextMenu';
 
 const cx = classNames.bind(styles);
 
@@ -19,6 +20,11 @@ function Video({ data, index }) {
     const MAX_VALUE = 1;
     const STEP = 0.0001;
 
+    const [position, setPosition] = useState({
+        x: 0,
+        y: 0,
+    });
+    const [isContextMenu, setIsContextMenu] = useState(false);
     const [percentsValue, setPercentsValue] = useState(0);
     const [timeValueVideo, setTimeValueVideo] = useState(MIN_VALUE);
     const [playVideo, setPlayVideo] = useState(false);
@@ -162,9 +168,35 @@ function Video({ data, index }) {
         }
     }, [valueVolume, openFullVideo]);
 
+    const handleOthers = () => {
+        if (isContextMenu) {
+            setIsContextMenu(false);
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener('click', handleOthers);
+        document.addEventListener('scroll', handleOthers);
+
+        return () => {
+            document.removeEventListener('click', handleOthers);
+            document.removeEventListener('scroll', handleOthers);
+        };
+    }, [isContextMenu]);
+
+    const handleContext = (e) => {
+        e.preventDefault();
+
+        setPosition({
+            x: e.nativeEvent.layerX,
+            y: e.nativeEvent.layerY,
+        });
+        setIsContextMenu(true);
+    };
+
     return (
-        <div className={cx('container')}>
-            {/* {!openFullVideo && ( */}
+        <div onContextMenu={handleContext} className={cx('container')}>
+            {isContextMenu && <ContextMenu idVideo={data?.id} positionX={position.x} positionY={position.y} />}
             <div className={cx('section-video')}>
                 <div
                     className={cx('card-video', {
@@ -173,9 +205,7 @@ function Video({ data, index }) {
                     })}
                 >
                     <div onClick={handleGetVideo} className={cx('container-video')}>
-                        {/* {openFullVideo ? ( */}
                         <Image className={cx('poster')} src={data.thumb_url} alt={data.thumb_url} />
-                        {/* ) : ( */}
                         <video
                             className={cx('video', {
                                 'video-hidden': isVisible || openFullVideo,
@@ -185,7 +215,6 @@ function Video({ data, index }) {
                             preload="auto"
                             loop
                         ></video>
-                        {/* )} */}
                     </div>
                     <div className={cx('container-control')}>
                         <div
@@ -252,7 +281,6 @@ function Video({ data, index }) {
                     </div>
                 </div>
             </div>
-            {/* )} */}
         </div>
     );
 }
