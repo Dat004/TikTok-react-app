@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import styles from './FullScreen.module.scss';
 
@@ -7,28 +6,24 @@ import { UserAuth, UserVideo } from '../../components/Store';
 import config from '../../services';
 import Videos from './Videos';
 import Comment from './Comment';
-import DetailVideo from '../DetailVideo';
 
 const cx = classNames.bind(styles);
 
 function FullScreen() {
-    const { nickname } = useParams();
-    const navigate = useNavigate();
-
     const { listVideos, setListVideos, positionVideo, setPositionVideo } = UserVideo();
-    const { tokenStr, setOpenFullVideo } = UserAuth();
+    const { tokenStr } = UserAuth();
 
     const [urlPath, setUrlPath] = useState();
     const [videoData, setVideo] = useState({});
-    const [isDetailMode, setIsDetailMode] = useState(false);
 
     useEffect(() => {
         const tempId = listVideos[positionVideo]?.id;
 
-        if (tempId) { // Nếu có tempid sẽ cập nhậy lại href
+        if (tempId) {
+            // Nếu có tempid sẽ cập nhật lại href
             window.history.replaceState(null, '', `/video/${tempId}`);
 
-            setUrlPath(window.location.href); 
+            setUrlPath(window.location.href);
         }
     }, [positionVideo, listVideos]);
 
@@ -44,15 +39,9 @@ function FullScreen() {
         return () => {
             window.removeEventListener('keyup', handleKeyUp);
         };
-    }, [positionVideo, listVideos]); 
+    }, [positionVideo, listVideos]);
 
     useEffect(() => {
-        if (listVideos.length === 0) {
-            setIsDetailMode(true);
-        } else {
-            setIsDetailMode(false);
-        };
-
         const idVideo = listVideos[positionVideo]?.id;
 
         fetchApi(idVideo);
@@ -78,30 +67,22 @@ function FullScreen() {
 
     return (
         <div className={cx('wrapper')}>
-            {isDetailMode ? (
-                <DetailVideo data={videoData} />
-            ) : (
-                <>
-                    {listVideos.length === 0 ? null : (
-                        <div className={cx('wrapper-modal')}>
-                            <Videos
-                                onPrevPage={handlePrevIndex}
-                                onNextPage={handleNextIndex}
-                                data={videoData}
-                                index={positionVideo}
-                                listVideos={listVideos}
-                            />
-                            <Comment
-                                urlPath={urlPath}
-                                data={videoData}
-                                idVideo={listVideos[positionVideo]?.id}
-                                statePosition={[positionVideo, setPositionVideo]}
-                                listVideoState={[listVideos, setListVideos]}
-                            />
-                        </div>
-                    )}
-                </>
-            )}
+            <div className={cx('wrapper-modal')}>
+                <Videos
+                    onPrevPage={handlePrevIndex}
+                    onNextPage={handleNextIndex}
+                    data={videoData}
+                    index={positionVideo}
+                    listVideos={listVideos}
+                />
+                <Comment
+                    urlPath={urlPath}
+                    data={videoData}
+                    idVideo={listVideos[positionVideo]?.id}
+                    statePosition={[positionVideo, setPositionVideo]}
+                    listVideoState={[listVideos, setListVideos]}
+                />
+            </div>
         </div>
     );
 }
