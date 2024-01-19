@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import 'tippy.js/dist/tippy.css';
 import classNames from 'classnames/bind';
-import styles from './DetailVideo.module.scss';
+import styles from './PageVideo.module.scss';
 
 import { MusicIcon } from '../../components/CustomIcon';
 import { UserAuth } from '../../components/Store';
@@ -15,14 +15,12 @@ import TextBox from '../../components/TextBox';
 
 const cx = classNames.bind(styles);
 
-function DetailVideo({ data }) {
+function PageVideo({ data, idVideo }) {
     const textareaRef = useRef();
     const location = useLocation();
 
-    const idVideo = location.pathname.split('/')[2];
-
     const [commensCount, setCommensCount] = useState(data?.comments_count);
-    const [getDataComments, setGetDataComments] = useState([]);
+    const [dataComments, setDataComments] = useState([]);
     const [valueText, setValueText] = useState('');
 
     const { tokenStr, userAuth, setOpenFormLogin } = UserAuth();
@@ -36,9 +34,9 @@ function DetailVideo({ data }) {
             return;
         }
 
-        const data = await config.comment(idVideo, tokenStr);
+        const data = await config.comment(idVideo || location.pathname.split('/')[2], tokenStr);
 
-        setGetDataComments(data);
+        setDataComments(data);
     };
 
     const handlePostComment = async () => {
@@ -46,8 +44,8 @@ function DetailVideo({ data }) {
             return;
         }
 
-        await config.postComments(idVideo, valueText, tokenStr);
-        handleGetComments(idVideo);
+        await config.postComments(idVideo || location.pathname.split('/')[2], valueText, tokenStr);
+        handleGetComments();
 
         setValueText('');
         setCommensCount((prev) => prev + 1);
@@ -134,14 +132,14 @@ function DetailVideo({ data }) {
                             </div>
                         </div>
                         <div className={cx('list-container')}>
-                            {getDataComments.map((items, index) => (
+                            {dataComments.map((items, index) => (
                                 <ListComments
                                     data={items}
                                     key={items.id}
                                     className={cx('loading-content')}
                                     index={index}
                                     creator={data?.user?.id}
-                                    setGetDataComments={setGetDataComments}
+                                    setDataComments={setDataComments}
                                     setCommensCount={setCommensCount}
                                 />
                             ))}
@@ -154,4 +152,4 @@ function DetailVideo({ data }) {
     );
 }
 
-export default DetailVideo;
+export default PageVideo;
