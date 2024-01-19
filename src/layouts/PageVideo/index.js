@@ -123,9 +123,9 @@ function PageVideo({ data, idVideo }) {
                             <div className={cx('form-text')}>
                                 <TextBox
                                     ref={textareaRef}
-                                    onClick={handlePostComment}
+                                    onClick={userAuth && tokenStr ? handlePostComment : handleOpenFormLogin}
                                     onChange={handleChangeValueText}
-                                    onKeyDown={handleKeyDown}
+                                    onKeyDown={userAuth && tokenStr ? handleKeyDown : handleOpenFormLogin}
                                     setTextValue={setValueText}
                                     textValue={valueText}
                                 />
@@ -144,7 +144,7 @@ function PageVideo({ data, idVideo }) {
                                 />
                             ))}
                         </div>
-                    </div>
+                    </div>  
                 </div>
                 <aside className={cx('sidebar-videos')}></aside>
             </div>

@@ -4,16 +4,16 @@ import classNames from 'classnames/bind';
 import styles from './DefalutLayout.module.scss';
 
 import { UserAuth } from '../../components/Store/AuthContext';
-import Header from '../components/Header';
-import Sidebar from '../components/Sidebar';
-import AuthForm from '../../components/Auth';
-import Login from '../../components/Auth/Login';
-import LogOut from '../../components/Auth/LogOut';
-import FormUpdate from '../../components/Auth/UpdateForm';
-import FullScreen from '../FullScreen';
-import DeleteForm from '../../components/Auth/DeleteForm';
 import DiscardForm from '../../components/Auth/DiscardForm';
+import FormUpdate from '../../components/Auth/UpdateForm';
+import DeleteForm from '../../components/Auth/DeleteForm';
+import LogOut from '../../components/Auth/LogOut';
+import Login from '../../components/Auth/Login';
+import AuthForm from '../../components/Auth';
 import Notify from '../../components/Notify';
+import Sidebar from '../components/Sidebar';
+import Header from '../components/Header';
+import FullScreen from '../FullScreen';
 
 const cx = classNames.bind(styles);
 

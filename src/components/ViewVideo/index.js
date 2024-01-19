@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react';
 import styles from './ViewVideo.module.scss';
 
 import { UserAuth, UserVideo } from '../Store';
-import config from '../../services';
 import VideoItems from './VideoItems';
+import config from '../../services';
 
 const cx = classNames.bind(styles);
 

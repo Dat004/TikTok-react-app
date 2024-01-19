@@ -1330,3 +1330,34 @@ export const PictureInPictureIcon = ({ width = '1.6rem', height = '1.6rem', clas
         <path d="M24 26a5 5 0 0 1 5-5h10a5 5 0 0 1 5 5v15a5 5 0 0 1-5 5H29a5 5 0 0 1-5-5V26Zm5-1a1 1 0 0 0-1 1v15a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V26a1 1 0 0 0-1-1H29Z"></path>
     </svg>
 );
+
+export const ZoomIcon = ({ width = '2.4rem', height = '2.4rem', className }) => (
+    <svg
+        className={className}
+        width={width}
+        height={height}
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+    >
+        <path
+            fill="white"
+            fillRule="evenodd"
+            d="M4.5 4H18a.5.5 0 0 1 .5.5v6a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-6A2.5 2.5 0 0 0 18 2H4.5A2.5 2.5 0 0 0 2 4.5V18a2.5 2.5 0 0 0 2.5 2.5h6a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-6A.5.5 0 0 1 4 18V4.5a.5.5 0 0 1 .5-.5Z"
+            clipRule="evenodd"
+        ></path>
+        <path fill="white" d="M13 15a2 2 0 0 1 2-2h5a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-5a2 2 0 0 1-2-2v-5Z"></path>
+        <path
+            fill="white"
+            fillRule="evenodd"
+            d="M6.5 11.5a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1h4a1 1 0 1 1 0 2h-2a1 1 0 0 0-1 1v2a1 1 0 0 1-1 1Z"
+            clipRule="evenodd"
+        ></path>
+        <path
+            fill="white"
+            fillRule="evenodd"
+            d="M11.51 11.51a1 1 0 0 1-1.414 0L6.56 7.975A1 1 0 0 1 7.975 6.56l3.535 3.535a1 1 0 0 1 0 1.414Z"
+            clipRule="evenodd"
+        ></path>
+    </svg>
+);

@@ -3,7 +3,6 @@ import { Fragment } from 'react';
 
 import { publicRoutes } from './routes';
 import { DefaultLayout } from './layouts';
-import ActionsApp from './components/ActionsApp';
 
 function App() {
     return (
@@ -27,7 +26,6 @@ function App() {
                         );
                     })}
                 </Routes>
-                <ActionsApp />
             </div>
         </Router>
     );

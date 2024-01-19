@@ -1,5 +1,6 @@
 import { UserAuth } from '../../components/Store';
 import ViewFollowing from '../../components/ViewFollowing';
+import ActionsApp from '../../components/ActionsApp';
 import ViewVideo from '../../components/ViewVideo';
 
 function Following({ children }) {
@@ -15,6 +16,7 @@ function Following({ children }) {
             ) : (
                 <ViewFollowing />
             )}
+            <ActionsApp />
         </div>
     );
 }

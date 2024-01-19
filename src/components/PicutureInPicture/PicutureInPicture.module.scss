@@ -1,0 +1,307 @@
+@keyframes showVideoMini {
+    0% {
+        transform: scale(0.93);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes hideVideoMini {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0.93);
+        opacity: 0;
+    }
+}
+
+@keyframes animationController {
+    0% {
+        opacity: 1;
+        transform: scale(0.25);
+    } 50% {
+        opacity: 1;
+    } 100% {
+        opacity: 0;
+        transform: scale(0.7);
+    }
+}
+
+.hide-wrapper {
+    animation: hideVideoMini 0.333s cubic-bezier(0.33, 1, 0.68, 1) 0s forwards;
+}
+
+.wrapper {
+    width: 100%;
+    height: 100%;
+}
+
+.container-video {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+
+    &:hover .video-controls {
+        opacity: 1;
+    }
+}
+
+.video-sticky {
+    position: fixed;
+    right: 12px;
+    bottom: 32px;
+    width: 350px;
+    height: 197px;
+    background: #000;
+    z-index: 999;
+    border-radius: 4px;
+    animation: showVideoMini 0.333s cubic-bezier(0.33, 1, 0.68, 1) 0s forwards;
+    overflow: hidden;
+}
+
+.video-controls {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background: rgba($color: #000000, $alpha: 0.5);
+    z-index: 10;
+    opacity: 0;
+}
+
+.zoom-control {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    cursor: pointer;
+}
+
+.close-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+}
+
+.video-layer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.video-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.poster {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.video-element {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.videoplayer-controller {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+}
+
+.animation-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 144px;
+    height: 144px;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+.animation-controller {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    background: rgba($color: #000000, $alpha: 0.6);
+    border-radius: 50%;
+    animation: animationController 0.333s cubic-bezier(0.33, 1, 0.68, 1) 0s forwards;
+}
+
+.slider-controller {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 4px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.34);
+
+    &:hover {
+        height: 6px;
+    }
+}
+
+.input {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    cursor: pointer;
+
+    &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 12px;
+        height: 12px;
+    }
+}
+
+.input-slider {
+    position: absolute;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: #fff;
+    pointer-events: none;
+}
+
+.input-thumb {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    pointer-events: none;
+}
+
+.videoplayer-ended {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba($color: #000000, $alpha: 0.7);
+    z-index: 100;
+}
+
+.play-again {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    border-width: 3px;
+    border-color: #fff;
+    background-color: transparent;
+}
+
+.controller {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 24px;
+    width: 100%;
+    margin: 15px 0;
+    padding: 0 20px;
+}
+
+.left-controller,
+.right-controller {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: #fff;
+}
+
+.right-controller {
+    position: relative;
+}
+
+.right-items {
+    position: relative;
+
+    &:hover .wrapper-items {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+.speed-value {
+    transition: all 0.35s linear;
+}
+
+.wrapper-items {
+    position: absolute;
+    left: -35px;
+    bottom: 45px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(27, 27, 27);
+    visibility: hidden;
+    transition-duration: 300ms;
+    opacity: 0;
+}
+
+.items-speed {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 42px;
+    padding: 0 16px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 1.8rem;
+    color: #fff;
+    cursor: pointer;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.08) !important;
+    }
+}
+
+.control-speed {
+    font-weight: 600;
+    font-size: 1.6rem;
+    line-height: 2.1rem;
+    cursor: pointer;
+}

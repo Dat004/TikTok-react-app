@@ -1,12 +1,13 @@
 import { useEffect } from 'react';
 
-import { UserAuth } from '../../components/Store';
-import Header from '../components/Header';
-import AuthForm from '../../components/Auth';
-import Login from '../../components/Auth/Login';
-import LogOut from '../../components/Auth/LogOut';
-import UpdateForm from '../../components/Auth/UpdateForm';
 import DiscardForm from '../../components/Auth/DiscardForm';
+import UpdateForm from '../../components/Auth/UpdateForm';
+import ActionsApp from '../../components/ActionsApp';
+import { UserAuth } from '../../components/Store';
+import LogOut from '../../components/Auth/LogOut';
+import Login from '../../components/Auth/Login';
+import AuthForm from '../../components/Auth';
+import Header from '../components/Header';
 
 function DefaultLayout({ children }) {
     const { openFormLogin, openFormLogout, openFormEdit, openFormDiscard } = UserAuth();
@@ -34,6 +35,7 @@ function DefaultLayout({ children }) {
                     {openFormDiscard && <DiscardForm />}
                 </AuthForm>
             )}
+            <ActionsApp />
         </div>
     );
 }
