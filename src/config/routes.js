@@ -5,7 +5,7 @@ const routes = {
     upload: '/upload',
     search: '/search',
     live: '/live',
-    video: '/video/:id'
+    video: '/video/:idVideo'
 };
 
 export default routes;
