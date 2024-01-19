@@ -24,7 +24,7 @@ import TextBox from '../TextBox';
 
 const cx = classNames.bind(styles);
 
-function ListComments({ data, className, index, creator, setGetDataComments, setCommensCount }) {
+function ListComments({ data, className, index, creator, setDataComments, setCommensCount }) {
     const textareaRef = useRef();
 
     const [isLoading, setIsLoading] = useState(false);
@@ -85,7 +85,7 @@ function ListComments({ data, className, index, creator, setGetDataComments, set
                     delay: 3000,
                     isNotify: true,
                 });
-                setGetDataComments((prev) => prev.filter((_, i) => i !== index));
+                setDataComments((prev) => prev.filter((_, i) => i !== index));
                 setCommensCount((prev) => prev - 1);
                 setOpenFormDelete(false);
             },

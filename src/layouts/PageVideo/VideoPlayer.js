@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import TippyHeadless from '@tippyjs/react/headless';
 import Tippy from '@tippyjs/react';
 import classNames from 'classnames/bind';
-import styles from './DetailVideo.module.scss';
+import styles from './PageVideo.module.scss';
 
 import { PlayVideo, VolumeVideo, FullScreenVideos } from '../../components/Control';
 import { LoopIcon } from '../../components/CustomIcon';
