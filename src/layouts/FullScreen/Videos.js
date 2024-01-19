@@ -8,6 +8,7 @@ import { UserAuth, UserNotify, UserVideo } from '../../components/Store';
 import { CloseTabs, VolumeVideo } from '../../components/Control';
 import { useVideoTime } from '../../hooks';
 import Button from '../../components/Button';
+import ContextMenu from '../../components/ContextMenu';
 
 const cx = classNames.bind(styles);
 
@@ -24,6 +25,11 @@ function Videos({ onPrevPage, onNextPage, data, index, listVideos }) {
     const [valuePercent, setValuePercent] = useState();
     const [isFirstPage, setIsFirstPage] = useState(false);
     const [isLastPage, setIsLastPage] = useState(false);
+    const [position, setPosition] = useState({
+        x: 0,
+        y: 0,
+    });
+    const [isContextMenu, setIsContextMenu] = useState(false);
 
     const { mutedVideo, setMutedVideo, setIdVideo } = UserVideo();
     const { setOpenFullVideo } = UserAuth();
@@ -60,6 +66,22 @@ function Videos({ onPrevPage, onNextPage, data, index, listVideos }) {
         nickname ? navigate(`/${nickname}`) : navigate(`/`); // Chuyển hướng khi tắt chế độ xem video
     };
 
+    const handleContext = (e) => {
+        e.preventDefault();
+
+        setPosition({
+            x: e.nativeEvent.layerX,
+            y: e.nativeEvent.layerY,
+        });
+        setIsContextMenu(true);
+    };
+
+    const handleOthers = () => {
+        if (isContextMenu) {
+            setIsContextMenu(false);
+        };
+    };
+
     useEffect(() => {
         setIdVideo(data?.id);
     }, [data, listVideos]);
@@ -83,6 +105,18 @@ function Videos({ onPrevPage, onNextPage, data, index, listVideos }) {
             }
         };
     }, [index]);
+
+    useEffect(() => {
+        document.addEventListener('click', handleOthers);
+        document.addEventListener('scroll', handleOthers);
+        document.addEventListener('keydown', handleOthers);
+
+        return () => {
+            document.removeEventListener('click', handleOthers);
+            document.removeEventListener('scroll', handleOthers);
+            document.removeEventListener('keydown', handleOthers);
+        }
+    }, [isContextMenu]);
 
     useEffect(() => {
         mutedVideo ? (videoRef.current.muted = true) : (videoRef.current.muted = false);
@@ -123,7 +157,8 @@ function Videos({ onPrevPage, onNextPage, data, index, listVideos }) {
         <div className={cx('container-videos')}>
             <div className={cx('background-videos')} style={{ backgroundImage: `${data?.thumb_url}` }}></div>
             <div className={cx('wrapper-video')}>
-                <div className={cx('card-video')}>
+                <div onContextMenu={handleContext} className={cx('card-video')}>
+                    {isContextMenu && <ContextMenu idVideo={data?.id} positionX={position.x} positionY={position.y} />}
                     <video
                         muted
                         loop

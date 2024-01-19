@@ -15,7 +15,7 @@ import TextBox from '../../components/TextBox';
 
 const cx = classNames.bind(styles);
 
-function PageVideo({ data }) {
+function PageVideo({ data, idVideo }) {
     const textareaRef = useRef();
     const location = useLocation();
 
@@ -34,7 +34,7 @@ function PageVideo({ data }) {
             return;
         }
 
-        const data = await config.comment(location.pathname.split('/')[2], tokenStr);
+        const data = await config.comment(idVideo || location.pathname.split('/')[2], tokenStr);
 
         setDataComments(data);
     };
@@ -44,7 +44,7 @@ function PageVideo({ data }) {
             return;
         }
 
-        await config.postComments(location.pathname.split('/')[2], valueText, tokenStr);
+        await config.postComments(idVideo || location.pathname.split('/')[2], valueText, tokenStr);
         handleGetComments();
 
         setValueText('');

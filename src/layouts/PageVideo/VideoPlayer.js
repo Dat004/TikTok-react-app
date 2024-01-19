@@ -68,15 +68,12 @@ function VideoPlayer({ data }) {
             entry.forEach((entries) => {
                 if (entries.isIntersecting) {
                     // const promiseVideo = entries.target.play();
-
                     // if (promiseVideo !== undefined) {
                     //     promiseVideo.then(() => {}).catch((error) => {});
                     // }
-
                     // setIsPlay(true);
                 } else {
                     // entries.target.pause();
-
                     // setIsPlay(false);
                 }
             });
@@ -132,11 +129,13 @@ function VideoPlayer({ data }) {
     useEffect(() => {
         document.addEventListener('click', handleOthers);
         document.addEventListener('scroll', handleOthers);
+        document.addEventListener('keydown', handleOthers);
 
         return () => {
             document.removeEventListener('click', handleOthers);
             document.removeEventListener('scroll', handleOthers);
-        };
+            document.removeEventListener('keydown', handleOthers);
+        }
     }, [isContextMenu]);
 
     const backgroundStyle = {
@@ -211,6 +210,7 @@ function VideoPlayer({ data }) {
         <div onContextMenu={handleContext} className={cx('videoplayer-detail')}>
             {isContextMenu && (
                 <ContextMenu
+                    idVideo={data?.id}
                     positionX={position.x}
                     positionY={position.y}
                     fileName={data?.file_url}

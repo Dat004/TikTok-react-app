@@ -177,11 +177,13 @@ function Video({ data, index }) {
     useEffect(() => {
         document.addEventListener('click', handleOthers);
         document.addEventListener('scroll', handleOthers);
+        document.addEventListener('keydown', handleOthers);
 
         return () => {
             document.removeEventListener('click', handleOthers);
             document.removeEventListener('scroll', handleOthers);
-        };
+            document.removeEventListener('keydown', handleOthers);
+        }
     }, [isContextMenu]);
 
     const handleContext = (e) => {

@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import styles from './ContextMenu.module.scss';
 
@@ -42,7 +42,11 @@ const cx = classNames.bind(styles);
 
 function ContextMenu({ idVideo, positionX, positionY, fileName, mimeType }) {
     const navigate = useNavigate();
+    const location = useLocation();
 
+    const pathName = `/video/${idVideo}`;
+
+    const { openFullVideo, setOpenFullVideo } = UserAuth();
     const { setInfoNotify } = UserNotify();
 
     const handleCopyLink = async () => {
@@ -72,6 +76,10 @@ function ContextMenu({ idVideo, positionX, positionY, fileName, mimeType }) {
     };
 
     const handleSeeDetailVideo = () => {
+        if (openFullVideo) {
+            setOpenFullVideo(false);
+        }
+
         navigate(`/video/${idVideo}`);
     };
 
@@ -90,11 +98,11 @@ function ContextMenu({ idVideo, positionX, positionY, fileName, mimeType }) {
                     <LinkSmallIcon />
                     <span className={cx('title-menu')}>Copy link video</span>
                 </li>
-                <li onClick={handleSeeDetailVideo} className={cx('list-item')}>
-                    {/* {isDetail ? <PictureInPictureIcon /> : <DeltailICon />}
-                    <span className={cx('title-menu')}>{isDetail ? 'Picture-in-picture' : 'See detail video'}</span> */}
-                    <DeltailICon />
-                    <span className={cx('title-menu')}>See detail video</span>
+                <li onClick={location.pathname === pathName ? null : handleSeeDetailVideo} className={cx('list-item')}>
+                    {location.pathname === pathName ? <PictureInPictureIcon /> : <DeltailICon />}
+                    <span className={cx('title-menu')}>
+                        {location.pathname === pathName ? 'Picture-in-picture' : 'See detail video'}
+                    </span>
                 </li>
             </ul>
         </div>
