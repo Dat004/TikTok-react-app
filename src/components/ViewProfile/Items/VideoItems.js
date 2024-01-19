@@ -31,8 +31,12 @@ function VideoItems({ data, index, state }) {
         setPositionVideo(index);
     };
 
+    const handleContext = (e) => {
+        e.preventDefault();
+    }
+
     return (
-        <section className={cx('section')} onMouseOver={handleMouseOver}>
+        <section onContextMenu={handleContext} className={cx('section')} onMouseOver={handleMouseOver}>
             <div className={cx('main-content')} onClick={handleOpenFullVideo}>
                 <div className={cx('card-video')}>
                     <video

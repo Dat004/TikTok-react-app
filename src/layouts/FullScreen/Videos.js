@@ -51,13 +51,13 @@ function Videos({ onPrevPage, onNextPage, data, index, listVideos }) {
     };
 
     const handleMuteVideo = () => {
-        setMutedVideo((prev) => !prev);
+        setMutedVideo((prev) => !prev); // Bật tắt âm thanh
     };
 
     const handleCLoseVideo = () => {
-        setOpenFullVideo(false);
+        setOpenFullVideo(false); // Đóng chế độ xem video
 
-        nickname ? navigate(`/${nickname}`) : navigate(`/`);
+        nickname ? navigate(`/${nickname}`) : navigate(`/`); // Chuyển hướng khi tắt chế độ xem video
     };
 
     useEffect(() => {

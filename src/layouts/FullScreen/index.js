@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import styles from './FullScreen.module.scss';
 
@@ -7,7 +8,6 @@ import config from '../../services';
 import Videos from './Videos';
 import Comment from './Comment';
 import DetailVideo from '../DetailVideo';
-import { useNavigate, useParams } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
@@ -19,27 +19,16 @@ function FullScreen() {
     const { tokenStr, setOpenFullVideo } = UserAuth();
 
     const [urlPath, setUrlPath] = useState();
-    const [isDetailMode, setIsDetailMode] = useState(false);
     const [videoData, setVideo] = useState({});
-
-    useEffect(() => {
-        if (listVideos.length === 0 && !nickname) {
-            setIsDetailMode(true);
-        } else if (listVideos.length === 0 && nickname) {
-            setIsDetailMode(false);
-            setOpenFullVideo(false);
-
-            window.history.replaceState(null, '', `/${nickname}`)
-        }
-    }, [listVideos]);
+    const [isDetailMode, setIsDetailMode] = useState(false);
 
     useEffect(() => {
         const tempId = listVideos[positionVideo]?.id;
 
-        if (tempId) {
+        if (tempId) { // Nếu có tempid sẽ cập nhậy lại href
             window.history.replaceState(null, '', `/video/${tempId}`);
 
-            setUrlPath(window.location.href);
+            setUrlPath(window.location.href); 
         }
     }, [positionVideo, listVideos]);
 
@@ -55,9 +44,15 @@ function FullScreen() {
         return () => {
             window.removeEventListener('keyup', handleKeyUp);
         };
-    }, [positionVideo]);
+    }, [positionVideo, listVideos]); 
 
     useEffect(() => {
+        if (listVideos.length === 0) {
+            setIsDetailMode(true);
+        } else {
+            setIsDetailMode(false);
+        };
+
         const idVideo = listVideos[positionVideo]?.id;
 
         fetchApi(idVideo);
@@ -87,7 +82,7 @@ function FullScreen() {
                 <DetailVideo data={videoData} />
             ) : (
                 <>
-                    {listVideos.length !== 0 && (
+                    {listVideos.length === 0 ? null : (
                         <div className={cx('wrapper-modal')}>
                             <Videos
                                 onPrevPage={handlePrevIndex}
