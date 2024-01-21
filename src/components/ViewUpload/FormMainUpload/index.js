@@ -1,14 +1,14 @@
+import PropTypes from 'prop-types';
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { ArrowDownIcon, CheckBoxIcon } from '../../CustomIcon';
 import classNames from 'classnames/bind';
 import styles from './FormMainUpload.module.scss';
 
 import { UserAuth } from '../../Store';
-import Button from '../../Button';
-import Header from './Header';
+import config from '../../../services';
 import PhonePreviewVideo from './PhonePreviewVideo';
 import CoverVideo from './CoverVideo';
-import config from '../../../services';
+import Button from '../../Button';
 
 const cx = classNames.bind(styles);
 
@@ -27,8 +27,8 @@ const MODE_MENUS = [
     },
 ];
 
-function FormMainUpload({ src, nameFile }) {
-    const textRef = useRef();
+function FormMainUpload({ src = '', nameFile = '' }) {
+    const textRef = useRef(); 
     const modeRef = useRef([]);
 
     const [position, setPosition] = useState(0);
@@ -134,10 +134,10 @@ function FormMainUpload({ src, nameFile }) {
                     </header>
                     <section className={cx('section-content')}>
                         <PhonePreviewVideo
+                            user={userAuth}
                             stateFiles={[isFile, setIsFile]}
                             stateCaption={[captionValue, setCaptionValue]}
                             stateVideo={[isPlay, setIsPlay]}
-                            user={userAuth}
                             state={[maxValue, setMaxValue]}
                             stateUpload={[isUploading, setIsUploading]}
                             stateDataLoading={[dataLoading, setDataLoading]}
@@ -273,6 +273,11 @@ function FormMainUpload({ src, nameFile }) {
             </main>
         </div>
     );
-}
+};
+
+FormMainUpload.propTypes = {
+    src: PropTypes.string,
+    nameFile: PropTypes.string,
+};
 
 export default FormMainUpload;

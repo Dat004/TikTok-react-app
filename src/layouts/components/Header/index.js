@@ -23,8 +23,6 @@ import {
 import Image from '../../../components/Image';
 import Search from '../Search';
 import config from '../../../config';
-import routes from '../../../config/routes';
-
 const cx = classNames.bind(styles);
 
 function Header() {

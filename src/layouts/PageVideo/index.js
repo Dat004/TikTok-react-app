@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import 'tippy.js/dist/tippy.css';
 import classNames from 'classnames/bind';
 import styles from './PageVideo.module.scss';
@@ -15,7 +16,7 @@ import TextBox from '../../components/TextBox';
 
 const cx = classNames.bind(styles);
 
-function PageVideo({ data, idVideo }) {
+function PageVideo({ data = {}, idVideo }) {
     const textareaRef = useRef();
     const location = useLocation();
 
@@ -150,6 +151,11 @@ function PageVideo({ data, idVideo }) {
             </div>
         </div>
     );
-}
+};
+
+PageVideo.propTypes = {
+    data: PropTypes.object.isRequired,
+    idVideo: PropTypes.string.isRequired,
+};
 
 export default PageVideo;

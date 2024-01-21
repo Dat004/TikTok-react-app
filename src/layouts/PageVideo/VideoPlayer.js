@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import styles from './PageVideo.module.scss';
 
@@ -6,7 +7,7 @@ import PicutureInPicture from '../../components/PicutureInPicture';
 import ContextMenu from '../../components/ContextMenu';
 
 const cx = classNames.bind(styles);
-function VideoPlayer({ data }) {
+function VideoPlayer({ data = {} }) {
     const [position, setPosition] = useState({
         x: 0,
         y: 0,
@@ -69,5 +70,9 @@ function VideoPlayer({ data }) {
         </div>
     );
 }
+
+VideoPlayer.propTypes = {
+    data: PropTypes.object.isRequired,  
+};
 
 export default VideoPlayer;

@@ -4,7 +4,7 @@ import styles from './ButtonActions.module.scss';
 
 const cx = classNames.bind(styles);
 
-function ButtonActions({ data }) {
+function ButtonActions({ data = [] }) {
     return (
         <div className={cx('container-actions')}>
             {data.map((items, index) => (
@@ -34,5 +34,9 @@ function ButtonActions({ data }) {
         </div>
     );
 }
+
+ButtonActions.propTypes = {
+    data: PropTypes.array,
+};
 
 export default ButtonActions;

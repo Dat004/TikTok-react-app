@@ -11,22 +11,21 @@ import Button from '../Button';
 
 const cx = classNames.bind(styles);
 
-function Video({ data, index, state, src, thumb }) {
+function Video({ data = {}, index, setVideo = () => {}, src = '', thumb = '' }) {
     const videoRef = useRef();
-    const [setIdVideo] = state;
 
     useEffect(() => {
         if (index === 0) {
-            setIdVideo(videoRef.current);
+            setVideo(videoRef.current);
         }
     }, []);
 
     const handleMouseOver = () => {
-        setIdVideo(videoRef.current);
+        setVideo(videoRef.current);
     };
 
     return (
-        <section key={data.id} className={cx('section-items')}>
+        <section className={cx('section-items')}>
             <Link onMouseOver={handleMouseOver} to={`/@${data.nickname}`} className={cx('container-info')}>
                 <div className={cx('preview-videos')}>
                     <video className={cx('video')} muted loop ref={videoRef} poster={src} src={thumb} preload="auto" />;
@@ -50,10 +49,10 @@ function Video({ data, index, state, src, thumb }) {
 }
 
 Video.propTypes = {
-    data: PropTypes.object.isRequired,
+    data: PropTypes.object,
+    setVideo: PropTypes.func,
     index: PropTypes.number,
-    state: PropTypes.array,
-    src: PropTypes.string.isRequired,
+    src: PropTypes.string,
     thumb: PropTypes.string,
 };
 

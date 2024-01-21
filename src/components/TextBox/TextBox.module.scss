@@ -15,6 +15,7 @@
     flex: 1;
     display: flex;
     align-items: center;
+    height: 100%;
     padding: 0 8px;
     border: 1px solid transparent;
     border-radius: 8px;
@@ -133,6 +134,7 @@
     justify-content: flex-end;
     flex: 0 0 48px;
     width: 48px;
+    height: 100%;
     margin-right: 4px;
 
     &:disabled {

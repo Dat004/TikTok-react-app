@@ -7,7 +7,7 @@ import Button from '../Button';
 const cx = classNames.bind(styles);
 
 function SuggestedLogin() {
-    const { openFormLogin, setOpenFormLogin } = UserAuth();
+    const { setOpenFormLogin } = UserAuth();
 
     const handleOpenFormLogin = () => {
         setOpenFormLogin(true);

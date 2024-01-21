@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 import DiscardForm from '../../components/Auth/DiscardForm';
 import UpdateForm from '../../components/Auth/UpdateForm';
@@ -38,6 +39,10 @@ function DefaultLayout({ children }) {
             <ActionsApp />
         </div>
     );
-}
+};
+
+DefaultLayout.propTypes = {
+    children: PropTypes.node.isRequired,
+};
 
 export default DefaultLayout;

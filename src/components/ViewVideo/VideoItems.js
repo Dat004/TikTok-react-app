@@ -1,37 +1,21 @@
 import { Link } from 'react-router-dom';
-import { useEffect, useState, useRef, useLayoutEffect, useCallback } from 'react';
+import { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import LazyLoad from 'react-lazy-load';
 import classNames from 'classnames/bind';
 import styles from './ViewVideo.module.scss';
 
-import { UserAuth, UserVideo } from '../Store';
 import Image from '../Image';
 import Header from './Header';
 import VideoActions from './Video/VideoActions';
 import Video from './Video';
-// import { CommentIcon, LoveIcon, ShareIcon } from '../CustomIcon';
 
 const cx = classNames.bind(styles);
 
-function VideoItems({ data }) {
+function VideoItems({ data = [] }) {
     const wrapperRef = useRef();
 
-    const { openFullVideo } = UserAuth();
-    const { positionVideo } = UserVideo();
-
     const [followStatus, setFollowStatus] = useState(data.filter((i) => i.user.is_followed).map((i) => i.user.id));
-
-    // useEffect(() => {
-    //     if (positionVideo === null) {
-    //         return;
-    //     }
-
-    //     wrapperRef.current.children[positionVideo].scrollIntoView({
-    //         behavior: 'smooth',
-    //         block: 'center',
-    //     });
-    // }, [positionVideo, openFullVideo]);
 
     return (
         <div ref={wrapperRef} className={cx('container')}>
@@ -45,7 +29,6 @@ function VideoItems({ data }) {
                     <div className={cx('container')}>
                         <Header
                             data={items}
-                            index={index}
                             isFollow={followStatus.includes(items?.user?.id)}
                             setFollowStatus={setFollowStatus}
                         />

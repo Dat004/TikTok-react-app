@@ -1,46 +1,14 @@
+import PropTypes from 'prop-types';
 import { useLocation, useNavigate } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import styles from './ContextMenu.module.scss';
 
 import { DeltailICon, DownloadIcon, LinkSmallIcon, PictureInPictureIcon, SendIcon } from '../CustomIcon';
-import { UserAuth, UserNotify, UserVideo } from '../Store';
-import { useEffect, useState } from 'react';
+import { UserAuth, UserNotify } from '../Store';
 
 const cx = classNames.bind(styles);
 
-// const DATA_MENU = [
-//     {
-//         icon: <DownloadIcon />,
-//         type: 'menu',
-//         title: 'Download video',
-//         isHandle: true,
-//         onHandle: () => {},
-//     },
-//     {
-//         icon: <SendIcon />,
-//         type: 'menu',
-//         title: 'Send friend',
-//         isHandle: false,
-//     },
-//     {
-//         icon: <LinkSmallIcon />,
-//         type: 'menu',
-//         title: 'Copy link video',
-//         isHandle: true,
-//         onHandle: () => {},
-//     },
-//     {
-//         icon: <DeltailICon />,
-//         type: 'menu',
-//         title: 'See detail video',
-//         isHandle: true,
-//         onHandle: () => {
-//             setInfoNotify();
-//         },
-//     },
-// ];
-
-function ContextMenu({ idVideo, positionX, positionY, fileName, mimeType }) {
+function ContextMenu({ idVideo, positionX, positionY, fileName = '', mimeType = '' }) {
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -108,5 +76,13 @@ function ContextMenu({ idVideo, positionX, positionY, fileName, mimeType }) {
         </div>
     );
 }
+
+ContextMenu.propTypes = {
+    idVideo: PropTypes.number.isRequired,
+    positionX: PropTypes.number.isRequired,
+    positionY: PropTypes.number.isRequired,
+    fileName: PropTypes.string,
+    mimeType: PropTypes.string,
+};
 
 export default ContextMenu;

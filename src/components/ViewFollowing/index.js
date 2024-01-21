@@ -8,7 +8,7 @@ import Video from './Video';
 const cx = classNames.bind(styles);
 
 function ViewFollowing() {
-    const [idVideo, setIdVideo] = useState(0);
+    const [video, setVideo] = useState(null);
     const [listSuggest, setListSuggest] = useState([]);
 
     const PAGE = 1;
@@ -25,8 +25,8 @@ function ViewFollowing() {
     }, [PAGE]);
 
     useEffect(() => {
-        if (idVideo) {
-            const playPromise = idVideo.play();
+        if (video) {
+            const playPromise = video.play();
 
             if (playPromise !== undefined) {
                 playPromise.then(() => {}).catch((error) => {});
@@ -34,11 +34,11 @@ function ViewFollowing() {
         }
 
         return () => {
-            if (idVideo) {
-                idVideo.pause();
+            if (video) {
+                video.pause();
             }
         };
-    }, [idVideo]);
+    }, [video]);
 
     if (listSuggest.length === 0) {
         return;
@@ -52,7 +52,7 @@ function ViewFollowing() {
                         key={data.id}
                         data={data}
                         index={index}
-                        state={[setIdVideo]}
+                        setVideo={setVideo}
                         src={data.popular_video.thumb_url}
                         thumb={data.popular_video.file_url}
                     />

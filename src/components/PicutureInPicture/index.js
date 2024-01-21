@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import PropTypes from 'prop-types';
 import Tippy from '@tippyjs/react';
 import classNames from 'classnames/bind';
 import styles from './PicutureInPicture.module.scss';
@@ -33,7 +34,7 @@ const DATA_SPEED_VIDEO = [
     },
 ];
 
-function PicutureInPicture({ data }) {
+function PicutureInPicture({ data = {} }) {
     const wrapperRef = useRef();
     const videoRef = useRef();
     const videoSpeedRef = useRef([]);
@@ -206,7 +207,12 @@ function PicutureInPicture({ data }) {
                             <CloseTabs onClick={handleCloseVideoMini} width="2.4rem" height="2.4rem" />
                         </div>
                         <div className={cx('play-btn')}>
-                            <PlayVideo onClick={handlePlayVideo} isPlay={isPlay} width="4rem" heigth="4rem" />
+                            <PlayVideo
+                                onClick={handlePlayVideo}
+                                isPlay={isPlay ? true : false}
+                                width='4rem'
+                                heigth='4rem'
+                            />
                         </div>
                     </div>
                 ) : (
@@ -226,7 +232,7 @@ function PicutureInPicture({ data }) {
                         </div>
                         <div className={cx('controller')}>
                             <div className={cx('left-controller')}>
-                                <PlayVideo isPlay={isPlay} onClick={() => handlePlayVideo(videoRef)} />
+                                <PlayVideo isPlay={isPlay ? true : false} onClick={() => handlePlayVideo(videoRef)} />
                             </div>
                             <div className={cx('right-controller')}>
                                 <div className={cx('right-items')}>
@@ -273,5 +279,9 @@ function PicutureInPicture({ data }) {
         </div>
     );
 }
+
+PicutureInPicture.propTypes = {
+    data: PropTypes.object,
+};
 
 export default PicutureInPicture;

@@ -8,12 +8,11 @@ import { UserAuth, UserVideo } from '../../Store';
 
 const cx = classNames.bind(styles);
 
-function VideoItems({ data, index, state }) {
+function VideoItems({ data = {}, index, setVideo = () => {} }) {
     const videoRefs = useRef();
 
     const { setOpenFullVideo } = UserAuth();
     const { setIdVideo, setPositionVideo } = UserVideo();
-    const [setVideo] = state;
 
     useEffect(() => {
         if (index === 0) {
@@ -33,7 +32,7 @@ function VideoItems({ data, index, state }) {
 
     const handleContext = (e) => {
         e.preventDefault();
-    }
+    };
 
     return (
         <section onContextMenu={handleContext} className={cx('section')} onMouseOver={handleMouseOver}>
@@ -62,7 +61,9 @@ function VideoItems({ data, index, state }) {
 }
 
 VideoItems.propTypes = {
-    data: PropTypes.object.isRequired,
+    data: PropTypes.object,
+    index: PropTypes.number,
+    setVideo: PropTypes.func,
 };
 
 export default VideoItems;

@@ -1,19 +1,20 @@
 import { Link } from 'react-router-dom';
+import { Fragment } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import styles from './SuggestedAccounts.module.scss';
 import Tippy from '@tippyjs/react/headless';
 import LazyLoad from 'react-lazy-load';
 
-import LoadingElement from '../LoadingElement';
-import Image from '../Image';
 import { CheckIcon } from '../CustomIcon';
 import { Wrapper } from '../Popper';
+import LoadingElement from '../LoadingElement';
 import AccountPreview from './AccountPreview';
-import { Fragment } from 'react';
+import Image from '../Image';
 
 const cx = classNames.bind(styles);
 
-function AccountItem({ value, isLoading, isPreview }) {
+function AccountItem({ value = {}, isLoading = false, isPreview = false }) {
     const renderPreview = (attrs) => (
         <div tabIndex="-1" {...attrs}>
             {isPreview && (
@@ -56,6 +57,12 @@ function AccountItem({ value, isLoading, isPreview }) {
             </Tippy>
         </div>
     );
-}
+};
+
+AccountItem.propTypes = {
+    value: PropTypes.object,
+    isLoading: PropTypes.bool,
+    isPreview: PropTypes.bool,
+};
 
 export default AccountItem;

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import styles from './LoadingElement.module.scss';
 
@@ -12,6 +13,13 @@ function LoadingElement({ className, width, height, borderRadius }) {
             })}
         ></div>
     );
-}
+};
+
+LoadingElement.propTypes = {
+    className: PropTypes.string,
+    width: PropTypes.string,
+    height: PropTypes.string,
+    borderRadius: PropTypes.string,    
+};
 
 export default LoadingElement;

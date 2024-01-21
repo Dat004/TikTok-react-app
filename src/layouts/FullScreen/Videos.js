@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import styles from './FullScreen.module.scss';
 
@@ -12,7 +13,7 @@ import ContextMenu from '../../components/ContextMenu';
 
 const cx = classNames.bind(styles);
 
-function Videos({ onPrevPage, onNextPage, data, index, listVideos }) {
+function Videos({ onPrevPage = () => {}, onNextPage = () => {}, data = {}, index, listVideos = [] }) {
     const videoRef = useRef();
     const navigate = useNavigate();
 
@@ -79,7 +80,7 @@ function Videos({ onPrevPage, onNextPage, data, index, listVideos }) {
     const handleOthers = () => {
         if (isContextMenu) {
             setIsContextMenu(false);
-        };
+        }
     };
 
     useEffect(() => {
@@ -115,7 +116,7 @@ function Videos({ onPrevPage, onNextPage, data, index, listVideos }) {
             document.removeEventListener('click', handleOthers);
             document.removeEventListener('scroll', handleOthers);
             document.removeEventListener('keydown', handleOthers);
-        }
+        };
     }, [isContextMenu]);
 
     useEffect(() => {
@@ -224,5 +225,13 @@ function Videos({ onPrevPage, onNextPage, data, index, listVideos }) {
         </div>
     );
 }
+
+Videos.propTypes = {
+    onPrevPage: PropTypes.func,
+    onNextPage: PropTypes.func,
+    data: PropTypes.object,
+    index: PropTypes.number,
+    listVideos: PropTypes.array,
+};
 
 export default Videos;

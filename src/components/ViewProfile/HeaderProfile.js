@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import styles from './ViewProfile.module.scss';
 
-import { UserAuth } from '../Store';
 import { LinkIcon, UpdateIcon, PerSonCheckIcon } from '../CustomIcon';
+import { UserAuth } from '../Store';
 import config from '../../services';
 import Button from '../Button';
 import Image from '../Image';

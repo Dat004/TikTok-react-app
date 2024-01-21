@@ -6,7 +6,7 @@ import AccountItem from './AccountItem';
 
 const cx = classNames.bind(styles);
 
-function SuggestedAccounts({ headingTitle, footerTitle, data = [], onClick, isPreview = false }) {
+function SuggestedAccounts({ headingTitle = '', footerTitle = '', data = [], onClick = () => {}, isPreview = false }) {
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {

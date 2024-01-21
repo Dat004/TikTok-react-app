@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import styles from './FormMainUpload.module.scss';
 
@@ -13,14 +14,14 @@ import Button from '../../Button';
 const cx = classNames.bind(styles);
 
 function PhonePreviewVideo({
-    stateFiles,
-    stateCaption,
-    stateVideo,
-    user,
-    state,
-    stateUpload,
-    stateDataLoading,
-    handleDiscardFile,
+    user = {},
+    stateFiles = [],
+    stateCaption = [],
+    stateVideo = [],
+    state = [],
+    stateUpload = [],
+    stateDataLoading = [],
+    handleDiscardFile = () => {},
 }) {
     const videoRef = useRef();
     const inputRef = useRef();
@@ -80,10 +81,6 @@ function PhonePreviewVideo({
             }
         };
     }, [isFile]);
-
-    // useEffect(() => {
-    //     !isFile && (videoRef.current.currentTime = 0);
-    // }, [isFile]);
 
     const handleEndedVideo = () => {
         setIsPlay(false);
@@ -201,7 +198,7 @@ function PhonePreviewVideo({
                                         <div>
                                             <PlayVideo
                                                 onClick={handlePlayVideo}
-                                                isPlay={isPlay}
+                                                isPlay={isPlay ? true : false}
                                                 width="1.6rem"
                                                 heigth="1.6rem"
                                             />
@@ -310,6 +307,17 @@ function PhonePreviewVideo({
             )}
         </div>
     );
-}
+};
+
+PhonePreviewVideo.propTypes = {
+    user: PropTypes.object,
+    stateFiles: PropTypes.array,
+    stateCaption: PropTypes.array,
+    stateVideo: PropTypes.array,
+    state: PropTypes.array,
+    stateUpload: PropTypes.array,
+    stateDataLoading: PropTypes.array,
+    handleDiscardFile: PropTypes.func,
+};
 
 export default PhonePreviewVideo;
