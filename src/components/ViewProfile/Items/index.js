@@ -8,7 +8,7 @@ import VideoItems from './VideoItems';
 
 const cx = classNames.bind(styles);
 
-function Items({ data, videos }) {
+function Items({ data = {}, videos = [] }) {
     const [video, setVideo] = useState();
     const [activeItem, setActiveItem] = useState('video');
     const [publicVideos, setPublicVideos] = useState(true);
@@ -107,7 +107,7 @@ function Items({ data, videos }) {
                         ) : (
                             <div className={cx('container-layout-public')}>
                                 {videos.map((video, index) => (
-                                    <VideoItems state={[setVideo]} key={video.id} index={index} data={video} />
+                                    <VideoItems key={video.id} data={video} index={index} setVideo={setVideo} />
                                 ))}
                             </div>
                         )}
@@ -128,6 +128,7 @@ function Items({ data, videos }) {
 
 Items.propTypes = {
     data: PropTypes.object,
+    videos: PropTypes.array,
 };
 
 export default Items;

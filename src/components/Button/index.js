@@ -63,8 +63,8 @@ const Button = forwardRef(
                     ref={ref}
                     className={classes}
                     type={type}
-                    {...props}
                     disabled={disabled}
+                    {...props}
                 >
                     {leftIcon && <span className={cx('icon')}>{leftIcon}</span>}
                     <span className={cx('content')}>{children}</span>

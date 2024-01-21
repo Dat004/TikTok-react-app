@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
-function AccountPreview({ data }) {
+function AccountPreview({ data = {} }) {
     const { userAuth } = UserAuth();
 
     return (

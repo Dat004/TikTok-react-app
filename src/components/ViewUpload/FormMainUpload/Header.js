@@ -7,10 +7,7 @@ import Image from '../../Image';
 
 const cx = classNames.bind(styles);
 
-function Header({ srcThumb, caption, duration }) {
-    const minutes = duration < 60 ? '0' + duration : duration;
-    const seconds = duration < 10 ? '0' + duration : duration;
-
+function Header({ srcThumb = '', caption = '', duration }) {
     if (!srcThumb) {
         return;
     }

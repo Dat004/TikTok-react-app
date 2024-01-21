@@ -1,4 +1,5 @@
-import React, { useState, useRef, useContext } from 'react';
+import React, { useState, useContext } from 'react';
+import PropTypes from 'prop-types';
 
 const VideoContext = React.createContext();
 
@@ -14,7 +15,6 @@ export function VideoProvider({ children }) {
     const [positionVideo, setPositionVideo] = useState(null);
     const [valueVolume, setValueVolume] = useState(0);
     const [mutedVideo, setMutedVideo] = useState(true);
-    // const [isDetailMode, setIsDetailMode] = useState(false);
     const [likeVideo, setLikeVideo] = useState(false);
     const [likesCount, setLikesCount] = useState(false);
     const [followUser, setFollowUser] = useState(false);
@@ -30,8 +30,6 @@ export function VideoProvider({ children }) {
         setIdVideo,
         mutedVideo,
         setMutedVideo,
-        // isDetailMode,
-        // setIsDetailMode,
         valueVolume,
         setValueVolume,
         likeVideo,
@@ -46,3 +44,7 @@ export function VideoProvider({ children }) {
 
     return <VideoContext.Provider value={value}>{children}</VideoContext.Provider>;
 }
+
+VideoProvider.propTypes = {
+    children: PropTypes.node.isRequired,
+};

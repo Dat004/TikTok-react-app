@@ -287,6 +287,9 @@ function Video({ data, index }) {
     );
 }
 
-Video.propTypes = {};
+Video.propTypes = {
+    data: PropTypes.object,
+    index: PropTypes.number,
+};
 
 export default Video;

@@ -12,11 +12,9 @@ import {
     LoveTransparencyIcon,
     LovedIcon,
     ReportIcon,
-    SendIcon,
 } from '../CustomIcon';
 import { UserAuth, UserNotify } from '../Store';
 import { Wrapper } from '../Popper';
-import Button from '../Button';
 import config from '../../services';
 import Image from '../Image';
 import LoadingElement from '../LoadingElement';
@@ -24,7 +22,7 @@ import TextBox from '../TextBox';
 
 const cx = classNames.bind(styles);
 
-function ListComments({ data, className, index, creator, setDataComments, setCommensCount }) {
+function ListComments({ data = {}, className, index, isCreator = false, setDataComments = () => {}, setCommensCount = () => {} }) {
     const textareaRef = useRef();
 
     const [isLoading, setIsLoading] = useState(false);
@@ -37,11 +35,6 @@ function ListComments({ data, className, index, creator, setDataComments, setCom
 
     const { tokenStr, userAuth, setOpenFullVideo, setOpenFormLogin, setOpenFormDelete, setDataForm } = UserAuth();
     const { setInfoNotify } = UserNotify();
-
-    // useEffect(() => {
-    //     setLikeComments(data?.is_liked);
-    //     setLikeCounts(data?.likes_count);
-    // }, [data]);
 
     useEffect(() => {
         setIsLoading(true);
@@ -172,7 +165,7 @@ function ListComments({ data, className, index, creator, setDataComments, setCom
                                         className={cx('nickname')}
                                     >
                                         {data?.user?.nickname}
-                                        {creator === data?.user?.id && (
+                                        {isCreator && (
                                             <span className={cx('comment-creator')}> · Creator</span>
                                         )}
                                     </Link>
@@ -292,6 +285,11 @@ function ListComments({ data, className, index, creator, setDataComments, setCom
 
 ListComments.propTypes = {
     data: PropTypes.object.isRequired,
+    isCreator: PropTypes.bool,
+    index: PropTypes.number,
+    className: PropTypes.string,
+    setDataComments: PropTypes.func,
+    setCommensCount: PropTypes.func,
 };
 
 export default ListComments;

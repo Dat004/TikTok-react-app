@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import styles from './ViewVideo.module.scss';
 
@@ -9,7 +10,7 @@ import config from '../../services';
 
 const cx = classNames.bind(styles);
 
-function Header({ data, index, isFollow, setFollowStatus }) {
+function Header({ data = {}, isFollow = false, setFollowStatus = () => {} }) {
     const { tokenStr, userAuth, setOpenFormLogin } = UserAuth();
     const { setInfoNotify } = UserNotify();
 
@@ -89,6 +90,12 @@ function Header({ data, index, isFollow, setFollowStatus }) {
             />
         </header>
     );
-}
+};
+
+Header.propTypes = {
+    data: PropTypes.object,
+    isFollow: PropTypes.bool,
+    setFollowStatus: PropTypes.func,
+};
 
 export default Header;

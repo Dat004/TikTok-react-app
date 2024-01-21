@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 
 const useVideoTime = (currentTime) => {
     const [seconds, setSeconds] = useState(0);
@@ -14,6 +15,10 @@ const useVideoTime = (currentTime) => {
     }, [currentTime]);
 
     return { seconds, minutes };
+};
+
+useVideoTime.propTypes = {
+    currentTime: PropTypes.number,
 };
 
 export default useVideoTime;

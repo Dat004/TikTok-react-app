@@ -1,8 +1,10 @@
+import { forwardRef, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import styles from './TextBox.module.scss';
-import Button from '../Button';
+
 import { EmojiIcon } from '../CustomIcon';
-import { forwardRef, useEffect, useRef, useState } from 'react';
+import Button from '../Button';
 
 const cx = classNames.bind(styles);
 
@@ -234,9 +236,9 @@ const TextBox = forwardRef(
             onKeyDown = () => {},
             setTextValue = () => {},
             textValue = '',
-            isBreakLine = false,
             width,
             height,
+            isBreakLine = false,
         },
         ref,
     ) => {
@@ -280,8 +282,8 @@ const TextBox = forwardRef(
         };
 
         return (
-            <div className={cx('wrapper-form', {
-                [className]: true,
+            <div style={{ width: width, height: height }} className={cx('wrapper-form', {
+                [className]: className,
             })}>
                 <form onSubmit={handleSubmit} className={cx('form-container')}>
                     <div className={cx('form-group')}>
@@ -332,4 +334,17 @@ const TextBox = forwardRef(
     },
 );
 
+TextBox.propTypes = {
+    className: PropTypes.string,
+    textValue: PropTypes.string,
+    width: PropTypes.string,
+    height: PropTypes.string,
+    onChange: PropTypes.func,
+    onClick: PropTypes.func,
+    onKeyDown: PropTypes.func,
+    setTextValue: PropTypes.func,
+    isBreakLine: PropTypes.bool,
+};
+
 export default TextBox;
+

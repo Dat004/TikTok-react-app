@@ -5,7 +5,7 @@ import { UserAuth } from '../Store/AuthContext';
 import SuggestedAccounts from './index';
 import config from '../../services';
 
-function Following({ headingTitle, footerTitle }) {
+function Following({ headingTitle = '', footerTitle = '' }) {
     const { tokenStr } = UserAuth();
 
     const INIT_PAGE = 1;

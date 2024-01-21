@@ -1,12 +1,12 @@
 import ActionsApp from '../../components/ActionsApp';
 import ViewVideo from '../../components/ViewVideo';
 
-function Home({ children }) {
+function Home() {
     const CATEGORIES = 'for-you';
 
     return (
         <div style={{ height: '100%' }}>
-            <ViewVideo type={CATEGORIES}>{children}</ViewVideo>
+            <ViewVideo type={CATEGORIES} />
             <ActionsApp />
         </div>
     );

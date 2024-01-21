@@ -1,13 +1,7 @@
-import PropTypes from 'prop-types';
+import { useRef, useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Sidebar.module.scss';
 
-import { UserAuth } from '../../../components/Store/AuthContext';
-import Menu from './Menu/Menu';
-import MenuItem from './Menu/MenuItem';
-import config from '../../../config';
-import SuggestedLogin from '../../../components/SuggestedLogin';
-import FooterSide from './FooterSide';
 import {
     HomeActiveIcon,
     HomeIcon,
@@ -16,42 +10,21 @@ import {
     VideoActiveIcon,
     VideoIcon,
 } from '../../../components/CustomIcon';
-import Suggest from '../../../components/SuggestedAccounts/Suggest';
+import { UserAuth } from '../../../components/Store/AuthContext';
+import config from '../../../config';
+import FooterSide from './FooterSide';
 import Following from '../../../components/SuggestedAccounts/Following';
-import { useEffect, useRef, useState } from 'react';
+import MenuItem from './Menu/MenuItem';
+import Menu from './Menu/Menu';
+import SuggestedLogin from '../../../components/SuggestedLogin';
+import Suggest from '../../../components/SuggestedAccounts/Suggest';
 
 const cx = classNames.bind(styles);
 
 function Sidebar() {
     const sidebarRef = useRef(null);
 
-    const [positionScrollBar, setPositionScrollBar] = useState(0);
-    const [totalHeigth, setTotalHeight] = useState();
-    const [pointsScroll, setPointsScroll] = useState(0);
-
     const { userAuth, tokenStr } = UserAuth();
-
-    // useEffect(() => {
-    //     if (sidebarRef) {
-    //         const sidebarHeight = sidebarRef.current.clientHeight;
-
-    //         console.log(totalHeigth);
-
-    //         const handleSroll = () => {
-    //             const scrollTop = sidebarRef.current.scrollTop;
-    //             setPointsScroll(scrollTop);
-
-    //             const scrollPercentage = (scrollTop / (sidebarTotalHeight - sidebarHeight)) * 100;
-    //             setPositionScrollBar(scrollPercentage);
-    //         };
-
-    //         sidebarRef.current.addEventListener('scroll', handleSroll);
-
-    //         return () => {
-    //             sidebarRef.current.removeEventListener('scroll', handleSroll);
-    //         };
-    //     }
-    // }, [pointsScroll]);
 
     return (
         <aside className={cx('wrapper')}>
@@ -93,7 +66,5 @@ function Sidebar() {
         </aside>
     );
 }
-
-Sidebar.propTypes = {};
 
 export default Sidebar;

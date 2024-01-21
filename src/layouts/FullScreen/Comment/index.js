@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import TippyHeadless from '@tippyjs/react/headless';
@@ -59,7 +60,7 @@ const DATA_MENUS = [
     },
 ];
 
-function Comment({ urlPath, data, idVideo, statePosition, listVideoState }) {
+function Comment({ urlPath = '', data = {}, idVideo, statePosition = [], listVideoState = [] }) {
     const textareaRef = useRef();
 
     const [getDataComments, setGetDataComments] = useState([]);
@@ -366,8 +367,8 @@ function Comment({ urlPath, data, idVideo, statePosition, listVideoState }) {
                                 key={items.id}
                                 data={items}
                                 index={index}
-                                creator={data?.user?.id}
-                                setGetDataComments={setGetDataComments}
+                                isCreator={data?.user?.id === items.user.id}
+                                setDataComments={setGetDataComments}
                                 setCommensCount={setCommensCount}
                             />
                         ))}
@@ -384,17 +385,18 @@ function Comment({ urlPath, data, idVideo, statePosition, listVideoState }) {
                         setTextValue={setValueComments}
                         textValue={valueComments}
                     />
-                    {/* <Button
-                        onClick={!tokenStr && !userAuth ? handleOpenFormLogin : handlePostComment}
-                        disabled={valueComments.length > 0 ? false : true}
-                        className={cx('btn-comment')}
-                    >
-                        Post
-                    </Button> */}
                 </div>
             </footer>
         </div>
     );
-}
+};
+
+Comment.propTypes = {
+    urlPath: PropTypes.string,
+    data: PropTypes.object,
+    idVideo: PropTypes.number,
+    statePosition: PropTypes.array,
+    listVideoState: PropTypes.array,
+};
 
 export default Comment;

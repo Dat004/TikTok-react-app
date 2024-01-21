@@ -11,7 +11,7 @@ import { UserAuth } from '../../Store/AuthContext';
 
 const cx = classNames.bind(styles);
 
-function Menu({ children, items }) {
+function Menu({ children, items = [] }) {
     const { setOpenFormLogout } = UserAuth();
 
     const [history, setHistory] = useState([{ data: items }]);

@@ -1,12 +1,14 @@
+import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import styles from './Video.module.scss';
-import Button from '../../Button';
+
 import { CommentIcon, FavouriteIcon, LoveIcon, ShareIcon } from '../../CustomIcon';
 import { UserAuth, UserVideo } from '../../Store';
+import Button from '../../Button';
 
 const cx = classNames.bind(styles);
 
-function VideoActions({ data, index }) {
+function VideoActions({ data = {}, index }) {
     const { setOpenFullVideo } = UserAuth();
     const { setPositionVideo } = UserVideo();
 
@@ -44,5 +46,10 @@ function VideoActions({ data, index }) {
         </div>
     );
 }
+
+VideoActions.propTypes = {
+    data: PropTypes.object,
+    index: PropTypes.number,
+};
 
 export default VideoActions;

@@ -1,13 +1,13 @@
 import ActionsApp from '../../components/ActionsApp';
 import ViewProfile from '../../components/ViewProfile';
 
-function Profile({ children }) {
+function Profile() {
     return (
         <div style={{ height: '100%' }}>
-            <ViewProfile>{children}</ViewProfile>
+            <ViewProfile />
             <ActionsApp />
         </div>
     );
-}
+};
 
 export default Profile;

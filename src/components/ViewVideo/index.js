@@ -1,5 +1,6 @@
-import classNames from 'classnames/bind';
 import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames/bind';
 import styles from './ViewVideo.module.scss';
 
 import { UserAuth, UserVideo } from '../Store';
@@ -8,8 +9,9 @@ import config from '../../services';
 
 const cx = classNames.bind(styles);
 
-function ViewVideo({ type }) {
-    const [categories, setCategories] = useState(type);
+function ViewVideo({ type = '' }) {
+    const categories = type;
+
     const [listVideoUser, setListVideoUser] = useState([]);
 
     const { listVideoHome, setListVideoHome, setListVideos } = UserVideo();
@@ -18,7 +20,7 @@ function ViewVideo({ type }) {
     useEffect(() => {
         setListVideoUser(listVideoHome);
     }, [listVideoHome]);
-    
+
     useEffect(() => {
         setListVideoUser([]);
 
@@ -55,5 +57,9 @@ function ViewVideo({ type }) {
         </div>
     );
 }
+
+ViewVideo.propTypes = {
+    type: PropTypes.string,
+};
 
 export default ViewVideo;
