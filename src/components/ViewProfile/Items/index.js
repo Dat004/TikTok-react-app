@@ -43,7 +43,7 @@ function Items({ data = {}, videos = [] }) {
 
         lineBar.style.left = `${tabRect}px`;
         lineBar.style.width = `${tabWidth}px`;
-    }, []);
+    }, [activeItem]);
 
     const handleActiveItem = (tab) => {
         setActiveItem(tab);

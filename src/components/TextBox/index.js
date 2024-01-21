@@ -250,7 +250,7 @@ const TextBox = forwardRef(
                 const textLength = ref.current.value.length;
                 ref.current.setSelectionRange(textLength, textLength);
             }
-        }, []);
+        }, [ref]);
 
         useEffect(() => {
             if (ref) {
@@ -262,7 +262,7 @@ const TextBox = forwardRef(
 
                 ref.current.style.height = scrollHeight + 'px';
             }
-        }, [textValue]);
+        }, [ref, textValue]);
 
         const handleSubmit = (e) => {
             e.preventDefault();
@@ -297,7 +297,7 @@ const TextBox = forwardRef(
                                 value={textValue}
                                 rows={1}
                             />
-                            <div className={cx('current-length')}>{textValue.length + '/' + '150'}</div>
+                            <div className={cx('current-length')}>{`${textValue.length}`}/150</div>
                         </div>
                         <div className={cx('emoji-container')}>
                             <Button

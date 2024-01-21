@@ -61,7 +61,7 @@ function PicutureInPicture({ data = {} }) {
                 });
             }
         }
-    }, [isPictureInPicture]);
+    }, [isPictureInPicture, targetSpeed]);
 
     useEffect(() => {
         const options = {
@@ -97,10 +97,11 @@ function PicutureInPicture({ data = {} }) {
         const handleTimeUpdate = () => {
             if (videoRef.current) {
                 const currentTime = videoRef.current.currentTime;
+                const durationTime = videoRef.current.duration;
 
                 setTimeValue(currentTime);
 
-                setPercentsValue((currentTime / MAX_VALUE) * 100);
+                setPercentsValue((currentTime / durationTime) * 100);
             }
         };
 
@@ -113,7 +114,7 @@ function PicutureInPicture({ data = {} }) {
                 videoRef.current.removeEventListener('timeupdate', handleTimeUpdate);
             }
         };
-    }, []);
+    }, [videoRef.current]);
 
     const handleMuteVideo = () => {
         setMutedVideo((prev) => (!prev ? (videoRef.current.muted = true) : (videoRef.current.muted = false)));
