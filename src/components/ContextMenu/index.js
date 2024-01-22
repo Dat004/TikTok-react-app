@@ -19,7 +19,7 @@ function ContextMenu({ idVideo, positionX, positionY, fileName = '', mimeType = 
 
     const handleCopyLink = async () => {
         try {
-            await navigator.clipboard.writeText(window.location.href + 'video' + '/' + idVideo);
+            await navigator.clipboard.writeText();
 
             setInfoNotify({
                 content: 'Copied text!',

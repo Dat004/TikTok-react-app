@@ -1,9 +1,8 @@
-import { Fragment, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './FormMainUpload.module.scss';
 
 import config from '../../../services';
-
 import Image from '../../Image';
 
 const cx = classNames.bind(styles);

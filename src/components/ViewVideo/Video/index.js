@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
 import { useState, useEffect, useRef, useCallback } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import styles from './Video.module.scss';
 
@@ -9,6 +9,7 @@ import { UserAuth } from '../../Store';
 import { useVideoTime } from '../../../hooks';
 import Image from '../../Image';
 import ContextMenu from '../../ContextMenu';
+import InputSlider from '../../InputSlider';
 
 const cx = classNames.bind(styles);
 
@@ -17,7 +18,7 @@ function Video({ data, index }) {
 
     const DEFAULT_VALUE = 0.7;
     const MIN_VALUE = 0;
-    const MAX_VALUE = 1;
+    const MAX_VIDEO = Number(data.meta.playtime_seconds);
     const STEP = 0.0001;
 
     const [position, setPosition] = useState({
@@ -25,7 +26,6 @@ function Video({ data, index }) {
         y: 0,
     });
     const [isContextMenu, setIsContextMenu] = useState(false);
-    const [percentsValue, setPercentsValue] = useState(0);
     const [timeValueVideo, setTimeValueVideo] = useState(MIN_VALUE);
     const [playVideo, setPlayVideo] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
@@ -44,24 +44,16 @@ function Video({ data, index }) {
 
     // Handle event change time current video
     const handleChangeTimeCurrentVideo = (e) => {
-        const currentTime = Number(e.target.value);
+        const currentTime = Number(e);
 
         setTimeValueVideo(currentTime);
-
-        setPercentsValue((currentTime / data.meta.playtime_seconds) * 100);
 
         videoRef.current.currentTime = currentTime;
     };
 
     //Handle event change volume video
     const handleChangeVolume = (e) => {
-        setValueVolume(e.target.value);
-
-        if (Number(valueVolume) === 0) {
-            setMutedVideo(true);
-        } else {
-            setMutedVideo(false);
-        }
+        setValueVolume(e);
     };
 
     //Handle event toggle play video
@@ -78,7 +70,7 @@ function Video({ data, index }) {
         setMutedVideo((prev) => !prev);
 
         if (mutedVideo) {
-            setValueVolume(DEFAULT_VALUE);
+            setValueVolume(DEFAULT_VALUE * 100);
 
             videoRef.current.muted = false;
         } else {
@@ -128,7 +120,7 @@ function Video({ data, index }) {
                 observer.unobserve(videoRef.current);
             }
         };
-    }, [openFullVideo]);
+    }, [videoRef.current, openFullVideo]);
 
     //Handle creating progress bar for video
     useEffect(() => {
@@ -139,8 +131,6 @@ function Video({ data, index }) {
                 const currentTime = videoRef.current.currentTime;
 
                 setTimeValueVideo(currentTime);
-
-                setPercentsValue((currentTime / data.meta.playtime_seconds) * 100);
             }
         };
 
@@ -154,19 +144,21 @@ function Video({ data, index }) {
                 videoRef.current.pause();
             }
         };
-    }, [openFullVideo]);
+    }, [videoRef.current, openFullVideo]);
 
     useEffect(() => {
         if (Number(valueVolume) === 0) {
             setMutedVideo(true);
 
-            videoRef.current.volume = Number(valueVolume);
+            videoRef.current.volume = Number(valueVolume) / 100;
+            videoRef.current.muted = true;
         } else {
             setMutedVideo(false);
 
-            videoRef.current.volume = Number(valueVolume);
+            videoRef.current.volume = Number(valueVolume) / 100;
+            videoRef.current.muted = false;
         }
-    }, [valueVolume, openFullVideo]);
+    }, [videoRef.current, valueVolume, openFullVideo]);
 
     const handleOthers = () => {
         if (isContextMenu) {
@@ -183,7 +175,7 @@ function Video({ data, index }) {
             document.removeEventListener('click', handleOthers);
             document.removeEventListener('scroll', handleOthers);
             document.removeEventListener('keydown', handleOthers);
-        }
+        };
     }, [isContextMenu]);
 
     const handleContext = (e) => {
@@ -226,55 +218,36 @@ function Video({ data, index }) {
                         >
                             <PlayVideo isPlay={playVideo} onClick={handlePlayVideo} />
                         </div>
-                        <div
+                        <VolumeVideo
                             className={cx('btn-control', {
                                 'voice-control': true,
                             })}
-                        >
-                            <div className={cx('control-volume')}>
-                                <div className={cx('container-slider')}>
-                                    <div className={cx('slider')}>
-                                        <input
-                                            id="slider"
-                                            value={valueVolume}
-                                            onChange={handleChangeVolume}
-                                            type="range"
-                                            min={MIN_VALUE}
-                                            max={MAX_VALUE}
-                                            step={STEP}
-                                        />
-                                        <span
-                                            style={{ width: `${valueVolume * 100}%` }}
-                                            className={cx('progress-bar')}
-                                        ></span>
-                                    </div>
-                                </div>
-                                <div className={cx('voice')}>
-                                    <VolumeVideo isMute={mutedVideo} onClick={handleMuteVoice} />
-                                </div>
-                            </div>
-                        </div>
+                            onChangeVolume={handleChangeVolume}
+                            onClick={handleMuteVoice}
+                            volumeValue={valueVolume}
+                            backgroundWrapper="rgba(22, 24, 35, 0.34)"
+                            width="24px"
+                            height="74px"
+                            widthY="2px"
+                            heightY="48px"
+                            isMute={mutedVideo ? true : false}
+                        />
                         <div
                             className={cx('btn-control', {
                                 'input-control': true,
                             })}
                         >
-                            <div className={cx('content')}>
-                                <input
-                                    id="slider-input"
-                                    type="range"
-                                    value={timeValueVideo}
-                                    min={MIN_VALUE}
-                                    max={data.meta.playtime_seconds}
-                                    step={STEP}
-                                    onChange={handleChangeTimeCurrentVideo}
-                                />
-                                <span className={cx('slider-thumb')} style={{ left: `${percentsValue}%` }}></span>
-                                <span
-                                    style={{ left: 0, borderRadius: 0, width: `${percentsValue}%` }}
-                                    className={cx('progress-bar')}
-                                ></span>
-                            </div>
+                            <InputSlider
+                                value={timeValueVideo}
+                                min={MIN_VALUE}
+                                max={MAX_VIDEO}
+                                step={STEP}
+                                onChange={handleChangeTimeCurrentVideo}
+                                borderRadius="0"
+                                height="16px"
+                                heightX="2px"
+                                heightOver="4px"
+                            />
                             <span className={cx('progress-time')}>
                                 {currentTime.minutes + ':' + currentTime.seconds} /{' '}
                                 {durationTime.minutes + ':' + durationTime.seconds}

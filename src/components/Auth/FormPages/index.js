@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './FormPages.module.scss';
 

@@ -16,7 +16,7 @@ function Suggest({ headingTitle = '', footerTitle = '' }) {
     
     const handleSeeMoreAccounts = useCallback(() => {
         setNumPages((prev) => prev + 1);
-    }, []);
+    }, [numPages]);
 
     useEffect(() => {
         const fetchApi = async () => {

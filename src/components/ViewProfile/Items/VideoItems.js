@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Items.module.scss';
 
@@ -18,7 +18,7 @@ function VideoItems({ data = {}, index, setVideo = () => {} }) {
         if (index === 0) {
             setVideo(videoRefs.current);
         }
-    }, []);
+    }, [index]);
 
     const handleMouseOver = () => {
         setVideo(videoRefs.current);
