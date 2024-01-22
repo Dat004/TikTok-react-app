@@ -33,7 +33,7 @@ function HeaderProfile({ data = {} }) {
         const fetchApi = async () => {
             const data = await config.followUser(userId, tokenStr);
 
-            setIsFollowed(true);
+            setIsFollowed(data.data.is_followed);
         };
 
         fetchApi();
@@ -44,7 +44,7 @@ function HeaderProfile({ data = {} }) {
         const fetchApi = async () => {
             const data = await config.unFollowUser(userId, tokenStr);
 
-            setIsFollowed(false);
+            setIsFollowed(data.data.is_followed);
         };
 
         fetchApi();

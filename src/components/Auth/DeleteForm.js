@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 import styles from './Auth.module.scss';
 
-import { UserAuth, UserVideo } from '../Store';
+import { UserAuth } from '../Store';
 import { Wrapper } from '../Popper';
 import Button from '../Button';
 

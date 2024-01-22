@@ -18,7 +18,7 @@ function Video({ data = {}, index, setVideo = () => {}, src = '', thumb = '' }) 
         if (index === 0) {
             setVideo(videoRef.current);
         }
-    }, []);
+    }, [index]);
 
     const handleMouseOver = () => {
         setVideo(videoRef.current);

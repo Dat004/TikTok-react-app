@@ -5,7 +5,6 @@ import styles from './Auth.module.scss';
 import { UserAuth } from '../Store/AuthContext';
 import Button from '../Button';
 import { Wrapper } from '../Popper';
-import logout from '../../services/authLogout';
 import config from '../../services';
 import { UserNotify } from '../Store';
 

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import styles from './Menu.module.scss';
 
 import { NavLink } from 'react-router-dom';
-import { useState } from 'react';
 
 const cx = classNames.bind(styles);
 

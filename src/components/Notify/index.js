@@ -1,4 +1,3 @@
-import { createPortal } from 'react-dom';
 import classNames from 'classnames/bind';
 import styles from './Notify.module.scss';
 

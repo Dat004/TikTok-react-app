@@ -137,10 +137,11 @@ function Video({ data, index }) {
         const handleTimeUpdate = () => {
             if (videoRef.current) {
                 const currentTime = videoRef.current.currentTime;
+                const durationTime = videoRef.current.duration;
 
                 setTimeValueVideo(currentTime);
 
-                setPercentsValue((currentTime / data.meta.playtime_seconds) * 100);
+                setPercentsValue((currentTime / durationTime) * 100);
             }
         };
 
@@ -154,7 +155,7 @@ function Video({ data, index }) {
                 videoRef.current.pause();
             }
         };
-    }, [openFullVideo]);
+    }, [videoRef.current, openFullVideo]);
 
     useEffect(() => {
         if (Number(valueVolume) === 0) {

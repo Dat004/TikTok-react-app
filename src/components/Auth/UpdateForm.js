@@ -61,7 +61,7 @@ function UpdateForm() {
 
     const handleUpdateUser = () => {
         const fetchApi = async () => {
-            const data = await config.update(tokenStr, valueFirstName, valueLastName, valueWebsite, valueBiO);
+            await config.update(tokenStr, valueFirstName, valueLastName, valueWebsite, valueBiO);
 
             window.location.reload();
         };

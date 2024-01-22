@@ -15,7 +15,7 @@ function Following({ headingTitle = '', footerTitle = '' }) {
 
     const handleSeeMoreFollowing = useCallback(() => {
         setNumPages((prev) => prev + 1);
-    });
+    }, [numPages]);
 
     useEffect(() => {
         const fetchApi = async () => {
