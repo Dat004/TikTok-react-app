@@ -12,7 +12,7 @@
     cursor: pointer;
 
     span {
-        font-weight: 700;
+        font-weight: var(--fw-bold);
         font-size: 1.2rem;
     }
 }
@@ -25,5 +25,5 @@
     height: 48px;
     margin: 8px 0 6px;
     border-radius: 60%;
-    background-color: rgba(22, 24, 35, 0.06);
+    background-color: rgba(22, 24, 35, 0.06); //
 }

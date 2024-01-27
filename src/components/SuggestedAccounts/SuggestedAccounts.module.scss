@@ -1,20 +1,20 @@
 .wrapper {
     padding: 16px 8px;
-    border-top: 1px solid #1618231f;
+    border-top: 1px solid var(--separate-color); //
 }
 
 .title {
     margin-bottom: 8px;
     font-size: 1.4rem;
-    font-weight: 600;
-    color: #161823bf;
+    font-weight: var(--fw-semibold);
+    color: var(--tertiary-color); //; // //
 }
 
 .more-btn {
     margin-top: 8px;
     font-size: 1.4rem;
-    font-weight: 600;
-    color: #fe2c55;
+    font-weight: var(--fw-semibold);
+    color: var(--red-color); //
     cursor: pointer;
 }
 
@@ -32,7 +32,7 @@
     cursor: pointer;
 
     &:hover {
-        background: rgba(22, 24, 35, 0.03);
+        background: var(--hover-items-color); //
     }
 }
 
@@ -87,8 +87,8 @@
     line-height: 2.1rem;
 
     & strong {
-        color: #161823;
-        font-weight: 700;
+        color: var(--primary-color); //
+        font-weight: var(--fw-bold);
         font-size: 1.6rem;
     }
 }
@@ -102,8 +102,8 @@
 }
 
 .username {
-    font-weight: 400;
+    font-weight: var(--fw-regular);
     font-size: 1.2rem;
-    color: #161823bf;
+    color: var(--tertiary-color); //; // //
     line-height: 1.2rem;
 }

@@ -8,6 +8,7 @@ import { HidePassIcon, ShowPassIcon } from '../../CustomIcon';
 import { UserNotify } from '../../Store';
 import Button from '../../Button';
 import config from '../../../services';
+import { useLocalStorage } from '../../../hooks';
 
 const cx = classNames.bind(styles);
 
@@ -17,6 +18,8 @@ function LoginWithDefault() {
     const [valuePassword, setValuePassword] = useState('');
     const [showPass, setShowPass] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+
+    const { setItems, getItems } = useLocalStorage();
 
     const { setInfoNotify } = UserNotify();
 
@@ -63,8 +66,12 @@ function LoginWithDefault() {
                 isNotify: true,
             });
 
-            localStorage.setItem('user-id', JSON.stringify(data.data));
-            localStorage.setItem('token', JSON.stringify(`Bearer ${data.meta.token}`));
+            const authUser = {
+                user: data.data,
+                token: `Bearer ${data.meta.token}`,
+            };
+
+            setItems(authUser);
 
             setTimeout(() => {
                 setIsLoading(false);

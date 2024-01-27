@@ -4,21 +4,22 @@
     align-items: center;
     padding: 20px 0 24px 0;
     margin: 0 8px;
-    border-top: 1px solid #1618231f;
+    border-top: 1px solid var(--separate-color); //
 }
 
 .title {
-    color: #16182380;
+    color: var(--quaternary-color); //
     font-size: 1.6rem;
-    font-weight: 400;
+    font-weight: var(--fw-regular);
     line-height: 2rem;
 }
 
 .btn-login {
     width: 100%;
     margin-top: 20px;
+    background-color: var(--bg-wrapper-btn);
 
     &:hover {
-        background-color: rgba(254, 44, 85, 0.06);
+        background-color: var(--bg-color-hover);
     }
 }

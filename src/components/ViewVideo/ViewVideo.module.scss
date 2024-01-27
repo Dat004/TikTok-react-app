@@ -14,7 +14,7 @@
 }
 
 .video-items + .video-items {
-    border-top: 1px solid rgba(22, 24, 35, 0.2);
+    border-top: 1px solid var(--bd-content-color); //
 }
 
 .avatar {
@@ -55,22 +55,22 @@
 .nickname {
     margin-right: 5px;
     font-size: 1.8rem;
-    color: #161823;
+    color: var(--primary-color); //
 }
 
 .username {
     font-size: 1.4rem;
-    color: #161823;
+    color: var(--primary-color); //
 }
 
 .text-content {
     font-size: 1.6rem;
-    color: #161823;
+    color: var(--primary-color); //
 }
 
 .tags {
     span {
-        font-weight: 600;   
+        font-weight: var(--fw-semibold);   
         color: #2b5db9;
         cursor: pointer;
 
@@ -85,17 +85,24 @@
     align-items: center;
     min-width: 96px;
     height: 36px;
-    font-weight: 600;
+    font-weight: var(--fw-semibold);
+    color: var(--red-color);
     border-radius: 2px;
 
     &:hover {
-        background-color: #fe2c5514;
+        background-color: var(--bg-color-hover)
     }
 }
 
 .btn-unfollow {
-    color: #161823;
-    border-color: #1618231f;
+    background-color: var(--bg-wrapper-action);
+    color: var(--primary-color); //
+    border-color: var(--separate-color); //
+
+    &:hover {
+        background-color: var(--hover-bg-color);
+        border-color: var(--hover-bd-content);
+    }
 }
 
 .music {
@@ -104,7 +111,7 @@
 
 .name-music {
     font-size: 1.4rem;
-    color: #161823;
+    color: var(--primary-color); //
     cursor: pointer;
 
     &:hover {

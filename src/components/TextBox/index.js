@@ -243,6 +243,7 @@ const TextBox = forwardRef(
         ref,
     ) => {
         const [isTableEmoji, setIsTableEmoji] = useState(false);
+        const [isFocus, setIsFocus] = useState(false);
         const [isActiveTab, setIsActiveTab] = useState(false);
 
         useEffect(() => {
@@ -282,11 +283,18 @@ const TextBox = forwardRef(
         };
 
         return (
-            <div style={{ width: width, height: height }} className={cx('wrapper-form', {
-                [className]: className,
-            })}>
+            <div
+                style={{ width: width, height: height }}
+                className={cx('wrapper-form', {
+                    [className]: className,
+                })}
+            >
                 <form onSubmit={handleSubmit} className={cx('form-container')}>
-                    <div className={cx('form-group')}>
+                    <div
+                        className={cx('form-group', {
+                            focused: isFocus,
+                        })}
+                    >
                         <div className={cx('form-text')}>
                             <textarea
                                 ref={ref}
@@ -294,6 +302,8 @@ const TextBox = forwardRef(
                                 className={cx('text-form')}
                                 onKeyDown={(e) => onKeyDown(e)}
                                 onChange={(e) => onChange(e)}
+                                onFocus={() => setIsFocus(true)}
+                                onBlur={() => setIsFocus(false)}
                                 value={textValue}
                                 rows={1}
                             />
@@ -336,15 +346,14 @@ const TextBox = forwardRef(
 
 TextBox.propTypes = {
     className: PropTypes.string,
-    textValue: PropTypes.string,
+    textValue: PropTypes.string.isRequired,
     width: PropTypes.string,
     height: PropTypes.string,
-    onChange: PropTypes.func,
+    onChange: PropTypes.func.isRequired,
     onClick: PropTypes.func,
     onKeyDown: PropTypes.func,
-    setTextValue: PropTypes.func,
+    setTextValue: PropTypes.func.isRequired,
     isBreakLine: PropTypes.bool,
 };
 
 export default TextBox;
-

@@ -88,7 +88,8 @@ function UpdateForm() {
     return (
         <div className={cx('form-wrapper')}>
             <section className={cx('modal-update')}>
-                <Wrapper className={cx('main')}>
+                {/* <Wrapper className={cx('main')}> */}
+                <Wrapper className={cx('modal-form')}>
                     <header className={cx('header-update')}>
                         <h1 className={cx('header-title')}>Sửa hồ sơ</h1>
                         <div>

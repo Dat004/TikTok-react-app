@@ -28,11 +28,11 @@
 .title {
     display: inline-block;
     padding: 0 4px;
-    font-weight: 700;
+    font-weight: var(--fw-bold);
     font-size: 1.6rem;
     border-radius: 4px;
     background-color: #2a2d3f33;
-    color: #fff;
+    color: #fff; //
 }
 
 .count-view, .username, .description {

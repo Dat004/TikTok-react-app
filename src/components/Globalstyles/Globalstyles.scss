@@ -9,18 +9,78 @@
     }
 }
 
+@keyframes show {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
 :root {
-    --primary: #fe2c55;
+    --red-color: #fe2c55;
+    --white-color: #fff;
+    --black-color: #000;
+    --brown-color: #333;
+
+    --bg-color: rgba(255, 255, 255, 0.12);
+    --bg-color-hover: rgba(254, 44, 85, 0.06);
+    --bg-primary-hover: linear-gradient(0deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06)), rgb(254, 44, 85);
+
+    --senary-color: rgba(22, 24, 35, 0.06);
+    --septenary-color: #16182308;
+
+    --bd-primary-color: rgba(22, 24, 35, 0.12);
+    --bd-secondary-color: rgba(22, 24, 35, 0.2);
+
     --font-primary: 'TikTokFont', sans-serif;
-    --font: 'TikTokDisplayFont', sans-serif;
-    --white: #fff;
-    --black: #000;
-    --text-color: #333;
+    --font-secondary: 'TikTokDisplayFont', sans-serif;
+    --font-tertiary: 'IBM Plex Sans', TikTokFont, Arial, Tahoma, PingFangSC, sans-serif;
+
+    --fw-bold: 700;
+    --fw-semibold: 600;
+    --fw-regular: 400;
+
     --default-layout-header-height: 60px;
     --default-layout-width: 1150px;
     --default-layout-space-left: 16px;
     --default-layout-space-right: 24px;
-    --animation-loading: spinner 0.75s linear infinite;
+
+    --animation-loading: spinner 0.75s linear infinite 0s running;
+
+    --primary-color: #161823;
+    --secondary-color: #16182357;
+    --tertiary-color: #161823bf;
+    --quaternary-color: #16182380;
+    --bg-modal: rgba(0, 0, 0, 0.5);
+    --bg-player-color: rgba(0, 0, 0);
+    --bg-disabled-color: rgba(22, 24, 35, 0.06);
+    --bg-shadow-color: rgba(0, 0, 0, 0.12) 0px 4px 16px 0px;
+    --bg-theme: rgba(255, 255, 255);
+    --bg-wrapper: rgba(22, 24, 35, 0.06);
+    --bg-wrapper-effect: ;
+    --bg-icon-color: rgba(22, 24, 35, 0.34);
+    --bg-icon-hover: rgba(22, 24, 35);
+    --bg-btn-actions: rgba(22, 24, 35, 0.06);
+    --bg-wrapper-btn: rgba(255, 255, 255);
+    --bg-form-input: rgba(22, 24, 35, 0.06);
+    --bg-content-color: rgba(22, 24, 35, 0.03);
+    --separate-color: rgba(22, 24, 35, 0.12);
+    --separate-items: rgba(22, 24, 35, 0.12);
+    --bd-form-color: rgba(22, 24, 35, 0.2);
+    --bd-content-color: rgba(22, 24, 35, 0.2);
+    --bd-color-btn: rgba(22, 24, 35, 0.12);
+    --bg-wrapper-action: rgba(255, 255, 255);
+    --hover-btn-color: rgba(254, 44, 85, 0.06);
+    --hover-bg-color: rgba(245, 245, 245);
+    --hover-bd-content: rgba(22, 24, 35, 0.2);
+    --hover-items-color: rgba(22, 24, 35, 0.03);
+    --btn-color: rgba(255, 255, 255);
+    --line-border-color: rgb(208, 209, 211);
+    --line-items-color: rgba(0, 0, 0, 0.12);
 }
 
 // THUMB BAR
@@ -31,7 +91,7 @@ html *::-webkit-scrollbar {
 }
 html *::-webkit-scrollbar-thumb {
     border-radius: 4px;
-    background-color: rgba(22, 24, 35, 0.06);
+    background-color: rgba(22, 24, 35, 0.06); //
 }
 html *::-webkit-scrollbar-track {
     border-radius: 0;
@@ -41,25 +101,25 @@ html *::-webkit-scrollbar-track {
 @font-face {
     font-family: TikTokFont;
     src: url('/assets/fonts/TikTokFont-Regular.woff2');
-    font-weight: 400;
+    font-weight: var(--fw-regular);
 }
 
 @font-face {
     font-family: TikTokFont;
     src: url('/assets/fonts/TikTokFont-Semibold.woff2');
-    font-weight: 600;
+    font-weight: var(--fw-semibold);
 }
 
 @font-face {
     font-family: TikTokFont;
     src: url('/assets/fonts/TikTokFont-Bold.woff2');
-    font-weight: 700;
+    font-weight: var(--fw-bold);
 }
 
 @font-face {
     font-family: TikTokDisplayFont;
     src: url('/assets/fonts/TikTokDisplayFont-Bold.woff2');
-    font-weight: 700;
+    font-weight: var(--fw-bold);
 }
 
 html {
@@ -81,6 +141,76 @@ body {
     scrollbar-gutter: stable;
     overscroll-behavior: contain;
     overflow-y: overlay;
+    background-color: var(--bg-theme);
+    transition: all 0.75s cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-delay: 0s;
+    transform-origin: center center;
+}
+
+body[data-theme='light'] {
+    --primary-color: #161823;
+    --secondary-color: #16182357;
+    --tertiary-color: #161823bf;
+    --quaternary-color: #16182380;
+    --bg-modal: rgba(0, 0, 0, 0.5);
+    --bg-player-color: rgba(0, 0, 0);
+    --bg-disabled-color: rgba(22, 24, 35, 0.06);
+    --bg-shadow-color: rgba(0, 0, 0, 0.12) 0px 4px 16px 0px;
+    --bg-theme: rgba(255, 255, 255);
+    --bg-wrapper: rgba(22, 24, 35, 0.06);
+    --bg-wrapper-effect: ;
+    --bg-icon-color: rgba(22, 24, 35, 0.34);
+    --bg-icon-hover: rgba(22, 24, 35);
+    --bg-btn-actions: rgba(22, 24, 35, 0.06);
+    --bg-wrapper-btn: rgba(255, 255, 255);
+    --bg-form-input: rgba(22, 24, 35, 0.06);
+    --bg-content-color: rgba(22, 24, 35, 0.03);
+    --separate-color: rgba(22, 24, 35, 0.12);
+    --separate-items: rgba(22, 24, 35, 0.12);
+    --bd-form-color: rgba(22, 24, 35, 0.2);
+    --bd-content-color: rgba(22, 24, 35, 0.2);
+    --bd-color-btn: rgba(22, 24, 35, 0.12);
+    --bg-wrapper-action: rgba(255, 255, 255);
+    --hover-btn-color: rgba(254, 44, 85, 0.06);
+    --hover-bg-color: rgba(245, 245, 245);
+    --hover-bd-content: rgba(22, 24, 35, 0.2);
+    --hover-items-color: rgba(22, 24, 35, 0.03);
+    --btn-color: rgba(255, 255, 255);
+    --line-border-color: rgb(208, 209, 211);
+    --line-items-color: rgba(0, 0, 0, 0.12);
+}
+
+body[data-theme='dark'] {
+    --primary-color: #ffffffe6;
+    --secondary-color: #ffffff57;
+    --tertiary-color: #ffffffbf;
+    --quaternary-color: #ffffff80;
+    --bg-modal: rgba(0, 0, 0, 0.68);
+    --bg-player-color: rgba(255, 255, 255, 0.08);
+    --bg-disabled-color: rgba(255, 255, 255, 0.08);
+    --bg-shadow-color: rgba(255, 255, 255, 0.12) 0px 4px 16px 0px;
+    --bg-theme: rgb(18, 18, 18);
+    --bg-wrapper: rgba(255, 255, 255, 0.12);
+    --bg-wrapper-effect: ;
+    --bg-icon-color: rgba(255, 255, 255, 0.34);
+    --bg-icon-hover: rgba(255, 255, 255, 0.9);
+    --bg-btn-actions: rgba(255, 255, 255, 0.12);
+    --bg-wrapper-btn: rgba(255, 255, 255, 0.08);
+    --bg-form-input: rgba(255, 255, 255, 0.12);
+    --bg-content-color: rgba(255, 255, 255, 0);
+    --bd-content-color: rgba(255, 255, 255, 0.2);
+    --bd-color-btn: rgba(255, 255, 255, 0);
+    --bd-form-color: rgba(255, 255, 255, 0);
+    --separate-color: rgba(255, 255, 255, 0.12);
+    --separate-items: rgba(255, 255, 255, 0.5);
+    --bg-wrapper-action: rgb(37, 37, 37);
+    --hover-btn-color: rgb(18, 18, 18);
+    --hover-bg-color: rgba(46, 46, 46);
+    --hover-bd-content: rgba(255, 255, 255, 0);
+    --hover-items-color: rgba(255, 255, 255, 0.04);
+    --btn-color: rgba(255, 255, 255, 0.08);
+    --line-border-color: rgb(208, 209, 211);
+    --line-items-color: rgba(255, 255, 255, 0.12);
 }
 
 button,
@@ -92,13 +222,13 @@ input,
 
 button:disabled {
     border: none;
-    color: rgba(22, 24, 35, 0.34);
-    background-color: rgba(22, 24, 35, 0.06);
+    color: rgba(22, 24, 35, 0.34); //
+    background-color: var(--senary-color); //
     pointer-events: none;
 }
 
 a {
-    color: var(--black);
+    color: var(--black-color);
     text-decoration: none;
 }
 
@@ -110,22 +240,22 @@ input::-ms-clear {
 // TIPPY ELEMENT
 
 .tippy-box {
-    background-color: rgba(84, 84, 84, 0.92);
+    background-color: rgba(84, 84, 84, 0.92); //
     border-radius: 8px;
 
     .tippy-content {
         align-items: center;
         font-size: 1.6rem;
-        font-weight: 600;
+        font-weight: var(--fw-semibold);
         line-height: 2.2rem;
-        color: rgb(255, 255, 255);
+        color: #fff; //
         padding: 7.5px;
     }
 }
 
 .tippy-box[data-placement^='bottom'] > .tippy-arrow {
     border-width: 0 7px 7px;
-    border-bottom-color: rgba(84, 84, 84, 0.92);
+    border-bottom-color: rgba(84, 84, 84, 0.92); //
     margin: 0 -1px;
     transform-origin: 50% 7px;
     top: -7px;
@@ -133,7 +263,7 @@ input::-ms-clear {
 
 .tippy-box[data-placement^='top'] > .tippy-arrow {
     border-width: 7px 7px 0;
-    border-top-color: rgba(84, 84, 84, 0.92);
+    border-top-color: rgba(84, 84, 84, 0.92); //
     margin: 0 -1px;
     transform-origin: 50% 7px;
     bottom: -7px;

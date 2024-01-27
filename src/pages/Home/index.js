@@ -3,7 +3,7 @@ import ViewVideo from '../../components/ViewVideo';
 
 function Home() {
     const CATEGORIES = 'for-you';
-
+    
     return (
         <div style={{ height: '100%' }}>
             <ViewVideo type={CATEGORIES} />

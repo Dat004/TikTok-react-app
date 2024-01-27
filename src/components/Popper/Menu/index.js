@@ -62,7 +62,7 @@ function Menu({ children, items = [] }) {
                 }}
                 render={(attrs) => (
                     <div className={cx('menu-lists')} tabIndex="-1" {...attrs}>
-                        <Wrapper widthBox="227px" heigtBox="640px">
+                        <Wrapper widthBox="223px">
                             {history.length > 1 && (
                                 <Header
                                     title={FinalPosition.title}

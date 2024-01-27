@@ -37,43 +37,13 @@
     flex: 1;
 }
 
-.text-area {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    padding: 12px 48px 12px 8px;
-    font-weight: 400;
-    font-size: 1.4rem;
-    color: #161823;
-    border-radius: 12px;
-    border: 1px solid transparent;
-    background-color: rgba(22, 24, 35, 0.06);
-    outline: none;
-    resize: none;
-    overflow: hidden;
-}
-
-.btn-send {
-    position: absolute;
-    top: 50%;
-    right: 13px;
-    transform: translateY(-50%);
-    background: transparent;
-
-    &:disabled {
-        background: transparent;
-        opacity: 0.5;
-    }
-}
-
 .cancle-edit {
     position: absolute;
     display: block;
     margin-top: 6px;
-    font-weight: 600;
+    font-weight: var(--fw-semibold);
     font-size: 1.2rem;
-    color: #161823bf;
+    color: var(--tertiary-color); //; // //
 
     & span {
         color: #0866ff;
@@ -92,18 +62,19 @@
 }
 
 .nickname {
-    font-weight: 600;
-    color: #161823;
+    font-weight: var(--fw-semibold);
+    color: var(--primary-color); //
 }
 
 .comment-creator {
     font-size: 1.4rem;
-    color: #fe2c55;
+    color: var(--red-color); //
 }
 
 .text-content {
-    line-height: 1.6;
     margin-bottom: 4px;
+    line-height: 1.6;
+    color: var(--primary-color);
 
     span {
         line-height: 1.8rem;
@@ -118,7 +89,7 @@
 }
 
 .text-bottom {
-    color: #16182380;
+    color: var(--quaternary-color); //
 }
 
 .actions-comments {
@@ -133,14 +104,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: #16182380;
+    color: var(--quaternary-color); //
 }
 
 .like-btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #16182380;
+    color: var(--quaternary-color); //
     cursor: pointer;
 }
 
@@ -195,7 +166,7 @@
 .container-wrapper {
     min-width: 200px;
     padding: 8px 16px;
-    background: #fff;
+    background: var(--bg-wrapper-action); //
     box-shadow: rgba(0, 0, 0, 0.12) 0px 4px 16px;
 }
 
@@ -204,17 +175,32 @@
     align-items: center;
     justify-content: flex-start;
     padding: 12px 0;
-    color: #161823;
+    color: var(--primary-color); //
     cursor: pointer;
 
     &:hover {
-        color: rgb(254, 44, 85);
+        color: var(--red-color); //
+    }
+}
+
+.item-wrapper:nth-child(2) {
+    position: relative;
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        display: block;
+        background-color: var(--separate-color);
     }
 }
 
 .item-title {
     margin-left: 12px;
-    font-weight: 700;
+    font-weight: var(--fw-bold);
     font-size: 1.6rem;
     line-height: 2.1rem;
 }

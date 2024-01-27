@@ -269,7 +269,9 @@ function Comment({ urlPath = '', data = {}, idVideo, statePosition = [], listVid
                                                 <Button className={cx('video-setting')}>Cài đặt quyền riêng tư</Button>
                                                 <Button
                                                     onClick={() => handleOpenFormDelete(data?.description, data?.id)}
-                                                    className={cx('video-setting')}
+                                                    className={cx('video-setting', {
+                                                        'video-delete': true,
+                                                    })}
                                                 >
                                                     Xóa
                                                 </Button>

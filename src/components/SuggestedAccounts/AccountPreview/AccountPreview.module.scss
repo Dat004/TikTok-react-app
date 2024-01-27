@@ -19,7 +19,7 @@
     }
 }
 .btn-follow {
-    font-weight: 600;
+    font-weight: var(--fw-semibold);
 }
 
 .content {
@@ -29,10 +29,10 @@
 .nickname {
     display: flex;
     align-items: center;
-    font-weight: 700;
+    font-weight: var(--fw-bold);
     font-size: 1.8rem;
     line-height: 2rem;
-    color: #161823;
+    color: var(--primary-color); //
 }
 
 .icon {
@@ -45,9 +45,9 @@
 
 .username {
     display: block;
-    font-weight: 700;
+    font-weight: var(--fw-bold);
     font-size: 1.4rem;
-    color: #161823;
+    color: var(--primary-color); //
     line-height: 1.5;
 }
 
@@ -63,9 +63,13 @@
     align-items: center;
     font-size: 1.7rem;
 
+    strong {
+        color: var(--primary-color);
+    }
+
     span {
         display: flex;
         margin-left: 6px;
-        color: #161823bf;
+        color: var(--tertiary-color); //; // //
     }
 }

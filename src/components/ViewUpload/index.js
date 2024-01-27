@@ -5,6 +5,7 @@ import styles from './ViewUpload.module.scss';
 import { UploadIcon } from '../CustomIcon';
 import Button from '../Button';
 import FormMainUpload from './FormMainUpload';
+import Switch from '../Switch';
 
 const cx = classNames.bind(styles);
 
@@ -31,7 +32,10 @@ function ViewUpload() {
     };
 
     return (
-        <div className={cx('wrapper-upload')}>
+        <div
+            style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+            className={cx('wrapper-upload')}
+        >
             <div className={cx('container-upload')}>
                 {isSelectedVideo ? (
                     <FormMainUpload src={isUrl} nameFile={isFileName} />

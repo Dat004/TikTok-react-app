@@ -20,6 +20,10 @@ function Video({ data = {}, index, setVideo = () => {}, src = '', thumb = '' }) 
         }
     }, [index]);
 
+    const handleOpenFormLogin = (e) => {
+        e.preventDefault()
+    };
+
     const handleMouseOver = () => {
         setVideo(videoRef.current);
     };
@@ -39,7 +43,7 @@ function Video({ data = {}, index, setVideo = () => {}, src = '', thumb = '' }) 
                         <span>{data.nickname}</span>
                         {data.tick && <CheckIcon />}
                     </p>
-                    <Button onClick={(e) => e.preventDefault()} className={cx('div-btn')} primary medium>
+                    <Button onClick={handleOpenFormLogin} className={cx('div-btn')} primary medium>
                         Follow
                     </Button>
                 </div>

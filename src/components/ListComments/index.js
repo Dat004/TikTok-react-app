@@ -202,7 +202,7 @@ function ListComments({ data = {}, className, index, isCreator = false, setDataC
                                 <div className={cx('like-comment')}>
                                     <div>
                                         <TippyHeadless
-                                            delay={[0, 200]}
+                                            delay={[100, 200]}
                                             interactive
                                             placement="bottom-end"
                                             render={(attrs) => (

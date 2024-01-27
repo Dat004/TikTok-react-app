@@ -7,12 +7,14 @@ import Button from '../Button';
 import { Wrapper } from '../Popper';
 import config from '../../services';
 import { UserNotify } from '../Store';
+import { useLocalStorage } from '../../hooks';
 
 const cx = classNames.bind(styles);
 
 function LogOut() {
     const navigate = useNavigate();
 
+    const { clearLocal } = useLocalStorage();
     const { tokenStr, setOpenFormLogout } = UserAuth();
     const { setInfoNotify } = UserNotify();
 
@@ -38,24 +40,24 @@ function LogOut() {
             });
 
             setTimeout(() => {
-                localStorage.removeItem('user-id');
-                localStorage.removeItem('token');
-
                 navigate('/');
                 window.location.reload();
             }, [300]);
         }
 
-        // localStorage.removeItem('user-id');
-        // localStorage.removeItem('token');
-
-        // navigate('/');
-        // window.location.reload();
+        clearLocal();
+        navigate('/');
+        window.location.reload();
     };
 
     return (
-        <div className={cx('form-container')}>
-            <Wrapper className={cx('form-logout')}>
+        <div className={cx('form-wrapper')}>
+            {/* <Wrapper className={cx('form-logout')}> */}
+            <Wrapper
+                className={cx('modal-form', {
+                    'form-logout': true,
+                })}
+            >
                 <div className={cx('logout-content')}>
                     <h1 className={cx('title-logout')}>Bạn có chắc chắn muốn đăng xuất?</h1>
                     <div className={cx('btn-primary')}>

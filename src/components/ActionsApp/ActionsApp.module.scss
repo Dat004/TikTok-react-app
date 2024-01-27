@@ -18,14 +18,14 @@
     justify-content: center;
     height: 32px;
     margin-bottom: 12px;
-    font-family: "IBM Plex Sans", TikTokFont, Arial, Tahoma, PingFangSC, sans-serif;
-    font-weight: 700;
+    font-family: var(--font-tertiary);
+    font-weight: var(--fw-bold);
     font-size: 1.4rem;
-    background: #fff;
-    border-color: #1618231f;
+    background: var(--bg-wrapper-action); //
+    border-color: var(--bd-color-btn); //
     border-radius: 52px;
     box-shadow: rgb(0 0 0 / 6%) 0px 2px 8px;
-    color: #161823bf;
+    color: var(--tertiary-color); //; // //
     transform: scale(0);
     transition: all 0.3s cubic-bezier(0.4, 0.14, 0.3, 1) 0s;
     transform-origin: bottom right;
@@ -36,10 +36,10 @@
     right: -1px;
     bottom: -1px;
     display: flex;
-    background: #fff;
+    background: var(--bg-wrapper-action); //
     box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 8px;
     border-radius: 8px;
-    border: 1px solid #16182308;
+    border: 1px solid var(--bg-content-color); //
     transform: scale(0);
     transition: all 0.3s cubic-bezier(0.4, 0.14, 0.3, 1) 0s;
     transform-origin: bottom right;
@@ -55,7 +55,7 @@
     display: block;
     width: calc(100% - 16px);
     height: 1px;
-    background: #1618231f;
+    background: var(--separate-color); //
 }
 
 .btn-install {
@@ -66,12 +66,13 @@
     margin: 6px 0;
     padding: 8px;
     border-radius: 8px;
+    color: var(--primary-color);
     cursor: pointer;
 }
 
 .name-method {
     margin-left: 8px;
-    font-weight: 700;
+    font-weight: var(--fw-bold);
     font-size: 1.6rem;
     line-height: 2.1rem;
 }
@@ -88,7 +89,7 @@
 
 .btn-close {
     font-size: 2rem;
-    color: #161823;
+    color: var(--primary-color); //
 }
 
 .div-btn {
@@ -104,8 +105,8 @@
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    background: #fe2c55;
+    background: #fe2c55; //
     box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 8px;
     text-align: end;
-    color: #fff;
+    color: #fff; //
 }

@@ -2,10 +2,10 @@
     display: flex;
     align-items: center;
     line-height: 1.9rem;
-    padding: 8px 16px;
+    padding: 9px 16px;
     cursor: pointer;
     &:hover {
-        background-color: rgba(22, 24, 35, 0.04);;
+        background-color: var(--hover-items-color); //;
     }
 
     .avatar-user {
@@ -27,13 +27,13 @@
         }
         .name {
             font-size: 1.6rem;
-            font-weight: 600;
-            color: #161823;
+            font-weight: var(--fw-semibold);
+            color: var(--primary-color); //
         }
         .username {
-            font-weight: 400;
+            font-weight: var(--fw-regular);
             font-size: 1.4rem;
-            color: #16182380;
+            color: var(--quaternary-color);
             text-transform: uppercase;
         }
     }

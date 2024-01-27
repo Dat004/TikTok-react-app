@@ -71,22 +71,22 @@ function Items({ data = {}, videos = [] }) {
                 <div
                     onClick={(e) => handleActiveItem('video')}
                     ref={tabVideoRef}
-                    className={cx('tab-content', {
-                        active: activeItem === 'video' && true,
-                    })}
+                    className={cx('tab-content')}
                 >
-                    <div className={cx('content-tab')}>
+                    <div className={cx('content-tab', {
+                        'active-items': activeItem === 'video' && true,
+                    })}>
                         <p className={cx('feed-title')}>Video</p>
                     </div>
                 </div>
                 <div
                     onClick={(e) => handleActiveItem('liked')}
                     ref={tabLikedRef}
-                    className={cx('tab-content', {
-                        active: activeItem === 'liked' && true,
-                    })}
+                    className={cx('tab-content')}
                 >
-                    <div className={cx('content-tab')}>
+                    <div className={cx('content-tab', {
+                        'active-items': activeItem === 'liked' && true,
+                    })}>
                         <LockIcon className={cx('lock-icon')} />
                         <p className={cx('feed-title')}>Liked</p>
                     </div>
@@ -99,7 +99,7 @@ function Items({ data = {}, videos = [] }) {
                         {videos.length === 0 ? (
                             <div className={cx('wrapper-videos')}>
                                 <div className={cx('icon-big')}>
-                                    <LockIconLarger />
+                                    <LockIconLarger className={cx('icon')} />
                                 </div>
                                 <h1 className={cx('title')}>No content</h1>
                                 <p className={cx('description')}>This user has not posted any videos yet</p>
@@ -115,7 +115,7 @@ function Items({ data = {}, videos = [] }) {
                 ) : (
                     <div className={cx('container-layout-private')}>
                         <div className={cx('icon-big')}>
-                            <LockIconLarger />
+                            <LockIconLarger className={cx('icon')} />
                         </div>
                         <h1 className={cx('title')}>This user's liked videos are private</h1>
                         <p className={cx('description')}>Videos liked by {data.nickname} are currently hidden</p>

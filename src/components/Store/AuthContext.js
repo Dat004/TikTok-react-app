@@ -1,6 +1,8 @@
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 
+import useLocalStorage from '../../hooks/useLocalStorage';
+
 const AuthContext = React.createContext();
 
 export function UserAuth() {
@@ -8,6 +10,10 @@ export function UserAuth() {
 }
 
 export function AuthProvider({ children }) {
+    const { getItems } = useLocalStorage();
+
+    const getInfo = getItems();
+
     const [isFollowed, setIsFollowed] = useState(false);
     const [openFormLogin, setOpenFormLogin] = useState(false);
     const [openFormLogout, setOpenFormLogout] = useState(false);
@@ -17,8 +23,8 @@ export function AuthProvider({ children }) {
     const [openFormDiscard, setOpenFormDiscard] = useState(false);
     const [dataForm, setDataForm] = useState({});
 
-    const tokenStr = JSON.parse(localStorage.getItem('token')) ?? '';
-    const userAuth = JSON.parse(localStorage.getItem('user-id')) ?? '';
+    const tokenStr = getInfo.token ?? '';
+    const userAuth = getInfo.user ?? '';
 
     const value = {
         isFollowed,

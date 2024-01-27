@@ -10,6 +10,7 @@ import { CloseTabs, VolumeVideo } from '../../components/Control';
 import { useVideoTime } from '../../hooks';
 import Button from '../../components/Button';
 import ContextMenu from '../../components/ContextMenu';
+import InputSlider from '../../components/InputSlider';
 
 const cx = classNames.bind(styles);
 
@@ -21,9 +22,10 @@ function Videos({ onPrevPage = () => {}, onNextPage = () => {}, data = {}, index
 
     const STEP = 0.00001;
     const MIN_VALUE = 0;
+    const MAX_VALUE = Number(data?.meta?.playtime_seconds);
+    const DEFAULT_VOLUME = 0.7;
 
     const [timeValueVideo, setTimeValueVideo] = useState(MIN_VALUE);
-    const [valuePercent, setValuePercent] = useState();
     const [isFirstPage, setIsFirstPage] = useState(false);
     const [isLastPage, setIsLastPage] = useState(false);
     const [position, setPosition] = useState({
@@ -32,33 +34,46 @@ function Videos({ onPrevPage = () => {}, onNextPage = () => {}, data = {}, index
     });
     const [isContextMenu, setIsContextMenu] = useState(false);
 
-    const { mutedVideo, setMutedVideo, setIdVideo } = UserVideo();
+    const { valueVolume, setValueVolume, mutedVideo, setMutedVideo, setIdVideo } = UserVideo();
     const { setOpenFullVideo } = UserAuth();
     const { setInfoNotify } = UserNotify();
 
     const currentTime = useVideoTime(timeValueVideo);
-    const durationTime = useVideoTime(data?.meta?.playtime_seconds);
+    const durationTime = useVideoTime(MAX_VALUE);
+
+    const backgroundStyle = {
+        backgroundImage: `url(${data.thumb_url})`,
+        backgroundRepeat: 'no-repeat',
+    };
 
     const handleChangeTime = (e) => {
-        const currentTime = Number(e.target.value);
+        const currentTime = e;
 
         setTimeValueVideo(currentTime);
-
-        setValuePercent((currentTime / data?.meta?.playtime_seconds) * 100);
 
         videoRef.current.currentTime = currentTime;
     };
 
-    const handleSeekStart = () => {
+    const handleDrag = () => {
         videoRef.current.pause();
     };
 
-    const handleSeekEnd = () => {
+    const handleDrop = () => {
         videoRef.current.play();
     };
 
     const handleMuteVideo = () => {
-        setMutedVideo((prev) => !prev); // Bật tắt âm thanh
+        setMutedVideo((prev) => (!prev ? (videoRef.current.muted = true) : (videoRef.current.muted = false)));
+
+        if (!mutedVideo) {
+            setValueVolume(MIN_VALUE);
+        } else {
+            setValueVolume(DEFAULT_VOLUME * 100);
+        }
+    };
+
+    const handleChanegVolumeVideo = (e) => {
+        setValueVolume(Number(e));
     };
 
     const handleCLoseVideo = () => {
@@ -91,7 +106,7 @@ function Videos({ onPrevPage = () => {}, onNextPage = () => {}, data = {}, index
         const handleTimeUpdate = () => {
             if (videoRef.current) {
                 const currentTime = videoRef.current.currentTime;
-                setValuePercent((currentTime / videoRef.current.duration) * 100);
+
                 setTimeValueVideo(currentTime);
             }
         };
@@ -120,10 +135,6 @@ function Videos({ onPrevPage = () => {}, onNextPage = () => {}, data = {}, index
     }, [isContextMenu]);
 
     useEffect(() => {
-        mutedVideo ? (videoRef.current.muted = true) : (videoRef.current.muted = false);
-    }, [mutedVideo]);
-
-    useEffect(() => {
         if (videoRef.current) {
             const playPromise = videoRef.current.play();
 
@@ -150,13 +161,29 @@ function Videos({ onPrevPage = () => {}, onNextPage = () => {}, data = {}, index
     }, [index, data]);
 
     useEffect(() => {
+        if (Number(valueVolume) === 0) {
+            setMutedVideo(true);
+
+            videoRef.current.volume = Number(valueVolume) / 100;
+            videoRef.current.muted = true;
+        } else {
+            setMutedVideo(false);
+
+            videoRef.current.volume = Number(valueVolume) / 100;
+            videoRef.current.muted = false;
+        }
+    }, [videoRef.current, valueVolume]);
+
+    useEffect(() => {
         index <= 0 ? setIsFirstPage(true) : setIsFirstPage(false);
         index >= listVideos.length - 1 ? setIsLastPage(true) : setIsLastPage(false);
     }, [index, listVideos]);
 
     return (
         <div className={cx('container-videos')}>
-            <div className={cx('background-videos')} style={{ backgroundImage: `${data?.thumb_url}` }}></div>
+            <div className={cx('wrapper-background')}>
+                <div style={backgroundStyle} className={cx('background-videoplayer')}></div>
+            </div>
             <div className={cx('wrapper-video')}>
                 <div onContextMenu={handleContext} className={cx('card-video')}>
                     {isContextMenu && <ContextMenu idVideo={data?.id} positionX={position.x} positionY={position.y} />}
@@ -171,21 +198,22 @@ function Videos({ onPrevPage = () => {}, onNextPage = () => {}, data = {}, index
                     />
                 </div>
                 <div className={cx('bar-progress')}>
-                    <div className={cx('input-slider')}>
-                        <input
-                            className={cx('input-element')}
-                            onChange={handleChangeTime}
-                            onMouseDown={handleSeekStart}
-                            onMouseUp={handleSeekEnd}
-                            type="range"
-                            value={timeValueVideo}
-                            max={data?.meta?.playtime_seconds}
-                            min={MIN_VALUE}
-                            step={STEP}
-                        />
-                        <span className={cx('input-thumb')} style={{ left: `${valuePercent}%` }}></span>
-                        <span className={cx('input-progress')} style={{ width: `${valuePercent}%` }}></span>
-                    </div>
+                    <InputSlider
+                        className={cx('slider-container')}
+                        borderRadius="0"
+                        height="100%"
+                        widthThumb="16px"
+                        heightThumb="16px"
+                        heightX="4px"
+                        widthX="100%"
+                        onChange={handleChangeTime}
+                        onSeekStart={handleDrag}
+                        onSeekEnd={handleDrop}
+                        min={MIN_VALUE}
+                        max={MAX_VALUE}
+                        step={STEP}
+                        value={timeValueVideo}
+                    />
                     <span className={cx('time-line')}>
                         {currentTime.minutes + ':' + currentTime.seconds}/
                         {durationTime.minutes + ':' + durationTime.seconds}
@@ -220,7 +248,20 @@ function Videos({ onPrevPage = () => {}, onNextPage = () => {}, data = {}, index
                 </Button>
             </div>
             <div className={cx('sound')}>
-                <VolumeVideo onClick={handleMuteVideo} isMute={mutedVideo} className={cx('btn-direction')} />
+                <VolumeVideo
+                    onClick={handleMuteVideo}
+                    onChangeVolume={handleChanegVolumeVideo}
+                    volumeValue={valueVolume}
+                    width="28px"
+                    height="106px"
+                    widthY="4px"
+                    heightY="80px"
+                    widthThumb="16px"
+                    heightThumb="16px"
+                    backgroundWrapper="rgba(84, 84, 84, 0.5)"
+                    isMute={mutedVideo ? true : false}
+                    className={cx('btn-direction')}
+                />
             </div>
         </div>
     );

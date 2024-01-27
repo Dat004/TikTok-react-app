@@ -74,10 +74,10 @@
 .username {
     text-align: center;
     width: 100%;
-    font-weight: 700;
+    font-weight: var(--fw-bold);
     font-size: 1.8rem;
     line-height: 2.4rem;
-    color: #fff;
+    color: var(--white-color); //
 }
 
 .nickname {
@@ -89,9 +89,9 @@
 
     span {
         max-width: 160px;
-        font-weight: 600;
+        font-weight: var(--fw-semibold);
         font-size: 1.4rem;
-        color: #fff;
+        color: var(--white-color); //
     }
 }
 
@@ -101,11 +101,16 @@
     min-width: 164px;
     max-height: 36px;
     margin-top: 8px;
-    font-weight: 600;
+    font-weight: var(--fw-semibold);
     font-size: 1.8rem;
     line-height: 2.2rem;
+    color: var(--white-color);
+
+    &:hover {
+        background: var(--bg-primary-hover); //
+    }
 
     &:active {
-        background: linear-gradient(0deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.12)), rgb(254, 44, 85);
+        background: var(--bg-primary-hover); //
     }
 }

@@ -13,7 +13,7 @@ function ButtonFollow({ onClick = () => {}, className, isFollowed }) {
     return (
         <div className={cx('container-btn')}>
             {!tokenStr && !userAuth ? (
-                <Button onClick={onClick} outline medium>
+                <Button className={cx(className)} onClick={onClick} outline medium>
                     Follow
                 </Button>
             ) : (

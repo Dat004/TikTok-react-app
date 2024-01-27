@@ -39,40 +39,52 @@
 }
 
 .nickname {
-    font-family: var(--font);
-    font-weight: 700;
+    font-family: var(--font-secondary);
+    font-weight: var(--fw-bold);
     font-size: 3.2rem;
     line-height: 4rem;
+    color: var(--primary-color);
 }
 
 .username {
     min-height: 30px;
-    font-weight: 600;
+    font-weight: var(--fw-semibold);
     font-size: 1.8rem;
     line-height: 3rem;
+    color: var(--primary-color);
 }
 
 .btn-update {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 36px;
+    min-height: 36px;
+    min-width: 136px;
     margin-top: 10px;
-    font-weight: 600;
+    padding: 0 16px;
+    font-weight: var(--fw-semibold);
     font-size: 1.6rem;
-    border-color: #1618231f;
-    color: #161823;
+    background-color: var(--btn-color);
+    border-color: var(--bd-color-btn); //
+    color: var(--primary-color); //
+
+    &:hover {
+        background-color: var(--hover-btn-color);
+        border-color: var(--line-border-color);
+    }
 }
 
 .btn-follow {
     min-width: 208px;
-    font-weight: 600;
+    padding: 6px 8px;
+    font-weight: var(--fw-semibold);
     font-size: 1.8rem;
-    background-color: #fe2c55;
-    color: #fff;
+    background-color: var(--red-color); //
+    color: var(--white-color); //
 
     &:hover {
-        background: linear-gradient(0deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06)), rgb(254, 44, 85);
+        border: transparent;
+        background: var(--bg-primary-hover);
     }
 }
 
@@ -86,11 +98,16 @@
     min-width: 164px;
     margin-top: 0;
     margin-right: 8px;
-    font-weight: 600;
+    font-weight: var(--fw-semibold);
     font-size: 1.8rem;
-    border-color: #fe2c55;
-    background-color: #fff;
-    color: #fe2c55;
+    border-color: var(--red-color); //
+    background-color: var(--bg-wrapper-btn); //
+    color: var(--red-color); //
+
+    &:hover {
+        border-color: var(--red-color);
+        background: var(--bg-color-hover);
+    }
 }
 
 .btn-unfollow {
@@ -99,8 +116,13 @@
     justify-content: center;
     width: 36px;
     height: 36px;
-    border-color: #1618231f;
-    color: #161823;
+    border-color: var(--bd-primary-color); //
+    background-color: var(--bg-wrapper-btn);
+    color: var(--primary-color); //
+
+    &:hover {
+        background: var(--hover-items-color);
+    }
 }
 
 .update-icon {
@@ -114,24 +136,24 @@
 
 .count-title {
     margin-top: 22px;
-    font-weight: 700;
+    font-weight: var(--fw-bold);
     font-size: 1.8rem;
-    color: #161823;
+    color: var(--primary-color); //
     line-height: 2.4rem;
 
     .title {
         font-size: 1.6rem;
-        font-weight: 400;
+        font-weight: var(--fw-regular);
         margin-left: 6px;
-        color: #161823bf;
+        color: var(--tertiary-color); //; // //
     }
 }
 
 .user-bio {
     margin-top: 10px;
-    font-weight: 400;
+    font-weight: var(--fw-regular);
     font-size: 1.6rem;
-    color: #161823;
+    color: var(--primary-color); //
     line-height: 2.1rem;
 }
 
@@ -146,9 +168,9 @@
     display: flex;
     align-items: center;
     gap: 6px;
-    font-weight: 600;
+    font-weight: var(--fw-semibold);
     font-size: 1.6rem;
-    color: #fe2c55;
+    color: var(--red-color); //
 
     &:hover span {
         text-decoration: underline;

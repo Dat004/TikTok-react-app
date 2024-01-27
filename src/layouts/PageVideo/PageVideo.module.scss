@@ -11,7 +11,7 @@
 .videoplayer-container {
     position: relative;
     flex: 1 1 768px;
-    width: 100%;
+    width: 768px;
     height: 100%;
     margin-right: 24px;
 }
@@ -24,7 +24,7 @@
     position: relative;
     width: 100%;
     height: 606px;
-    background-color: #000;
+    background: var(--bg-player-color); //
     border-radius: 4px 4px 0 0;
 }
 
@@ -88,7 +88,7 @@
 .info-detail {
     border-radius: 0 0 12px 12px;
     padding: 16px;
-    background-color: #16182308;
+    background-color: var(--hover-items-color); //
 }
 
 .user-detail {
@@ -123,21 +123,22 @@
 }
 
 .nickname {
-    font-weight: 700;
+    font-weight: var(--fw-bold);
     font-size: 1.8rem;
     line-height: 2.4rem;
+    color: var(--primary-color);
 }
 
 .username {
     font-size: 1.4rem;
     line-height: 1.8rem;
-    color: #161823bf;
+    color: var(--tertiary-color); //; // //
 }
 
 .description {
     font-size: 1.6rem;
     line-height: 2.1rem;
-    color: #161823;
+    color: var(--primary-color); //
 }
 
 .info-music {
@@ -146,6 +147,11 @@
     margin-top: 8px;
     font-size: 1.4rem;
     line-height: 2.1rem;
+    color: var(--primary-color);
+}
+
+.followbtn-user {
+    color: var(--white-color);
 }
 
 //COMENT CONTENT
@@ -157,7 +163,7 @@
 .comment-title {
     font-size: 1.8rem;
     line-height: 2.6rem;
-    color: #161823;
+    color: var(--primary-color); //
 }
 
 .comment-total {
@@ -167,6 +173,8 @@
 .post-content {
     display: flex;
     margin-top: 16px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--separate-color);
 }
 
 .avatar-user {

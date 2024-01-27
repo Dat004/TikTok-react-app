@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import LazyLoad from 'react-lazy-load';
 import classNames from 'classnames/bind';
 import styles from './Account.module.scss';
 
@@ -14,9 +13,7 @@ function AccountItems({ value = {} }) {
         <Link to={`/@${value.nickname}`} className={cx('wrapper-account')}>
             <div className={cx('account-item')}>
                 <div className={cx('avatar-user')}>
-                    <LazyLoad height="100%">
-                        <Image className={cx('avatar')} src={value.avatar} alt={value.full_name} />
-                    </LazyLoad>
+                    <Image className={cx('avatar')} src={value.avatar} alt={value.full_name} />
                 </div>
                 <div className={cx('info')}>
                     <h4 className={cx('name')}>

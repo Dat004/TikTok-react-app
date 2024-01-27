@@ -1,7 +1,7 @@
 .footer-page {
     padding-top: 16px;
     margin: 0 8px 60px;
-    border-top: 1px solid #1618231f;
+    border-top: 1px solid var(--separate-color); //
 }
 
 .details-page + .details-page{
@@ -14,9 +14,9 @@
 
     span {
         margin: 5px 6px 0 0;
-        font-weight: 600;
+        font-weight: var(--fw-semibold);
         font-size: 1.2rem;
-        color: #16182380;
+        color: var(--quaternary-color); //
         cursor: pointer;
 
         &:hover {

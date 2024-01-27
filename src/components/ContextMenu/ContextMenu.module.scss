@@ -6,7 +6,8 @@
 .list-menu {
     width: 181px;
     border-radius: 8px;
-    background: rgba($color: #fff, $alpha: 0.95);
+    background: var(--bg-theme);
+    opacity: 0.95;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 8px 32px;
 }
 
@@ -16,10 +17,11 @@
     padding: 10px 12px;
     gap: 12px;
     list-style: none;
+    color: var(--primary-color);
     cursor: pointer;
 
     &:hover {
-        background: rgba(22, 24, 35, 0.03);
+        background: var(--hover-items-color); //
     }
 }
 
@@ -32,9 +34,8 @@
 }
 
 .title-menu {
-    font-family: "IBM Plex Sans", TikTokFont, Arial, Tahoma, PingFangSC, sans-serif;
-    font-weight: 600;
+    font-family: var(--font-tertiary);
+    font-weight: var(--fw-semibold);
     font-size: 1.4rem;
     line-height: 1.7rem;
-    color: #161823;
 }

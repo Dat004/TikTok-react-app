@@ -15,6 +15,7 @@ import {
     TwitterIcon,
 } from '../../CustomIcon';
 import { BackIcon } from '../../CustomIcon';
+import Button from '../../Button';
 
 const cx = classNames.bind(styles);
 
@@ -131,7 +132,7 @@ function FormPages() {
                         <h1 className={cx('title')}>{items.titleHeader}</h1>
                         <div className={cx('main-form')}>
                             {items.data.map((value) => (
-                                <button
+                                <Button
                                     onClick={() => handleNextForm(value)}
                                     className={cx('channel-item')}
                                     key={value.title}
@@ -139,7 +140,7 @@ function FormPages() {
                                 >
                                     <span className={cx('icon')}>{value.icon}</span>
                                     <p className={cx('text')}>{value.title}</p>
-                                </button>
+                                </Button>
                             ))}
                         </div>
                     </div>

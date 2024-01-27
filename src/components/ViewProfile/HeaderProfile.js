@@ -59,7 +59,58 @@ function HeaderProfile({ data = {} }) {
                 <div className={cx('infor')}>
                     <h1 className={cx('nickname')}>{data.nickname}</h1>
                     <h4 className={cx('username')}>{data.first_name + ' ' + data.last_name}</h4>
-                    {(userAuth && tokenStr && userAuth.id === data.id && (
+                    {userAuth && tokenStr ? (
+                        <>
+                            {userAuth.id === data.id ? (
+                                <Button onClick={handleOpenFormUpdate} className={cx('btn-update')}>
+                                    <UpdateIcon className={cx('update-icon')} />
+                                    Sửa hồ sơ
+                                </Button>
+                            ) : (
+                                <>
+                                    {isFollowed ? (
+                                        <div className={cx('container-btn')}>
+                                            <Button
+                                                className={cx('btn-update', {
+                                                    'btn-message': true,
+                                                })}
+                                                outline
+                                                medium
+                                            >
+                                                Message
+                                            </Button>
+                                            <Button onClick={handleUnFollowUser} outline className={cx('btn-unfollow')}>
+                                                <PerSonCheckIcon />
+                                            </Button>
+                                        </div>
+                                    ) : (
+                                        <Button
+                                            onClick={handleFollowUser}
+                                            className={cx('btn-update', {
+                                                'btn-follow': true,
+                                            })}
+                                            outline
+                                            medium
+                                        >
+                                            Follow
+                                        </Button>
+                                    )}
+                                </>
+                            )}
+                        </>
+                    ) : (
+                        <Button
+                            onClick={handleOpenFormLogin}
+                            outline
+                            medium
+                            className={cx('btn-update', {
+                                'btn-follow': true,
+                            })}
+                        >
+                            Follow
+                        </Button>
+                    )}
+                    {/* {(userAuth && tokenStr && userAuth.id === data.id && (
                         <Button onClick={handleOpenFormUpdate} className={cx('btn-update')} outline medium>
                             <UpdateIcon className={cx('update-icon')} />
                             Update profile
@@ -104,7 +155,7 @@ function HeaderProfile({ data = {} }) {
                             >
                                 Follow
                             </Button>
-                        ))}
+                        ))} */}
                 </div>
             </div>
             <div className={cx('count-info')}>

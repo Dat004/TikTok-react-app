@@ -52,8 +52,8 @@
 }
 
 .text-content {
-    font-weight: 600;
+    font-weight: var(--fw-semibold);
     font-size: 1.4rem;
     line-height: 2.1rem;
-    color: #fff;
+    color: var(--white-color); //
 }

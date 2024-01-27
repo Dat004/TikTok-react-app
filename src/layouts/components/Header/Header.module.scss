@@ -1,7 +1,7 @@
 .wrapper {
     --search-border-radius: 92px;
-    --search-input-background-color-default: rgba(22, 24, 35, 0.06);
-    --search-input-background-color-effect: rgba(22, 24, 35, 0.03);
+    // --search-input-background-color-default: rgba(22, 24, 35, 0.06); //
+    // --search-input-background-color-effect: rgba(22, 24, 35, 0.03); //
     position: fixed;
     top: 0;
     left: 0;
@@ -11,8 +11,8 @@
     justify-content: center;
     width: 100%;
     height: var(--default-layout-header-height);
-    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12);
-    background-color: var(--white);
+    background-color: var(--bg-theme);
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12); //
     z-index: 1000;
     .inner {
         display: flex;
@@ -54,7 +54,7 @@
     //     width: 4px;
     //     height: 4px;
     //     border-radius: 100%;
-    //     background-color: var(--black);
+    //     background-color: var(--black-color:);
     // }
 }
 
@@ -68,10 +68,19 @@
         justify-content: center;
         margin-right: 16px;
         padding: 7px 16px;
-        border-color: #1618231f;
+        background-color: var(--bg-wrapper-btn);
+        border-color: var(--bd-color-btn); //
         border-radius: 0;
-        font-weight: 600;
-        color: #161823;
+        font-weight: var(--fw-semibold);
+        color: var(--primary-color); //
+
+        &:hover {
+            background: var(--bg-color-hover);
+        }
+    }
+
+    .btn-login {
+        color: var(--white-color);
     }
 }
 
@@ -83,7 +92,7 @@
     position: relative;
     font-size: 2.2rem;
     background-color: transparent;
-    color: #161823;
+    color: var(--primary-color); //
     margin: 4px 12px;
     cursor: pointer;
 
@@ -96,11 +105,11 @@
         justify-content: center;
         width: 20px;
         height: 20px;
-        font-size: 1.4rem;
-        font-weight: 600;
+        font-size: 1.2rem;
+        font-weight: var(--fw-semibold);
         border-radius: 50%;
-        background-color: #fe2c55;
-        color: var(--white);
+        background-color: var(--red-color); //
+        color: var(--white-color);
     }
 }
 

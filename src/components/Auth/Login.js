@@ -17,7 +17,10 @@ function Form() {
 
     return (
         <div className={cx('form-wrapper')}>
-            <Wrapper className={cx('form')}>
+            {/* <Wrapper className={cx('form')}> */}
+            <Wrapper className={cx('modal-form', {
+                'form': true,
+            })}>
                 <div className={cx('tab-control')}>
                     <CloseTabs className={cx('close-btn')} onClick={handleCloseForm} />
                 </div>

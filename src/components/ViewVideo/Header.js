@@ -7,6 +7,7 @@ import styles from './ViewVideo.module.scss';
 import { UserAuth, UserNotify } from '../Store';
 import ButtonFollow from '../../components/Button/ButtonFollow';
 import config from '../../services';
+import Button from '../Button';
 
 const cx = classNames.bind(styles);
 
@@ -90,7 +91,7 @@ function Header({ data = {}, isFollow = false, setFollowStatus = () => {} }) {
             />
         </header>
     );
-};
+}
 
 Header.propTypes = {
     data: PropTypes.object,

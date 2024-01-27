@@ -5,7 +5,6 @@
 
 .form-container {
     display: flex;
-    align-items: center;
     width: 100%;
     height: 100%;
 }
@@ -16,10 +15,14 @@
     display: flex;
     align-items: center;
     height: 100%;
-    padding: 0 8px;
+    padding: 0 9px;
     border: 1px solid transparent;
     border-radius: 8px;
-    background-color: rgba(22, 24, 35, 0.06);
+    background-color: var(--bg-form-input); //
+
+    &.focused {
+        border-color: var(--bd-form-color);
+    }
 }
 
 .form-text {
@@ -33,18 +36,18 @@
 .current-length {
     display: none;
     margin-top: 10px;
-    font-family: "IBM Plex Sans", TikTokFont, Arial, Tahoma, PingFangSC, sans-serif;
+    font-family: var(--font-tertiary);
     font-size: 1.4rem;
     line-height: 1.8rem;
-    color: #161823bf;
+    color: var(--tertiary-color); //; // //
 }
 
 .text-form {
     width: 100%;
     height: 100%;
-    font-weight: 400;
+    font-weight: var(--fw-regular);
     font-size: 1.4rem;
-    color: #161823;
+    color: var(--primary-color); //
     line-height: 1.8rem;
     background: transparent;
     border: none;
@@ -62,18 +65,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    flex: 0 0 32px;
     width: 32px;
     height: 32px;
     border-radius: 8px;
     background: transparent;
+    color: var(--primary-color);
 
     &.active {
-        background-color: rgba(0, 0, 0, 0.12);
+        background-color: var(--line-items-color); //
     }
 
     &:hover {
-        background-color: rgba(0, 0, 0, 0.12);
+        background-color: var(--line-items-color); //
     }
 }
 
@@ -83,8 +86,8 @@
     right: 0;
     width: 368px;
     height: 300px;
-    background: #fff;
-    box-shadow: rgba(0, 0, 0, 0.12) 0px 4px 16px 0px;
+    background: var(--bg-theme); //
+    box-shadow: var(--bg-shadow-color);
     border-radius: 8px;
     z-index: 2;
 }
@@ -118,13 +121,13 @@
     height: 40px;
     margin: 5px 6px;
     font-size: 2.5rem;
-    background: #fff;
+    background: var(--bg-theme); //
     border-radius: 8px;
     list-style: none;
     cursor: pointer;
 
     &:hover {
-        background-color: rgba(22, 24, 35, 0.06);
+        background-color: var(--bg-btn-actions); //
     }
 }
 
@@ -134,10 +137,13 @@
     justify-content: flex-end;
     flex: 0 0 48px;
     width: 48px;
-    height: 100%;
     margin-right: 4px;
+    font-family: var(--font-tertiary);
+    font-weight: var(--fw-semibold);
+    font-size: 1.4rem;
+    color: var(--red-color);
 
     &:disabled {
-        background: transparent;
+        background: transparent !important;
     }
 }

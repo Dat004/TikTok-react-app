@@ -5,7 +5,7 @@
     flex: 0 0 544px;
     width: 544px;
     height: 100%;
-    background-color: #fff;
+    background: var(--bg-theme);
 }
 
 .header {
@@ -16,7 +16,7 @@
     margin-top: 26px;
     padding: 16px;
     border-radius: 12px;
-    background: rgba(22, 24, 35, 0.03);
+    background: var(--hover-items-color); //
 }
 
 .info-user {
@@ -46,9 +46,9 @@
 
 .nickname-head {
     font-size: 1.8rem;
-    font-weight: 700;
+    font-weight: var(--fw-bold);
     line-height: 2.4rem;
-    color: #161823;
+    color: var(--primary-color); //
 }
 
 .name {
@@ -57,10 +57,10 @@
 
 .username,
 .time {
-    font-weight: 400;
+    font-weight: var(--fw-regular);
     font-size: 1.4rem;
     text-transform: uppercase;
-    color: #161823;
+    color: var(--primary-color); //
 }
 
 .container {
@@ -71,12 +71,30 @@
 
 .video-setting {
     padding: 13px;
-    font-weight: 600;
+    font-weight: var(--fw-semibold);
     font-size: 1.6rem;
-    color: #161823;
+    color: var(--primary-color); //
 
     &:hover {
-        color: #fe2c55;
+        color: var(--red-color); //
+    }
+}
+
+.video-delete {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        display: block;
+        background: var(--separate-color);
     }
 }
 
@@ -84,30 +102,36 @@
     display: flex;
     align-items: center;
     border-radius: 1px;
-    font-weight: 600;
+    font-weight: var(--fw-semibold);
     height: 36px;
+    color: var(--white-color);
+
+    &:hover {
+        background: var(--bg-primary-hover);
+    }
 
     &.btn-unfollow {
-        background-color: #fff;
-        border-color: #1618231f;
-        color: #161823;
+        background-color: var(--bg-wrapper-action); //
+        border-color: var(--separate-color); //
+        color: var(--primary-color); //
 
         &:hover {
-            background-color: rgba(245, 245, 245, 1);
-            border-color: #16182333;
+            background-color: var(--hover-bg-color); //;
+            border-color: var(--hover-bd-content); //
         }
     }
 }
 
 .btn-more {
     background-color: transparent;
+    color: var(--primary-color);
 }
 
 .info-description {
-    font-weight: 600;
+    font-weight: var(--fw-semibold);
     font-size: 1.6rem;
     line-height: 2.1rem;
-    color: #161823;
+    color: var(--primary-color); //
 }
 
 .info-music {
@@ -116,6 +140,7 @@
     margin-top: 8px;
     font-size: 1.4rem;
     gap: 4px;
+    color: var(--primary-color);
 }
 
 .container-actions {
@@ -161,27 +186,19 @@
     height: 32px;
     margin-right: 6px;
     border-radius: 50%;
-    background-color: rgba(22, 24, 35, 0.06);
+    background-color: var(--bg-btn-actions); //
+    color: var(--tertiary-color);
 }
 
 .counts {
-    font-weight: 700;
+    font-weight: var(--fw-bold);
     font-size: 1.2rem;
     line-height: 1.6rem;
-    color: #161823bf;
+    color: var(--tertiary-color); //; // //
 }
 
 .loading {
-    animation: spinner 0.5s linear infinite;
-}
-
-@keyframes spinner {
-    0% {
-        transform: rotate(0);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
+    animation: var(--animation-loading);
 }
 
 aside {
@@ -191,56 +208,13 @@ aside {
 .footer-comments {
     position: relative;
     padding: 21px 0;
-    border-top: 1px solid #e5e6e7;
+    border-top: 1px solid var(--bd-content-color);
 }
 
 .container-footer {
     display: flex;
     align-items: center;
     margin: 0 30px;
-}
-
-.input-group {
-    display: flex;
-    align-items: center;
-    flex: 1;
-    border-radius: 8px;
-    background-color: rgba(22, 24, 35, 0.06);
-
-    textarea {
-        width: 100%;
-        padding: 11px 9px;
-        border-radius: 8px;
-        outline: none;
-        font-weight: 400;
-        font-size: 1.4rem;
-        color: #161823;
-        border: 1px solid transparent;
-        background-color: transparent;
-        resize: none;
-        overflow: hidden;
-
-        &::placeholder {
-            color: #161823;
-        }
-
-        &:is(:focus, :focus-within) {
-            border: 1px solid rgba(22, 24, 35, 0.2);
-        }
-    }
-}
-
-.btn-comment {
-    display: flex;
-    justify-content: flex-end;
-    width: 48px;
-    margin-right: 4px;
-    font-weight: 600;
-    font-size: 1.4rem;
-
-    &:disabled {
-        background-color: transparent;
-    }
 }
 
 .action-coppy {
@@ -250,14 +224,18 @@ aside {
     font-size: 1.4rem;
     height: 34px;
     border-radius: 8px;
-    background-color: rgba(22, 24, 35, 0.06);
-    border: 1px solid rgba(22, 24, 35, 0.12);
+    border: 1px solid var(--bd-color-btn); //
     overflow: hidden;
 }
 
 .link {
+    display: flex;
+    align-items: center;
+    height: 100%;
     flex: 1;
     padding-left: 12px;
+    background-color: var(--bg-form-input); //
+    color: var(--tertiary-color);
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -270,14 +248,14 @@ aside {
     min-width: 100px;
     padding: 7px 18px;
     border-radius: 0;
-    font-weight: 700;
+    font-weight: var(--fw-bold);
     font-size: 1.4rem;
-    background-color: transparent;
-    color: #161823;
+    background-color: var(--bg-disabled-color);
+    color: var(--primary-color); //
     border: none;
 
     &:hover {
-        background-color: #fff;
+        background-color: var(--hover-items-color); //
     }
 }
 
@@ -296,7 +274,7 @@ aside {
     top: 0;
     height: 50px;
     margin-bottom: 24px;
-    background-color: #fff;
+    background: var(--bg-theme);
     z-index: 10;
 }
 
@@ -306,16 +284,16 @@ aside {
     justify-content: center;
     height: 100%;
     padding-top: 18px;
-    border-bottom: 2px solid #161823;
+    border-bottom: 2px solid var(--primary-color); //
 }
 
 .tab-title {
     display: flex;
     align-items: center;
     gap: 4px;
-    font-weight: 700;
+    font-weight: var(--fw-bold);
     font-size: 1.4rem;
     line-height: 2.4rem;
     cursor: pointer;
-    color: #161823;
+    color: var(--primary-color); //
 }

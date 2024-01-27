@@ -8,11 +8,11 @@
     width: 100%;
     padding: 8px;
     border-radius: 4px;
-    color: rgba(22, 24, 35, 1);
+    color: var(--primary-color); //
     transition: all 0.2s linear;
 
     &.active {
-        color: rgba(254, 44, 85, 1);
+        color: var(--red-color); //
 
         & .icon-active {
             display: flex;
@@ -28,7 +28,7 @@
     }
 
     &:hover {
-        background-color: rgba(22, 24, 35, .03);;
+        background-color: var(--hover-items-color); //
     }
 }
 
@@ -37,7 +37,7 @@
 }
 
 .title {
-    font-weight: 700;
+    font-weight: var(--fw-bold);
     font-size: 1.8rem;
     margin-left: 8px;
 }
