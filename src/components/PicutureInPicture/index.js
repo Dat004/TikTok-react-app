@@ -7,7 +7,9 @@ import styles from './PicutureInPicture.module.scss';
 import { CloseTabs, PlayVideo, VolumeVideo, FullScreenVideos } from '../Control';
 import { Wrapper } from '../../components/Popper';
 import { PauseIcon, PlayIcon, ZoomIcon } from '../CustomIcon';
+import { UserVideo } from '../Store/VideoContext'; 
 import Image from '../Image';
+import InputSlider from '../InputSlider';
 
 const cx = classNames.bind(styles);
 
@@ -39,17 +41,39 @@ function PicutureInPicture({ data = {} }) {
     const videoRef = useRef();
     const videoSpeedRef = useRef([]);
 
+    const MIN_VOLUME = 0;
+    const DEFAULT_VOLUME = 0.7;
     const MIN_VALUE = 0;
-    const MAX_VALUE = data?.meta?.playtime_seconds;
+    const MAX_VALUE = Number(data?.meta?.playtime_seconds);
     const STEP = 0.00001;
 
     const [timeValue, setTimeValue] = useState(MIN_VALUE);
     const [targetSpeed, setTargetSpeed] = useState(1);
-    const [percentsValue, setPercentsValue] = useState();
     const [isPictureInPicture, setIsPictureInPicture] = useState(false);
-    const [mutedVideo, setMutedVideo] = useState(true);
     const [isPlay, setIsPlay] = useState(false);
     const [isClickVideo, setIsClickVideo] = useState(false);
+
+    const { valueVolume, setValueVolume, mutedVideo, setMutedVideo } = UserVideo();
+
+    useEffect(() => {
+        const handleLoadPlayVideo = () => {
+            if (videoRef.current) {
+                setIsPlay(true);
+
+                videoRef.current.play();
+            }
+        };
+
+        if (videoRef.current) {
+            videoRef.current.addEventListener('loadeddata', handleLoadPlayVideo);
+        }
+
+        return () => {
+            if (videoRef.current) {
+                videoRef.current.removeEventListener('loadeddata', handleLoadPlayVideo);
+            }
+        };
+    }, [videoRef.current]);
 
     useEffect(() => {
         if (!isPictureInPicture) {
@@ -97,15 +121,12 @@ function PicutureInPicture({ data = {} }) {
         const handleTimeUpdate = () => {
             if (videoRef.current) {
                 const currentTime = videoRef.current.currentTime;
-                const durationTime = videoRef.current.duration;
 
                 setTimeValue(currentTime);
-
-                setPercentsValue((currentTime / durationTime) * 100);
             }
         };
 
-        if (videoRef.current && videoRef.current.paused) {
+        if (videoRef.current) {
             videoRef.current.addEventListener('timeupdate', handleTimeUpdate);
         }
 
@@ -116,8 +137,28 @@ function PicutureInPicture({ data = {} }) {
         };
     }, [videoRef.current]);
 
+    useEffect(() => {
+        if (Number(valueVolume) === 0) {
+            setMutedVideo(true);
+
+            videoRef.current.muted = true;
+            videoRef.current.volume = Number(valueVolume) / 100;
+        } else {
+            setMutedVideo(false);
+
+            videoRef.current.muted = false;
+            videoRef.current.volume = Number(valueVolume) / 100;
+        }
+    }, [videoRef.current, valueVolume]);
+
     const handleMuteVideo = () => {
         setMutedVideo((prev) => (!prev ? (videoRef.current.muted = true) : (videoRef.current.muted = false)));
+
+        if (!mutedVideo) {
+            setValueVolume(MIN_VOLUME * 100);
+        } else {
+            setValueVolume(DEFAULT_VOLUME * 100);
+        }
     };
 
     const handlePlayVideo = () => {
@@ -162,12 +203,16 @@ function PicutureInPicture({ data = {} }) {
         }
     };
 
+    const handleChangeVolume = (e) => {
+        const value = Number(e);
+
+        setValueVolume(value);
+    };
+
     const handleChangeTimeVideo = (e) => {
-        const currentTime = Number(e.target.value);
+        const currentTime = e;
 
         setTimeValue(currentTime);
-
-        setPercentsValue((currentTime / MAX_VALUE) * 100);
 
         videoRef.current.currentTime = currentTime;
     };
@@ -179,6 +224,22 @@ function PicutureInPicture({ data = {} }) {
     const handleClickVideo = () => {
         setIsClickVideo(true);
         handlePlayVideo();
+    };
+
+    const handleDrag = () => {
+        if (!isPlay) {
+            return;
+        }
+
+        videoRef.current.pause();
+    };
+
+    const handleDrop = () => {
+        if (!isPlay) {
+            return;
+        }
+
+        videoRef.current.play();
     };
 
     return (
@@ -211,26 +272,29 @@ function PicutureInPicture({ data = {} }) {
                             <PlayVideo
                                 onClick={handlePlayVideo}
                                 isPlay={isPlay ? true : false}
-                                width='4rem'
-                                heigth='4rem'
+                                width="4rem"
+                                heigth="4rem"
                             />
                         </div>
                     </div>
                 ) : (
                     <div className={cx('videoplayer-controller')}>
-                        <div className={cx('slider-controller')}>
-                            <input
-                                onChange={handleChangeTimeVideo}
-                                className={cx('input')}
-                                type="range"
-                                value={timeValue}
-                                max={MAX_VALUE}
-                                min={MIN_VALUE}
-                                step={STEP}
-                            />
-                            <div className={cx('input-slider')} style={{ width: `${percentsValue}%` }}></div>
-                            <div className={cx('input-thumb')} style={{ left: `${percentsValue}%` }}></div>
-                        </div>
+                        <InputSlider
+                            borderRadius="0"
+                            width="100%"
+                            height="4px"
+                            onChange={handleChangeTimeVideo}
+                            onSeekStart={handleDrag}
+                            onSeekEnd={handleDrop}
+                            pseudoProps={{
+                                opacity: 1,
+                                cursor: 'pointer',
+                            }}
+                            min={MIN_VALUE}
+                            max={MAX_VALUE}
+                            value={timeValue}
+                            step={STEP}
+                        />
                         <div className={cx('controller')}>
                             <div className={cx('left-controller')}>
                                 <PlayVideo isPlay={isPlay ? true : false} onClick={() => handlePlayVideo(videoRef)} />
@@ -246,13 +310,23 @@ function PicutureInPicture({ data = {} }) {
                                                 className={cx('items-speed')}
                                             >
                                                 {items.value}
-                                                <span>x </span>
+                                                <span>x</span>
                                             </div>
                                         ))}
                                     </Wrapper>
                                     <span className={cx('control-speed')}>Speed</span>
                                 </div>
-                                <VolumeVideo isMute={mutedVideo} onClick={handleMuteVideo} />
+                                <VolumeVideo
+                                    onChangeVolume={handleChangeVolume}
+                                    onClick={handleMuteVideo}
+                                    volumeValue={valueVolume}
+                                    backgroundWrapper='rgb(27, 27, 27)'
+                                    width='28px'
+                                    height='106px'
+                                    widthY='4px'
+                                    heightY='80px'
+                                    isMute={mutedVideo ? true : false}
+                                />
                                 <div>
                                     <Tippy content="Full screen">
                                         <FullScreenVideos onClick={handleOpenFullscreen} />

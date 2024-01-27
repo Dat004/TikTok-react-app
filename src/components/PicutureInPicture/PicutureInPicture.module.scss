@@ -159,56 +159,6 @@
     animation: animationController 0.333s cubic-bezier(0.33, 1, 0.68, 1) 0s forwards;
 }
 
-.slider-controller {
-    position: relative;
-    display: flex;
-    align-items: center;
-    height: 4px;
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0.34);
-
-    &:hover {
-        height: 6px;
-    }
-}
-
-.input {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 100%;
-    height: 100%;
-    background-color: transparent;
-    cursor: pointer;
-
-    &::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        appearance: none;
-        width: 12px;
-        height: 12px;
-    }
-}
-
-.input-slider {
-    position: absolute;
-    left: 0;
-    width: 0;
-    height: 100%;
-    background-color: #fff;
-    pointer-events: none;
-}
-
-.input-thumb {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    pointer-events: none;
-}
-
 .videoplayer-ended {
     position: absolute;
     top: 0;

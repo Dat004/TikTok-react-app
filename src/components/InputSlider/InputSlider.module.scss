@@ -1,0 +1,14 @@
+.slider-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.slider-thumb {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    pointer-events: none;
+}
